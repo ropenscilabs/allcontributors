@@ -12,8 +12,6 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_github("r-lib/pkgapi")
-          remotes::install_github("mpadge/packgraph")
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Check
