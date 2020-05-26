@@ -14,6 +14,11 @@ implementation in R of the original
 but at the moment restricted to automatic addition of direct code
 contributors only.
 
+## Why then?
+
+Just so you can do this in R, without otherwise having to install the
+`all-contributions` Bot on github, or the javascript client locally.
+
 ## Installation
 
 Currently only on github, so package must be installed with
@@ -27,11 +32,6 @@ The package can then be loaded the usual way:
 ``` r
 library (allcontributor)
 ```
-
-## Why then?
-
-Just so you can do this in R, without otherwise having to install the
-`all-contributions` Bot on github, or the javascript client locally.
 
 ## Usage
 

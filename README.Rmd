@@ -37,6 +37,11 @@ implementation in R of the original
 at the moment restricted to automatic addition of direct code contributors
 only.
 
+## Why then?
+
+Just so you can do this in R, without otherwise having to install the
+`all-contributions` Bot on github, or the javascript client locally.
+
 ## Installation
 
 Currently only on github, so package must be installed with
@@ -52,11 +57,6 @@ devtools::load_all (".", export_all = FALSE)
 ```{r load-fakey, eval = FALSE}
 library (allcontributor)
 ```
-
-## Why then?
-
-Just so you can do this in R, without otherwise having to install the
-`all-contributions` Bot on github, or the javascript client locally.
 
 ## Usage
 
