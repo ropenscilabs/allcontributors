@@ -44,17 +44,18 @@ specifying the `files` argument of that function.
 Contribution data are obtained by querying the github API, for which a
 local key should be set as an environmental variable containing the name
 `"GITHUB"` (either via `Sys.setenv()`, or as an equivalent entry in a
-file `~/.Renviron`). The contributors can be extracted without writing
-to the `README` file(s) with the function
+file `~/.Renviron`). The data used to construct the contributions table
+can be extracted without writing to the `README` file(s) with the
+function
 [`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
 
 ``` r
 get_contributors(org = "mpadge", repo = "allcontributor")
 #>   logins contributions                                              avatars
-#> 1 mpadge            15 https://avatars1.githubusercontent.com/u/6697851?v=4
+#> 1 mpadge            17 https://avatars1.githubusercontent.com/u/6697851?v=4
 ```
 
-If the main `README` file(s) must contains a markdown section entitled
+If the main `README` file(s) contains a markdown section entitled
 `"Contributors"`, the
 [`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html)
 function will add a table of contributors will there, otherwise it will
