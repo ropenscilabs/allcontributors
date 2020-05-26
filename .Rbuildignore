@@ -1,0 +1,9 @@
+^README\.Rmd$
+^_pkgdown\.yml$
+^README\.md$
+^makefile$
+^aaa.Rmd$
+^vignettes/makefile$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.github$
