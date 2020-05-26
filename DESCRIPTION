@@ -7,6 +7,10 @@ Description: Acknowledge all contributors in your 'README'.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports:
+    ghql,
+    jsonlite,
+    magrittr
 Suggests: 
     knitr,
     rmarkdown
