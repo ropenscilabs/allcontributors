@@ -40,7 +40,9 @@ contribs_to_readme <- function (dat, orgrepo, ncols, rmd = TRUE) {
 
     f <- file.path (here::here (), f0)
     if (!file.exists (f))
-        stop ("Unable to find ", f0)
+        return (NULL)
+        #stop ("Unable to find ", f0)
+
     x <- readLines (f)
 
     contribs_sec <- grep ("# Contributors$", x)
