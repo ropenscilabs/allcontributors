@@ -56,11 +56,25 @@ library (allcontributor)
 
 ## Usage
 
+
+The primary function of the package, `add_contributors()`, adds a table of all
+contributors to the main `README.md` file (and `README.Rmd` if that exists).
+These are obtained by querying the github API, for which a local key should be
+set as an environmental variable containing the name `"GITHUB"` (either via
+`Sys.setenv()`, or as an equivalent entry in a file `~/.Renviron`).
+
+The main `README` file(s) must also contain a markdown section entitled
+`"Contributors"`, which must be manually inserted in the desired place of both
+`"README.Rmd"` and `"README.md"` files prior to first using this package.
+
 The package has only two functions, `get_contributors()`, to return a list of
 repository contributors, and the primary function, `add_contributors()`, which
 renders the results of this function in a table in the `README.Rmd` and
 `README.md` files.
 
+```{r run, eval = FALSE}
+add_contributors()
+```
 
 ## Contributors
 
