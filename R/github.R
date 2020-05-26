@@ -21,15 +21,25 @@ get_contributors <- function (org, repo, alphabetical = FALSE) {
                  repo,
                  "/contributors")
 
-    x <- httr::GET (u, httr::authenticate (user, tok)) %>%
-        httr::content ()
+    if (length (tok) > 0) {
+        x <- httr::GET (u, httr::authenticate (user, tok)) %>%
+            httr::content ()
+    } else {
+        x <- httr::GET (u) %>%
+            httr::content ()
+    }
     pg <- 1
     res <- x
     while (length (x) == 30) {
         pg <- pg + 1
         u2 <- paste0 (u, "?page=", pg)
-        x <- httr::GET (u, httr::authenticate (user, tok)) %>%
-            httr::content ()
+        if (length (tok) > 0) {
+            x <- httr::GET (u, httr::authenticate (user, tok)) %>%
+                httr::content ()
+        } else {
+            x <- httr::GET (u) %>%
+                httr::content ()
+        }
         res <- c (res, x)
     }
 

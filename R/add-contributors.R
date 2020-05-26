@@ -21,7 +21,8 @@ add_contributors <- function (ncols = 7, alphabetical = FALSE) {
     x <- get_contributors (or$org, or$repo, alphabetical = alphabetical)
 
     x <- x [which (!is.na (x$login)), ]
-    contribs_to_readme (x, orgrepo = or, ncols = ncols)
+    contribs_to_readme (x, orgrepo = or, ncols = ncols, rmd = TRUE)
+    contribs_to_readme (x, orgrepo = or, ncols = ncols, rmd = FALSE)
 }
 
 get_org_repo <- function (remote) {
@@ -31,10 +32,15 @@ get_org_repo <- function (remote) {
           repo = repo)
 }
 
-contribs_to_readme <- function (dat, orgrepo, ncols) {
-    f <- file.path (here::here (), "README.Rmd")
+contribs_to_readme <- function (dat, orgrepo, ncols, rmd = TRUE) {
+    if (rmd)
+        f0 <- "README.Rmd"
+    else
+        f0 <- "README.md"
+
+    f <- file.path (here::here (), f0)
     if (!file.exists (f))
-        stop ("Unable to find README.Rmd")
+        stop ("Unable to find ", f0)
     x <- readLines (f)
 
     contribs_sec <- grep ("# Contributors$", x)
