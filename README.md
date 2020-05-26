@@ -14,6 +14,27 @@ implementation in R of the original
 but at the moment restricted to automatic addition of direct code
 contributors only.
 
+## Installation
+
+Currently only on github, so package must be installed with
+
+``` r
+remotes::install_github("mpadge/allcontributor")
+```
+
+The package can then be loaded the usual way:
+
+``` r
+library (allcontributor)
+```
+
+## Usage
+
+The package has only two functions, `get_contributors()`, to return a
+list of repository contributors, and the primary function,
+`add_contributors()`, which renders the results of this function in a
+table in the `README.Rmd` and `README.md` files.
+
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
