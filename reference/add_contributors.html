@@ -117,7 +117,11 @@
     <p>Add contributors to README.Rmd</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_contributors</span>(<span class='kw'>ncols</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>alphabetical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>add_contributors</span>(
+  <span class='kw'>ncols</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+  <span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"README.Rmd"</span>, <span class='st'>"README.md"</span>),
+  <span class='kw'>alphabetical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -125,6 +129,10 @@
     <tr>
       <th>ncols</th>
       <td><p>Number of columns for contributors in 'README'</p></td>
+    </tr>
+    <tr>
+      <th>files</th>
+      <td><p>Names of files in which to add contributors</p></td>
     </tr>
     <tr>
       <th>alphabetical</th>
