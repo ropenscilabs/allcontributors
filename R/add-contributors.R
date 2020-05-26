@@ -67,7 +67,7 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
 
     xmid <- NULL
     if (!has_contribs_sec)
-        xmid <- c ("## Contributors", "")
+        xmid <- c ("", "## Contributors", "")
 
     xmid <- c (xmid,
                "<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->",
