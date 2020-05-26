@@ -56,6 +56,10 @@ contribs_to_readme <- function (dat, orgrepo, ncols) {
                "<!-- prettier-ignore-start -->",
                "<!-- markdownlint-disable -->",
                "",
+               paste0 ("This project follows the ",
+                       "[all-contributors](https://allcontributors.org) specification. ",
+                       "Contributions of any kind are welcome!"),
+               "",
                "<table>")
 
     nmax <- ceiling (nrow (dat) / ncols)
