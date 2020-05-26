@@ -28,6 +28,11 @@ The package can then be loaded the usual way:
 library (allcontributor)
 ```
 
+## Why then?
+
+Just so you can do this in R, without otherwise having to install the
+`all-contributions` Bot on github, or the javascript client locally.
+
 ## Usage
 
 The primary function of the package, `add_contributors()`, adds a table
