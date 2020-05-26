@@ -75,5 +75,6 @@ get_gh_token <- function (token = "") {
 }
 
 get_git_user <- function () {
+    #whoami::whoami ()
     git2r::config ()$global$user.name
 }
