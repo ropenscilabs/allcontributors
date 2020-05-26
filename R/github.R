@@ -1,4 +1,52 @@
 
+#' get_contributors
+#'
+#' Get list of all contributors to a repository
+#' @param org Github organisation name for repository
+#' @param repo Repository within `org` for which contributors are to be
+#' extracted
+#' @param alphabetical If `TRUE` contributors are alphabetically sorted by
+#' login.
+#' @return A `data.frame` of two columns of contributor (name, login)
+#' @export
+get_contributors <- function (org, repo, alphabetical = FALSE) {
+
+    tok <- get_gh_token ()
+    user <- get_git_user ()
+
+    # This query can not be done via GraphQL, so have to use v3 REST API
+    u <- paste0 ("https://api.github.com/repos/",
+                 org,
+                 "/",
+                 repo,
+                 "/contributors")
+
+    x <- httr::GET (u, httr::authenticate (user, tok)) %>%
+        httr::content ()
+    pg <- 1
+    res <- x
+    while (length (x) == 30) {
+        pg <- pg + 1
+        u2 <- paste0 (u, "?page=", pg)
+        x <- httr::GET (u, httr::authenticate (user, tok)) %>%
+            httr::content ()
+        res <- c (res, x)
+    }
+
+    logins <- vapply (x, function (i) i$login, character (1))
+    contributions <- vapply (x, function (i) i$contributions, integer (1))
+    avatars <- vapply (x, function (i) i$avatar_url, character (1))
+
+    index <- seq (logins)
+    if (alphabetical)
+        index <- order (res$logins)
+
+    data.frame (logins = logins,
+                contributions = contributions,
+                avatars = avatars,
+                stringsAsFactors = FALSE) [index, ]
+}
+
 get_gh_token <- function (token = "") {
     e <- Sys.getenv ()
     if (token != "")
@@ -11,56 +59,11 @@ get_gh_token <- function (token = "") {
 
     if (length (unique (toks)) > 1)
         stop (paste0 ("No unambiguous token found; please use ",
-                      "Sys.setenv() to set a github graphQL tokan ",
-                      "named 'GITHUB', 'GITHUBQL', or similar"))
+                      "Sys.setenv() to set a github tokan with a ",
+                      "name which includes 'GITHUB'"))
     return (unique (toks))
 }
 
-get_qry <- function (gh_cli, org, repo, endCursor = NULL, branch = "master") {
-    q <- paste0 ("{
-        repository(owner:\"", org, "\", name:\"", repo, "\") {
-                   collaborators {
-                       nodes {
-                           name
-                           login
-                       }
-                   }
-    }
-    }")
-    qry <- ghql::Query$new()
-    qry$query('get_commits', q)
-
-    return (qry)
+get_git_user <- function () {
+    git2r::config ()$global$user.name
 }
-
-#' get_contributors
-#'
-#' Get list of all contributors to a repository
-#' @param org Github organisation name for repository
-#' @param repo Repository within `org` for which contributors are to be
-#' extracted
-#' @param alphabetical If `TRUE` contributors are alphabetically sorted by
-#' login.
-#' @return A `data.frame` of two columns of contributor (name, login)
-#' @export
-get_contributors <- function (org, repo, alphabetical = FALSE) {
-    token <- get_gh_token ()
-
-    gh_cli <- ghql::GraphqlClient$new (
-        url = "https://api.github.com/graphql",
-        headers = list (Authorization = paste0 ("Bearer ", token))
-    )
-
-
-    qry <- get_qry (gh_cli, org = org, repo = repo)
-    x <- gh_cli$exec(qry$queries$get_commits) %>%
-        jsonlite::fromJSON ()
-
-    res <- x$data$repository$collaborators$nodes
-
-    if (alphabetical)
-        res <- res [order (res$login), ]
-
-    return (res)
-}
-
