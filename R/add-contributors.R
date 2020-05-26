@@ -1,4 +1,4 @@
-#' add_contriburors
+#' add_contributors
 #'
 #' Add contributors to README.Rmd
 #'

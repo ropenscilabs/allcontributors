@@ -2,7 +2,7 @@
 % Please edit documentation in R/add-contributors.R
 \name{add_contributors}
 \alias{add_contributors}
-\title{add_contriburors}
+\title{add_contributors}
 \usage{
 add_contributors(ncols = 7, alphabetical = FALSE)
 }
