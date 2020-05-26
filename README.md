@@ -35,26 +35,33 @@ library (allcontributor)
 
 ## Usage
 
-The primary function of the package, `add_contributors()`, adds a table
-of all contributors to the main `README.md` file (and `README.Rmd` if
-that exists). These are obtained by querying the github API, for which a
+The primary function of the package,
+[`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html),
+adds a table of all contributors to the main `README.md` file (and
+`README.Rmd` if that exists). Tables can be added to other files by
+specifying the `files` argument of that function.
+
+Contribution data are obtained by querying the github API, for which a
 local key should be set as an environmental variable containing the name
 `"GITHUB"` (either via `Sys.setenv()`, or as an equivalent entry in a
-file `~/.Renviron`).
-
-The main `README` file(s) must also contain a markdown section entitled
-`"Contributors"`, which must be manually inserted in the desired place
-of both `"README.Rmd"` and `"README.md"` files prior to first using this
-package.
-
-The package has only two functions, `get_contributors()`, to return a
-list of repository contributors, and the primary function,
-`add_contributors()`, which renders the results of this function in a
-table in the `README.Rmd` and `README.md` files.
+file `~/.Renviron`). The contributors can be extracted without writing
+to the `README` file(s) with the function
+[`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
 
 ``` r
-add_contributors()
+get_contributors(org = "mpadge", repo = "allcontributor")
+#>   logins contributions                                              avatars
+#> 1 mpadge            15 https://avatars1.githubusercontent.com/u/6697851?v=4
 ```
+
+If the main `README` file(s) must contains a markdown section entitled
+`"Contributors"`, the
+[`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html)
+function will add a table of contributors will there, otherwise it will
+be appended to the end of the document(s). If you wish your contributors
+table to be somewhere other than at the end of the `README` file(s),
+start by adding an empty `"## Contributors` section to the file(s) and
+the function will insert the table at that point.
 
 ## Contributors
 
