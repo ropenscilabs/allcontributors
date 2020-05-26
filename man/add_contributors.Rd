@@ -4,10 +4,16 @@
 \alias{add_contributors}
 \title{add_contributors}
 \usage{
-add_contributors(ncols = 7, alphabetical = FALSE)
+add_contributors(
+  ncols = 7,
+  files = c("README.Rmd", "README.md"),
+  alphabetical = FALSE
+)
 }
 \arguments{
 \item{ncols}{Number of columns for contributors in 'README'}
+
+\item{files}{Names of files in which to add contributors}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}
