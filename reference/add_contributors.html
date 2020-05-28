@@ -121,6 +121,7 @@
   <span class='kw'>ncols</span> <span class='kw'>=</span> <span class='fl'>7</span>,
   <span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"README.Rmd"</span>, <span class='st'>"README.md"</span>),
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"code"</span>, <span class='st'>"issues"</span>, <span class='st'>"discussion"</span>),
+  <span class='kw'>num_sections</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>alphabetical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
@@ -143,6 +144,16 @@ who open issues, and 'discussion' for contributing to discussions within
 issues. Discussion contributions are only from individuals not present in
 either 'issues' or 'code'; and 'issues' contributions are only from
 individuals not present in 'code'.</p></td>
+    </tr>
+    <tr>
+      <th>num_sections</th>
+      <td><p>Number of sections in which to divide contributors:</p><ul>
+<li><p>1 All contributions within single section regardless of <code>type</code></p></li>
+<li><p>2 Contributions divided between a single section for <code>code</code> and a
+second section for all other issue-related contributions.</p></li>
+<li><p>3 Contributions divided into single sections for each of the three
+<code>type</code> arguments.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>alphabetical</th>
