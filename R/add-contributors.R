@@ -4,6 +4,12 @@
 #'
 #' @param ncols Number of columns for contributors in 'README'
 #' @param files Names of files in which to add contributors
+#' @param type Type of contributions to include: 'code' for direct code
+#' contributions (including documentation), 'issues' to recognise contributors
+#' who open issues, and 'discussion' for contributing to discussions within
+#' issues. Discussion contributions are only from individuals not present in
+#' either 'issues' or 'code'; and 'issues' contributions are only from
+#' individuals not present in 'code'.
 #' @param alphabetical If `TRUE`, order contributors alphabetically, otherwise
 #' order by decreasing numbers of contributions.
 #' @return Named list of logical values indicating whether files of given names
@@ -11,9 +17,12 @@
 #' @export
 add_contributors <- function (ncols = 7,
                               files = c ("README.Rmd", "README.md"),
+                              type = c ("code", "issues", "discussion"),
                               alphabetical = FALSE) {
     if (!git2r::in_repository ())
         stop ("This does not appear to be a git repository")
+
+    type <- match.arg (type)
 
     remote <- git2r::remote_url ()
     remote <- remote [grep ("github", remote)] [1]
@@ -22,14 +31,42 @@ add_contributors <- function (ncols = 7,
         stop ("Repository must have github remote")
 
     or <- get_org_repo (remote)
-    x <- get_contributors (or$org, or$repo, alphabetical = alphabetical)
+    ctb_code <- get_contributors (or$org,
+                                  or$repo,
+                                  alphabetical = alphabetical)
 
-    x <- x [which (!is.na (x$login)), ]
+    ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
+    ctb_code$type <- "code"
+
+    ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
+
+    index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
+    ctb_issues$authors <- ctb_issues$authors [index, ]
+
+    index <- which (!ctb_issues$contributors$login %in%
+                    c (ctb_code$logins, ctb_issues$authors$login))
+    ctb_issues$contributors <- ctb_issues$contributors [index, ]
+
+    add_na_contribs <- function (x, type) {
+        x <- cbind (x, NA_integer_) [, c (1, 3, 2)]
+        names (x) [2] <- "contributions"
+        x$type <- type
+        return (x)
+    }
+    issue_authors <- add_na_contribs (ctb_issues$authors, "issue_authors")
+    issue_contributors <- add_na_contribs (ctb_issues$contributors,
+                                           "issue_contributors")
+    ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+
     files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
 
+    # code contributions to files:
     chk <- lapply (files, function (i)
-            contribs_to_readme (x, orgrepo = or, ncols = ncols, filename = i))
+            contribs_to_readme (ctbs,
+                                orgrepo = or,
+                                ncols = ncols,
+                                filename = i))
 
     names (chk) <- vapply (files, function (i)
                            utils::tail (strsplit (i, "/") [[1]], 1),
@@ -100,17 +137,17 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
         for (j in seq (nrow (i))) {
             xmid <- c (xmid,
                        "<td align=\"center\">",
-                       paste0 ("<a href=\"https://github.com/", i$login [j], "\">"),
-                       paste0 ("<img src=\"", i$avatars [j], "\" width=\"100px;\" alt=\"\"/>"),
+                       paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
+                       paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
                        "</a><br>",
                        paste0 ("<a href=\"https://github.com/",
                                orgrepo$org,
                                "/",
                                orgrepo$repo,
                                "/commits?author=",
-                               i$login [j],
+                               i$logins [j],
                                "\">",
-                               i$login [j],
+                               i$logins [j],
                                "</a>"),
                        "</td>")
         }

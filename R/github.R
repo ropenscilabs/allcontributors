@@ -53,7 +53,7 @@ get_contributors <- function (org, repo, alphabetical = FALSE) {
 
     data.frame (logins = logins,
                 contributions = contributions,
-                avatars = avatars,
+                avatar = avatars,
                 stringsAsFactors = FALSE) [index, ]
 }
 
@@ -101,6 +101,7 @@ get_issues_qry <- function (gh_cli, org, repo, endCursor = NULL) {
                                    createdAt
                                    author {
                                        login
+                                       avatarUrl
                                    }
                                    title
                                    url,
@@ -112,6 +113,7 @@ get_issues_qry <- function (gh_cli, org, repo, endCursor = NULL) {
                                        edges {
                                            node {
                                                login
+                                               avatarUrl
                                            }
                                        }
                                    }
@@ -144,7 +146,8 @@ get_gh_issue_people <- function (org, repo) {
 
     hasNextPage <- TRUE
     endCursor <- NULL
-    issue_authors <- issue_contributors <- NULL
+    issue_authors <- issue_author_avatar <-
+        issue_contributors <- issue_contributors_avatar <- NULL
     while (hasNextPage) {
         qry <- ghql::Query$new()
         q <- get_issues_qry (gh_cli, org = org, repo = repo,
@@ -158,14 +161,32 @@ get_gh_issue_people <- function (org, repo) {
         endCursor <- dat$data$repository$issues$pageInfo$endCursor
 
         dat <- dat$data$repository$issues$edges
-        issue_authors <- unique (c (issue_authors, dat$node$author$login))
-        ctb <- unlist (dat$node$participants$edges, use.names = FALSE)
-        issue_contributors <- unique (c (issue_contributors, ctb))
+        issue_authors <- c (issue_authors, dat$node$author$login)
+        issue_avatars <- c (issue_author_avatar, dat$node$author$avatarUrl)
 
+        author <- dat$node$participants$edges
+
+        author_login <- unlist (lapply (author, function (i) i$node$login))
+        author_avatar <- unlist (lapply (author, function (i) i$node$avatarUrl))
+        issue_contributors <- c (issue_contributors, author_login)
+        issue_contributors_avatar <- c (issue_contributors_avatar, author_avatar)
     }
 
-    list (authors = issue_authors [!is.na (issue_authors)],
-          contributors = issue_contributors [!is.na (issue_contributors)])
+    index <- which (!duplicated (author_login))
+    author_login <- author_login [index]
+    author_avatar <- author_avatar [index]
+
+    index <- which (!(duplicated (issue_contributors) |
+                      issue_contributors %in% author_login))
+    issue_contributors <- issue_contributors [index]
+    issue_contributors_avatar <- issue_contributors_avatar [index]
+
+    list (authors = data.frame (logins = author_login,
+                                avatar = author_avatar,
+                                stringsAsFactors = FALSE),
+          contributors = data.frame (logins = issue_contributors,
+                                     avatar = issue_contributors_avatar,
+                                     stringsAsFactors = FALSE))
 }
 
 

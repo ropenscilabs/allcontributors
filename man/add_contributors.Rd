@@ -7,6 +7,7 @@
 add_contributors(
   ncols = 7,
   files = c("README.Rmd", "README.md"),
+  type = c("code", "issues", "discussion"),
   alphabetical = FALSE
 )
 }
@@ -14,6 +15,13 @@ add_contributors(
 \item{ncols}{Number of columns for contributors in 'README'}
 
 \item{files}{Names of files in which to add contributors}
+
+\item{type}{Type of contributions to include: 'code' for direct code
+contributions (including documentation), 'issues' to recognise contributors
+who open issues, and 'discussion' for contributing to discussions within
+issues. Discussion contributions are only from individuals not present in
+either 'issues' or 'code'; and 'issues' contributions are only from
+individuals not present in 'code'.}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}
