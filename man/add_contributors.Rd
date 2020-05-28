@@ -8,6 +8,7 @@ add_contributors(
   ncols = 7,
   files = c("README.Rmd", "README.md"),
   type = c("code", "issues", "discussion"),
+  num_sections = 3,
   alphabetical = FALSE
 )
 }
@@ -22,6 +23,15 @@ who open issues, and 'discussion' for contributing to discussions within
 issues. Discussion contributions are only from individuals not present in
 either 'issues' or 'code'; and 'issues' contributions are only from
 individuals not present in 'code'.}
+
+\item{num_sections}{Number of sections in which to divide contributors:
+\itemize{
+\item{1} All contributions within single section regardless of \code{type}
+\item{2} Contributions divided between a single section for \code{code} and a
+second section for all other issue-related contributions.
+\item{3} Contributions divided into single sections for each of the three
+\code{type} arguments.
+}}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}

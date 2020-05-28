@@ -10,6 +10,14 @@
 #' issues. Discussion contributions are only from individuals not present in
 #' either 'issues' or 'code'; and 'issues' contributions are only from
 #' individuals not present in 'code'.
+#' @param num_sections Number of sections in which to divide contributors:
+#' \itemize{
+#' \item{1} All contributions within single section regardless of `type`
+#' \item{2} Contributions divided between a single section for `code` and a
+#' second section for all other issue-related contributions.
+#' \item{3} Contributions divided into single sections for each of the three
+#' `type` arguments.
+#' }
 #' @param alphabetical If `TRUE`, order contributors alphabetically, otherwise
 #' order by decreasing numbers of contributions.
 #' @return Named list of logical values indicating whether files of given names
@@ -18,11 +26,12 @@
 add_contributors <- function (ncols = 7,
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
+                              num_sections = 3,
                               alphabetical = FALSE) {
     if (!git2r::in_repository ())
         stop ("This does not appear to be a git repository")
 
-    type <- match.arg (type)
+    type <- match_type_arg (type)
 
     remote <- git2r::remote_url ()
     remote <- remote [grep ("github", remote)] [1]
@@ -38,25 +47,34 @@ add_contributors <- function (ncols = 7,
     ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
     ctb_code$type <- "code"
 
-    ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
+    issue_authors <- issue_contributors <- NULL
+    if ("issues" %in% type) {
+        ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
 
-    index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
-    ctb_issues$authors <- ctb_issues$authors [index, ]
+        index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
+        ctb_issues$authors <- ctb_issues$authors [index, ]
 
-    index <- which (!ctb_issues$contributors$login %in%
-                    c (ctb_code$logins, ctb_issues$authors$login))
-    ctb_issues$contributors <- ctb_issues$contributors [index, ]
+        index <- which (!ctb_issues$contributors$login %in%
+                        c (ctb_code$logins, ctb_issues$authors$login))
+        ctb_issues$contributors <- ctb_issues$contributors [index, ]
 
-    add_na_contribs <- function (x, type) {
-        x <- cbind (x, NA_integer_) [, c (1, 3, 2)]
-        names (x) [2] <- "contributions"
-        x$type <- type
-        return (x)
+        add_na_contribs <- function (x, type) {
+            x <- cbind (x, NA_integer_) [, c (1, 3, 2)]
+            names (x) [2] <- "contributions"
+            x$type <- type
+            return (x)
+        }
+        if (nrow (ctb_issues$authors) > 0)
+            issue_authors <- add_na_contribs (ctb_issues$authors, "issue_authors")
+        if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0)
+            issue_contributors <- add_na_contribs (ctb_issues$contributors,
+                                                   "issue_contributors")
     }
-    issue_authors <- add_na_contribs (ctb_issues$authors, "issue_authors")
-    issue_contributors <- add_na_contribs (ctb_issues$contributors,
-                                           "issue_contributors")
+
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+
+    attr (ctbs, "num_sections") <- min (num_sections, length (type),
+                                        length (unique (ctbs$type)))
 
     files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
@@ -73,6 +91,12 @@ add_contributors <- function (ncols = 7,
                            character (1), USE.NAMES = FALSE)
 
     return (unlist (chk))
+}
+
+match_type_arg <- function (type) {
+    if (length (type) > 3)
+        stop ("There are only three possible types: code, issues, and discussion")
+    c ("code", "issues", "discussion") [seq (length (type))]
 }
 
 get_org_repo <- function (remote) {
@@ -114,6 +138,7 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
         xmid <- c ("", "## Contributors", "")
 
     xmid <- c (xmid,
+               "",
                "<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->",
                "<!-- prettier-ignore-start -->",
                "<!-- markdownlint-disable -->",
@@ -122,54 +147,34 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
                        "[`allcontributor` package](https://github.com/mpadge/allcontributor)",
                        " following the ",
                        "[all-contributors](https://allcontributors.org) specification. ",
-                       "Contributions of any kind are welcome!"),
-               "",
-               "<table>")
+                       "Contributions of any kind are welcome!"))
 
-    nmax <- ceiling (nrow (dat) / ncols)
-    index <- rep (1:nmax, each = ncols) [seq (nrow (dat))]
-    dat <- split (dat, as.factor (index))
-    for (i in dat) {
-        xmid <- c (xmid,
-                   "",
-                   "<tr>")
+    num_sections <- attr (dat, "num_sections")
+    if (num_sections == 1) {
+        xmid <- c (xmid, add_one_section (dat, orgrepo, ncols))
+    } else {
+        if (num_sections < 3)
+            dat$type [dat$type == "issue_contributors"] <- "issue_authors"
 
-        for (j in seq (nrow (i))) {
+        dat <- split (dat, as.factor (dat$type))
+        for (i in seq (dat)) {
+            typei <- tools::toTitleCase (gsub ("\\_", " ", i$type [1]))
             xmid <- c (xmid,
-                       "<td align=\"center\">",
-                       paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
-                       paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
-                       "</a><br>",
-                       paste0 ("<a href=\"https://github.com/",
-                               orgrepo$org,
-                               "/",
-                               orgrepo$repo,
-                               "/commits?author=",
-                               i$logins [j],
-                               "\">",
-                               i$logins [j],
-                               "</a>"),
-                       "</td>")
+                       "",
+                       paste0 ("## ", typei))
+            xmid <- c (xmid, add_one_section (dat, orgrepo, ncols))
         }
-
-        xmid <- c (xmid,
-                   "</tr>",
-                   "")
-
     }
-
-
-    xmid <- c (xmid,
-               "</table>",
-               "",
-               "<!-- markdownlint-enable -->",
+    
+    xmid <- c (xmid, "<!-- markdownlint-enable -->",
                "<!-- prettier-ignore-end -->",
                "<!-- ALL-CONTRIBUTORS-LIST:END -->",
                "")
 
     txt <- c (xtop, xmid, xbottom)
 
-    changed <- (length (setdiff (x, txt)) > 0)
+    newlines <- txt [which (!txt %in% x)]
+    changed <- any (nchar (newlines) > 0)
 
     if (changed) {
         con <- file (filename, "w")
@@ -182,3 +187,41 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
     return (changed)
 }
 
+
+add_one_section <- function (dat, orgrepo, ncols) {
+    nmax <- ceiling (nrow (dat) / ncols)
+    index <- rep (1:nmax, each = ncols) [seq (nrow (dat))]
+    dat <- split (dat, as.factor (index))
+    x <- c ("", "<table>")
+    for (i in dat) {
+        x <- c (x,
+                "",
+                "<tr>")
+
+        for (j in seq (nrow (i))) {
+            x <- c (x,
+                    "<td align=\"center\">",
+                    paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
+                    paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
+                    "</a><br>",
+                    paste0 ("<a href=\"https://github.com/",
+                            orgrepo$org,
+                            "/",
+                            orgrepo$repo,
+                            "/commits?author=",
+                            i$logins [j],
+                            "\">",
+                            i$logins [j],
+                            "</a>"),
+                    "</td>")
+        }
+
+        x <- c (x,
+                "</tr>",
+                "")
+
+    }
+    x <- c (x, "</table>", "")
+
+    return (x)
+}
