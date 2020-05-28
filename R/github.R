@@ -164,8 +164,8 @@ get_gh_issue_people <- function (org, repo) {
 
     }
 
-    list (authors = issue_authors,
-          contributors = issue_contributors)
+    list (authors = issue_authors [!is.na (issue_authors)])
+          contributors = issue_contributors [!is.na (issue_contributors)])
 }
 
 
