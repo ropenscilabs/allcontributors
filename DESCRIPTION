@@ -8,9 +8,11 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
+    ghql,
     git2r,
     here,
     httr,
+    jsonlite,
     magrittr
 Suggests: 
     knitr,

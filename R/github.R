@@ -78,3 +78,94 @@ get_git_user <- function () {
     #whoami::whoami ()
     git2r::config ()$global$user.name
 }
+
+
+# ------------------ ISSUES ----------------------
+
+
+get_issues_qry <- function (gh_cli, org, repo, endCursor = NULL) {
+    after_txt <- ""
+    if (!is.null (endCursor))
+        after_txt <- paste0 (", after:\"", endCursor, "\"")
+
+    q <- paste0 ("{
+        repository(owner:\"", org, "\", name:\"", repo, "\") {
+                   issues (first: 100", after_txt, ") {
+                       pageInfo {
+                           hasNextPage
+                           endCursor
+                       }
+                       edges {
+                           node {
+                               ... on Issue {
+                                   createdAt
+                                   author {
+                                       login
+                                   }
+                                   title
+                                   url,
+                                   participants (first: 100) {
+                                       pageInfo {
+                                           hasNextPage
+                                           endCursor
+                                       }
+                                       edges {
+                                           node {
+                                               login
+                                           }
+                                       }
+                                   }
+                               }
+                           }
+                       }
+                   }
+                }
+        }")
+
+    return (q)
+}
+
+#' get_gh_issue_people
+#'
+#' Extract lists of (1) all authors of, and (2) all contributors to, all github
+#' issues for nominated repository
+#'
+#' @inheritParams get_contributors
+#' @return List of (authors, contributors), each as character vector of github
+#' login names.
+#' @export
+get_gh_issue_people <- function (org, repo) {
+
+    token <- get_gh_token ()
+    gh_cli <- ghql::GraphqlClient$new (
+        url = "https://api.github.com/graphql",
+        headers = list (Authorization = paste0 ("Bearer ", token))
+    )
+
+    hasNextPage <- TRUE
+    endCursor <- NULL
+    issue_authors <- issue_contributors <- NULL
+    while (hasNextPage) {
+        qry <- ghql::Query$new()
+        q <- get_issues_qry (gh_cli, org = "ropensci", repo = "osmdata",
+                             endCursor = endCursor)
+        qry$query('issues', q)
+
+        dat <- gh_cli$exec(qry$queries$issues) %>%
+            jsonlite::fromJSON ()
+
+        hasNextPage <- dat$data$repository$issues$pageInfo$hasNextPage
+        endCursor <- dat$data$repository$issues$pageInfo$endCursor
+
+        dat <- dat$data$repository$issues$edges
+        issue_authors <- unique (c (issue_authors, dat$node$author$login))
+        ctb <- unlist (dat$node$participants$edges, use.names = FALSE)
+        issue_contributors <- unique (c (issue_contributors, ctb))
+
+    }
+
+    list (authors = issue_authors,
+          contributors = issue_contributors)
+}
+
+
