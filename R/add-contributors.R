@@ -6,7 +6,8 @@
 #' @param files Names of files in which to add contributors
 #' @param alphabetical If `TRUE`, order contributors alphabetically, otherwise
 #' order by decreasing numbers of contributions.
-#' @return Nothing.
+#' @return Named list of logical values indicating whether files of given names
+#' were updated or not
 #' @export
 add_contributors <- function (ncols = 7,
                               files = c ("README.Rmd", "README.md"),
@@ -29,6 +30,12 @@ add_contributors <- function (ncols = 7,
 
     chk <- lapply (files, function (i)
             contribs_to_readme (x, orgrepo = or, ncols = ncols, filename = i))
+
+    names (chk) <- vapply (files, function (i)
+                           utils::tail (strsplit (i, "/") [[1]], 1),
+                           character (1), USE.NAMES = FALSE)
+
+    return (unlist (chk))
 }
 
 get_org_repo <- function (remote) {
@@ -124,10 +131,17 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
                "")
 
     txt <- c (xtop, xmid, xbottom)
-    con <- file (filename, "w")
-    writeLines (txt, con = con)
-    close (con)
 
-    message ("contributors written to [", filename, "]")
+    changed <- (length (setdiff (x, txt)) > 0)
+
+    if (changed) {
+        con <- file (filename, "w")
+        writeLines (txt, con = con)
+        close (con)
+
+        message ("contributors written to [", filename, "]")
+    }
+
+    return (changed)
 }
 

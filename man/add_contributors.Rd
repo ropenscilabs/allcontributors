@@ -19,7 +19,8 @@ add_contributors(
 order by decreasing numbers of contributions.}
 }
 \value{
-Nothing.
+Named list of logical values indicating whether files of given names
+were updated or not
 }
 \description{
 Add contributors to README.Rmd
