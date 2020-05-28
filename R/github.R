@@ -147,7 +147,7 @@ get_gh_issue_people <- function (org, repo) {
     issue_authors <- issue_contributors <- NULL
     while (hasNextPage) {
         qry <- ghql::Query$new()
-        q <- get_issues_qry (gh_cli, org = "ropensci", repo = "osmdata",
+        q <- get_issues_qry (gh_cli, org = org, repo = repo,
                              endCursor = endCursor)
         qry$query('issues', q)
 
@@ -164,7 +164,7 @@ get_gh_issue_people <- function (org, repo) {
 
     }
 
-    list (authors = issue_authors [!is.na (issue_authors)])
+    list (authors = issue_authors [!is.na (issue_authors)],
           contributors = issue_contributors [!is.na (issue_contributors)])
 }
 
