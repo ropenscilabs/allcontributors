@@ -80,7 +80,7 @@ get_git_user <- function () {
 }
 
 
-# ------------------ ISSUES ----------------------
+# ********************  GITHUB ISSUE EXTRACTION ********************  
 
 
 get_issues_qry <- function (gh_cli, org, repo, endCursor = NULL) {
