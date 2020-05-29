@@ -21,7 +21,8 @@
 #' @param alphabetical If `TRUE`, order contributors alphabetically, otherwise
 #' order by decreasing numbers of contributions.
 #' @return Named list of logical values indicating whether files of given names
-#' were updated or not
+#' were updated or not is returned invisibly (that is, only if explicitly
+#' assigned to a return value).
 #' @export
 add_contributors <- function (ncols = 7,
                               files = c ("README.Rmd", "README.md"),
@@ -90,7 +91,7 @@ add_contributors <- function (ncols = 7,
                            utils::tail (strsplit (i, "/") [[1]], 1),
                            character (1), USE.NAMES = FALSE)
 
-    return (unlist (chk))
+    invisible (unlist (chk))
 }
 
 match_type_arg <- function (type) {

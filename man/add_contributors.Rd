@@ -38,7 +38,8 @@ order by decreasing numbers of contributions.}
 }
 \value{
 Named list of logical values indicating whether files of given names
-were updated or not
+were updated or not is returned invisibly (that is, only if explicitly
+assigned to a return value).
 }
 \description{
 Add contributors to README.Rmd
