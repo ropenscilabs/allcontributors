@@ -157,12 +157,12 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
             dat$type [dat$type == "issue_contributors"] <- "issue_authors"
 
         dat <- split (dat, as.factor (dat$type))
-        for (i in seq (dat)) {
+        for (i in dat) {
             typei <- tools::toTitleCase (gsub ("\\_", " ", i$type [1]))
             xmid <- c (xmid,
                        "",
                        paste0 ("## ", typei))
-            xmid <- c (xmid, add_one_section (dat, orgrepo, ncols))
+            xmid <- c (xmid, add_one_section (i, orgrepo, ncols))
         }
     }
     
