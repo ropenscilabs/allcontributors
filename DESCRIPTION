@@ -16,7 +16,9 @@ Imports:
     magrittr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    vcr
 VignetteBuilder: knitr
 URL: https://github.com/mpadge/allcontributor
 BugReports: https://github.com/mpadge/allcontributor/issues

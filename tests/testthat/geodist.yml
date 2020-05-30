@@ -1,0 +1,72 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/hypertidy/geodist/contributors
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Sat, 30 May 2020 19:59:46 GMT
+      content-type: application/json; charset=utf-8
+      server: GitHub.com
+      status: 200 OK
+      cache-control: public, max-age=60, s-maxage=60
+      vary: Accept, Accept-Encoding, Accept, X-Requested-With, Accept-Encoding
+      etag: W/"243aab3e0e47bc1f40e5afdaf8f36fa5"
+      last-modified: Tue, 19 May 2020 09:59:33 GMT
+      x-github-media-type: github.v3
+      access-control-expose-headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
+        Sunset
+      access-control-allow-origin: '*'
+      strict-transport-security: max-age=31536000; includeSubdomains; preload
+      x-frame-options: deny
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
+      referrer-policy: origin-when-cross-origin, strict-origin-when-cross-origin
+      content-security-policy: default-src 'none'
+      content-encoding: gzip
+      x-ratelimit-limit: '60'
+      x-ratelimit-remaining: '58'
+      x-ratelimit-reset: '1590872177'
+      accept-ranges: bytes
+      content-length: '359'
+      x-github-request-id: 9D4C:2668C:2BB4B23:3408BEE:5ED2BB31
+    body:
+      encoding: UTF-8
+      file: no
+      string: |
+        [
+          {
+            "login": "mpadge",
+            "id": 6697851,
+            "node_id": "MDQ6VXNlcjY2OTc4NTE=",
+            "avatar_url": "https://avatars1.githubusercontent.com/u/6697851?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mpadge",
+            "html_url": "https://github.com/mpadge",
+            "followers_url": "https://api.github.com/users/mpadge/followers",
+            "following_url": "https://api.github.com/users/mpadge/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mpadge/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mpadge/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mpadge/subscriptions",
+            "organizations_url": "https://api.github.com/users/mpadge/orgs",
+            "repos_url": "https://api.github.com/users/mpadge/repos",
+            "events_url": "https://api.github.com/users/mpadge/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mpadge/received_events",
+            "type": "User",
+            "site_admin": false,
+            "contributions": 121
+          }
+        ]
+  recorded_at: 2020-05-30 19:59:46 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.6.2
