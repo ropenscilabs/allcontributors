@@ -152,7 +152,8 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
 
     num_sections <- attr (dat, "num_sections")
     if (num_sections == 1) {
-        xmid <- c (xmid, add_one_section (dat, orgrepo, ncols))
+        xmid <- c (xmid, add_one_section (dat, orgrepo, ncols,
+                                          type = "code"))
     } else {
         if (num_sections < 3)
             dat$type [dat$type == "issue_contributors"] <- "issue_authors"
@@ -163,7 +164,7 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
             xmid <- c (xmid,
                        "",
                        paste0 ("## ", typei))
-            xmid <- c (xmid, add_one_section (i, orgrepo, ncols))
+            xmid <- c (xmid, add_one_section (i, orgrepo, ncols, i$type [1]))
         }
     }
     
@@ -189,7 +190,8 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
 }
 
 
-add_one_section <- function (dat, orgrepo, ncols) {
+add_one_section <- function (dat, orgrepo, ncols,
+                             type = "code") {
     nmax <- ceiling (nrow (dat) / ncols)
     index <- rep (1:nmax, each = ncols) [seq (nrow (dat))]
     dat <- split (dat, as.factor (index))
@@ -200,20 +202,39 @@ add_one_section <- function (dat, orgrepo, ncols) {
                 "<tr>")
 
         for (j in seq (nrow (i))) {
+            href <- NULL
+            u <- paste0 ("<a href=\"https://github.com/",
+                         orgrepo$org,
+                         "/",
+                         orgrepo$repo)
+            if (type == "code") {
+                href <- paste0 (u, 
+                                "/commits?author=",
+                                i$logins [j],
+                                "\">",
+                                i$logins [j],
+                                "</a>")
+            } else if (type == "issue_authors") {
+                href <- paste0 (u,
+                                "/issues?q=is%3Aissue+author%3A",
+                                i$logins [j],
+                                "\">",
+                                i$logins [j],
+                                "</a>")
+            } else if (type == "issue_contributors") {
+                href <- paste0 (u,
+                                "/issues?q=is%3Aissue+commenter%3A",
+                                i$logins [j],
+                                "\">",
+                                i$logins [j],
+                                "</a>")
+            }
             x <- c (x,
                     "<td align=\"center\">",
                     paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
                     paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
                     "</a><br>",
-                    paste0 ("<a href=\"https://github.com/",
-                            orgrepo$org,
-                            "/",
-                            orgrepo$repo,
-                            "/commits?author=",
-                            i$logins [j],
-                            "\">",
-                            i$logins [j],
-                            "</a>"),
+                    href,
                     "</td>")
         }
 
