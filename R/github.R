@@ -21,7 +21,7 @@ get_contributors <- function (org, repo, alphabetical = FALSE) {
                  repo,
                  "/contributors")
 
-    if (length (tok) > 0) {
+    if (nchar (tok) > 0) {
         x <- httr::GET (u, httr::authenticate (user, tok)) %>%
             httr::content ()
     } else {
