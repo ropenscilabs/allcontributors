@@ -4,6 +4,7 @@
 
 [![R build
 status](https://github.com/mpadge/allcontributor/workflows/R-CMD-check/badge.svg)](https://github.com/mpadge/allcontributor/actions?query=workflow%3AR-CMD-check)
+[![codecov](https://codecov.io/gh/mpadge/allcontributor/branch/master/graph/badge.svg)](https://codecov.io/gh/mpadge/allcontributor)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 <!-- badges: end -->
@@ -51,8 +52,8 @@ function
 
 ``` r
 get_contributors(org = "mpadge", repo = "allcontributor")
-#>   logins contributions                                              avatars
-#> 1 mpadge            17 https://avatars1.githubusercontent.com/u/6697851?v=4
+#>   logins contributions                                               avatar
+#> 1 mpadge            37 https://avatars1.githubusercontent.com/u/6697851?v=4
 ```
 
 If the main `README` file(s) contains a markdown section entitled
@@ -65,6 +66,7 @@ start by adding an empty `"## Contributors` section to the file(s) and
 the function will insert the table at that point.
 
 ## Contributors
+
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

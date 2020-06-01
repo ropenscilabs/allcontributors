@@ -27,6 +27,7 @@ knitr::opts_chunk$set(
 
 [![R build
 status](https://github.com/mpadge/allcontributor/workflows/R-CMD-check/badge.svg)](https://github.com/mpadge/allcontributor/actions?query=workflow%3AR-CMD-check)
+[![codecov](https://codecov.io/gh/mpadge/allcontributor/branch/master/graph/badge.svg)](https://codecov.io/gh/mpadge/allcontributor)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 <!-- badges: end -->
