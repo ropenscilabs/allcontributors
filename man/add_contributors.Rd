@@ -9,6 +9,7 @@ add_contributors(
   files = c("README.Rmd", "README.md"),
   type = c("code", "issues", "discussion"),
   num_sections = 3,
+  format = "grid",
   alphabetical = FALSE
 )
 }
@@ -31,6 +32,18 @@ individuals not present in 'code'.}
 second section for all other issue-related contributions.
 \item{3} Contributions divided into single sections for each of the three
 \code{type} arguments.
+}}
+
+\item{format}{One of ("grid", "list", "text") to control display of
+contributors as
+\itemize{
+\item{1} "grid" for a rectangular grid, with each contributor represented by
+their github avatar, with avatar linked to contributor profile and name
+linked to repository contributions.
+\item{2} "list" for a more condensed list with github user names only
+and no avatars, one contributor per line linked to issue contributions.
+\item{3} "text" for a single line of text containing comma-separated github
+user names linked to issue contributions.
 }}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise

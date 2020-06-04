@@ -20,6 +20,18 @@
 #' }
 #' @param alphabetical If `TRUE`, order contributors alphabetically, otherwise
 #' order by decreasing numbers of contributions.
+#' @param format One of ("grid", "list", "text") to control display of
+#' contributors as
+#' \itemize{
+#' \item{1} "grid" for a rectangular grid, with each contributor represented by
+#' their github avatar, with avatar linked to contributor profile and name
+#' linked to repository contributions.
+#' \item{2} "list" for a more condensed list with github user names only
+#' and no avatars, one contributor per line linked to issue contributions.
+#' \item{3} "text" for a single line of text containing comma-separated github
+#' user names linked to issue contributions.
+#' }
+#'
 #' @return Named list of logical values indicating whether files of given names
 #' were updated or not is returned invisibly (that is, only if explicitly
 #' assigned to a return value).
@@ -28,11 +40,14 @@ add_contributors <- function (ncols = 7,
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
                               num_sections = 3,
+                              format = "grid",
                               alphabetical = FALSE) {
     if (!git2r::in_repository ())
         stop ("This does not appear to be a git repository")
 
     type <- match_type_arg (type)
+
+    format <- match.arg (tolower (format), c ("grid", "list", "text"))
 
     remote <- git2r::remote_url ()
     remote <- remote [grep ("github", remote)] [1]
@@ -85,6 +100,7 @@ add_contributors <- function (ncols = 7,
             contribs_to_readme (ctbs,
                                 orgrepo = or,
                                 ncols = ncols,
+                                format = format,
                                 filename = i))
 
     names (chk) <- vapply (files, function (i)
@@ -107,7 +123,7 @@ get_org_repo <- function (remote) {
           repo = repo)
 }
 
-contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
+contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
     x <- readLines (filename)
 
     contribs_sec <- grep ("# Contributors$", x)
@@ -153,7 +169,7 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
     num_sections <- attr (dat, "num_sections")
     if (num_sections == 1) {
         xmid <- c (xmid, add_one_section (dat, orgrepo, ncols,
-                                          type = "code"))
+                                          type = "code", format))
     } else {
         if (num_sections < 3)
             dat$type [dat$type == "issue_contributors"] <- "issue_authors"
@@ -164,7 +180,9 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
             xmid <- c (xmid,
                        "",
                        paste0 ("## ", typei))
-            xmid <- c (xmid, add_one_section (i, orgrepo, ncols, i$type [1]))
+            xmid <- c (xmid, add_one_section (i, orgrepo, ncols,
+                                              i$type [1],
+                                              format))
         }
     }
     
@@ -191,15 +209,25 @@ contribs_to_readme <- function (dat, orgrepo, ncols, filename) {
 
 
 add_one_section <- function (dat, orgrepo, ncols,
-                             type = "code") {
-    nmax <- ceiling (nrow (dat) / ncols)
-    index <- rep (1:nmax, each = ncols) [seq (nrow (dat))]
-    dat <- split (dat, as.factor (index))
-    x <- c ("", "<table>")
+                             type = "code", format = "grid") {
+
+    if (format == "grid") {
+        nmax <- ceiling (nrow (dat) / ncols)
+        index <- rep (1:nmax, each = ncols) [seq (nrow (dat))]
+        dat <- split (dat, as.factor (index))
+    } else
+        dat <- list (dat)
+    x <- ""
+
+    if (format == "grid")
+        x <- c (x, "<table>")
+    else if (format == "list")
+        x <- c (x, "<ol>")
+
     for (i in dat) {
-        x <- c (x,
-                "",
-                "<tr>")
+        x <- c (x, "")
+        if (format == "grid")
+            x <- c (x, "<tr>")
 
         for (j in seq (nrow (i))) {
             href <- NULL
@@ -229,21 +257,33 @@ add_one_section <- function (dat, orgrepo, ncols,
                                 i$logins [j],
                                 "</a>")
             }
-            x <- c (x,
-                    "<td align=\"center\">",
-                    paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
-                    paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
-                    "</a><br>",
-                    href,
-                    "</td>")
+            if (format == "grid") {
+                x <- c (x,
+                        "<td align=\"center\">",
+                        paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
+                        paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
+                        "</a><br>",
+                        href,
+                        "</td>")
+            } else if (format == "list") {
+                x <- c (x, paste0 ("<li>", href, "</li>"))
+            } else {
+                x <- c (x, paste0 (href, ifelse (j == nrow (i), "", ", ")))
+            }
         }
 
-        x <- c (x,
-                "</tr>",
-                "")
+        if (format == "grid")
+            x <- c (x, "</tr>")
+        x <- c (x, "")
 
     }
-    x <- c (x, "</table>", "")
+
+    if (format == "grid")
+        x <- c (x, "</table>")
+    else if (format == "list")
+        x <- c (x, "</ol>")
+
+    x <- c (x, "")
 
     return (x)
 }
