@@ -17,7 +17,7 @@ contributors in your ‘README’ (or elsewhere).
 
 The original [`all-contributors`](https://allcontributors.org/) is
 primarily a bot which responds to commit messages such as `add @user for
-<contribution>`, where `<contribution>` is one of the [recongized
+<contribution>`, where `<contribution>` is one of the [recognized
 types](https://allcontributors.org/docs/en/emoji-key). The relative
 advantage of this system lies primarily in the diversity of contribution
 types able to be acknowledged, with each type for a given user appearing
