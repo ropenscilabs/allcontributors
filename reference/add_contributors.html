@@ -122,6 +122,7 @@
   <span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"README.Rmd"</span>, <span class='st'>"README.md"</span>),
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"code"</span>, <span class='st'>"issues"</span>, <span class='st'>"discussion"</span>),
   <span class='kw'>num_sections</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"grid"</span>,
   <span class='kw'>alphabetical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
@@ -153,6 +154,19 @@ individuals not present in 'code'.</p></td>
 second section for all other issue-related contributions.</p></li>
 <li><p>3 Contributions divided into single sections for each of the three
 <code>type</code> arguments.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>format</th>
+      <td><p>One of ("grid", "list", "text") to control display of
+contributors as</p><ul>
+<li><p>1 "grid" for a rectangular grid, with each contributor represented by
+their github avatar, with avatar linked to contributor profile and name
+linked to repository contributions.</p></li>
+<li><p>2 "list" for a more condensed list with github user names only
+and no avatars, one contributor per line linked to issue contributions.</p></li>
+<li><p>3 "text" for a single line of text containing comma-separated github
+user names linked to issue contributions.</p></li>
 </ul></td>
     </tr>
     <tr>
