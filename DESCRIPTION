@@ -1,12 +1,15 @@
 Package: allcontributor
 Title: Acknowledge all contributors in your 'README'
-Version: 0.0.1.001
-Authors@R: c(
-    person("Mark", "Padgham", email="mark.padgham@email.com", role=c("aut", "cre")))
+Version: 0.0.1.002
+Authors@R: 
+    person(given = "Mark",
+           family = "Padgham",
+           role = c("aut", "cre"),
+           email = "mark.padgham@email.com")
 Description: Acknowledge all contributors in your 'README'.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
+URL: https://github.com/mpadge/allcontributor
+BugReports: https://github.com/mpadge/allcontributor/issues
 Imports:
     cli,
     ghql,
@@ -20,9 +23,10 @@ Suggests:
     rmarkdown,
     testthat,
     vcr
-VignetteBuilder: knitr
-URL: https://github.com/mpadge/allcontributor
-BugReports: https://github.com/mpadge/allcontributor/issues
-RoxygenNote: 7.1.1
-Roxygen: list(markdown = TRUE)
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
 Language: en-GB
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

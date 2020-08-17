@@ -8,3 +8,4 @@
 ^\.Rproj\.user$
 ^\.github$
 ^codemeta\.json$
+^\.pre-commit-config\.yaml$
