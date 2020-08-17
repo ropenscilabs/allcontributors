@@ -3,4 +3,5 @@
 export(add_contributors)
 export(get_contributors)
 export(get_gh_issue_people)
+export(get_gh_issue_titles)
 importFrom(magrittr,"%>%")

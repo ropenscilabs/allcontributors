@@ -98,6 +98,7 @@ get_issues_qry <- function (gh_cli, org, repo, endCursor = NULL) {
                        edges {
                            node {
                                ... on Issue {
+                                   number
                                    createdAt
                                    author {
                                        login
@@ -190,3 +191,44 @@ get_gh_issue_people <- function (org, repo) {
 }
 
 
+#' get_gh_issue_titles
+#'
+#' Extract titles and numbers of all issues associated with a nominated
+#' repository
+#'
+#' @inheritParams get_contributors
+#' @return `data.frame` with one column of issue numbers, and one column of
+#' issue titles.
+#' @export
+get_gh_issue_titles <- function (org, repo) {
+
+    token <- get_gh_token ()
+    gh_cli <- ghql::GraphqlClient$new (
+        url = "https://api.github.com/graphql",
+        headers = list (Authorization = paste0 ("Bearer ", token))
+    )
+
+    hasNextPage <- TRUE
+    endCursor <- NULL
+    issue_title <- issue_number <- NULL
+    while (hasNextPage) {
+        qry <- ghql::Query$new()
+        q <- get_issues_qry (gh_cli, org = org, repo = repo,
+                             endCursor = endCursor)
+        qry$query('issues', q)
+
+        dat <- gh_cli$exec(qry$queries$issues) %>%
+            jsonlite::fromJSON ()
+
+        hasNextPage <- dat$data$repository$issues$pageInfo$hasNextPage
+        endCursor <- dat$data$repository$issues$pageInfo$endCursor
+
+        dat <- dat$data$repository$issues$edges
+        issue_title <- c (issue_title, dat$node$title)
+        issue_number <- c (issue_number, dat$node$number)
+    }
+
+    data.frame (number = issue_number,
+                title = issue_title,
+                stringsAsFactors = FALSE)
+}
