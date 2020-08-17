@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">allcontributor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.001</span>
       </span>
     </div>
 
@@ -83,14 +83,18 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Currently only on github, so package must be installed with</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mpadge/allcontributor"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mpadge/allcontributor"</span>)
+</pre></div>
 <p>The package can then be loaded the usual way:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span> (<span class="no">allcontributor</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span> (<span class="kw"><a href="https://github.com/mpadge/allcontributor">allcontributor</a></span>)
+</pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>The primary function of the package, <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code><a href="reference/add_contributors.html">add_contributors()</a></code></a>, adds a table of all contributors to the main <code>README.md</code> file (and <code>README.Rmd</code> if that exists). Tables can be added to other files by specifying the <code>files</code> argument of that function. The appearance of the contributors table is determined by several parameters in that function, including:</p>
+<p>The primary function of the package, <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a>, adds a table of all contributors to the main <code>README.md</code> file (and <code>README.Rmd</code> if that exists). Tables can be added to other files by specifying the <code>files</code> argument of that function. The appearance of the contributors table is determined by several parameters in that function, including:</p>
 <ol>
 <li>
 <code>type</code> For the type of contributions to include (code, contributors who open issues, contributors who discuss issues).</li>
@@ -99,11 +103,13 @@
 <li>
 <code>format</code> Determining whether contributors are presented in a grid with associated avatars of each contributor, as in <a href="https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-">the original</a>, an enumerated list of github user names only, or a single text string of comma-separated names.</li>
 </ol>
-<p>Contribution data are obtained by querying the github API, for which a local key should be set as an environmental variable containing the name <code>"GITHUB"</code> (either via <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv()</a></code>, or as an equivalent entry in a file <code>~/.Renviron</code>). The data used to construct the contributions table can be extracted without writing to the <code>README</code> file(s) with the function <a href="https://mpadge.github.io/allcontributor/reference/get_contributors.html"><code><a href="reference/get_contributors.html">get_contributors()</a></code></a>:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span>(<span class="kw">org</span> <span class="kw">=</span> <span class="st">"mpadge"</span>, <span class="kw">repo</span> <span class="kw">=</span> <span class="st">"allcontributor"</span>)
+<p>Contribution data are obtained by querying the github API, for which a local key should be set as an environmental variable containing the name <code>"GITHUB"</code> (either via <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv()</a></code>, or as an equivalent entry in a file <code>~/.Renviron</code>). The data used to construct the contributions table can be extracted without writing to the <code>README</code> file(s) with the function <a href="https://mpadge.github.io/allcontributor/reference/get_contributors.html"><code>get_contributors()</code></a>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span>(org = <span class="st">"mpadge"</span>, repo = <span class="st">"allcontributor"</span>)
 <span class="co">#&gt;   logins contributions                                               avatar</span>
-<span class="co">#&gt; 1 mpadge            42 https://avatars1.githubusercontent.com/u/6697851?v=4</span></pre></div>
-<p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code><a href="reference/add_contributors.html">add_contributors()</a></code></a> function will add a table of contributors will there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
+<span class="co">#&gt; 1 mpadge            42 https://avatars1.githubusercontent.com/u/6697851?v=4</span>
+</pre></div>
+<p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a> function will add a table of contributors will there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
 <p>Any time you wish to update your contributor list, simply re-run the <code><a href="reference/add_contributors.html">add_contributors()</a></code> function.</p>
 </div>
 <div id="contributors" class="section level2">

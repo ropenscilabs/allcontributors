@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>get_gh_issue_people — get_gh_issue_people • allcontributor</title>
+<title>get_gh_issue_titles — get_gh_issue_titles • allcontributor</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="get_gh_issue_people — get_gh_issue_people" />
-<meta property="og:description" content="Extract lists of (1) all authors of, and (2) all contributors to, all github
-issues for nominated repository" />
+<meta property="og:title" content="get_gh_issue_titles — get_gh_issue_titles" />
+<meta property="og:description" content="Extract titles and numbers of all issues associated with a nominated
+repository" />
 
 
 
@@ -109,17 +109,17 @@ issues for nominated repository" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>get_gh_issue_people</h1>
+    <h1>get_gh_issue_titles</h1>
     <small class="dont-index">Source: <a href='https://github.com/mpadge/allcontributor/blob/master/R/github.R'><code>R/github.R</code></a></small>
-    <div class="hidden name"><code>get_gh_issue_people.Rd</code></div>
+    <div class="hidden name"><code>get_gh_issue_titles.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract lists of (1) all authors of, and (2) all contributors to, all github
-issues for nominated repository</p>
+    <p>Extract titles and numbers of all issues associated with a nominated
+repository</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_gh_issue_people</span>(<span class='kw'>org</span>, <span class='kw'>repo</span>)</pre>
+    <pre class="usage"><span class='fu'>get_gh_issue_titles</span>(<span class='kw'>org</span>, <span class='kw'>repo</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,8 +137,8 @@ extracted</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List of (authors, contributors), each as character vector of github
-login names.</p>
+    <p><code>data.frame</code> with one column of issue numbers, and one column of
+issue titles.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
