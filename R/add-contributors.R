@@ -31,6 +31,8 @@
 #' \item{3} "text" for a single line of text containing comma-separated github
 #' user names linked to issue contributions.
 #' }
+#' @param open_issue If `TRUE`, open or edit an issue on github in order to
+#' notify all contributors that they've been added to your `README` (see Note).
 #'
 #' @return Named list of logical values indicating whether files of given names
 #' were updated or not is returned invisibly (that is, only if explicitly
@@ -41,7 +43,8 @@ add_contributors <- function (ncols = 7,
                               type = c ("code", "issues", "discussion"),
                               num_sections = 3,
                               format = "grid",
-                              alphabetical = FALSE) {
+                              alphabetical = FALSE,
+                              open_issue = FALSE) {
     if (!git2r::in_repository ())
         stop ("This does not appear to be a git repository")
 
@@ -95,6 +98,9 @@ add_contributors <- function (ncols = 7,
     }
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+
+    if (open_issue)
+        open_allcontribs_issue (or$org, or$repo, ctbs)
 
     attr (ctbs, "num_sections") <- min (num_sections, length (type),
                                         length (unique (ctbs$type)))
@@ -293,4 +299,26 @@ add_one_section <- function (dat, orgrepo, ncols,
     x <- c (x, "")
 
     return (x)
+}
+
+open_allcontribs_issue <- function (org, repo, ctbs) {
+    x <- get_gh_issue_titles (org, repo)
+    if (!"all contributors" %in% tolower (x$title)) {
+        logins <- ctbs$logins
+        b <- paste0 ("Hi All! This repository uses the ",
+                     "\u005B\\`allcontributor\\` package\u005D",
+                     "\u0028https://github.com/mpadge/allcontributor\u0029 ",
+                     "to acknowledge all contributions on the main README. ",
+                     "This issue is to ping of you that you've been duly acknowledged there. ",
+                     "Thank you all:\n\n")
+        for (l in logins)
+            b <- paste0 (b, "@", l, "\n")
+        args <- c ("issue", "create",
+                   "--title", "\"All Contributors\"",
+                   "--body", paste0 ("\"", b, "\""),
+                   "--web")
+        system2 ("gh", args = args)
+    } else {
+        # TODO: Add code to add new names to existing issue
+    }
 }

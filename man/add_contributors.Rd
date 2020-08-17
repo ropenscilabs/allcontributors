@@ -10,7 +10,8 @@ add_contributors(
   type = c("code", "issues", "discussion"),
   num_sections = 3,
   format = "grid",
-  alphabetical = FALSE
+  alphabetical = FALSE,
+  open_issue = FALSE
 )
 }
 \arguments{
@@ -48,6 +49,9 @@ user names linked to issue contributions.
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}
+
+\item{open_issue}{If \code{TRUE}, open or edit an issue on github in order to
+notify all contributors that they've been added to your \code{README} (see Note).}
 }
 \value{
 Named list of logical values indicating whether files of given names
