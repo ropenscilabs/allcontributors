@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>get_gh_issue_titles — get_gh_issue_titles • allcontributor</title>
+<title>get_gh_contrib_issue — get_gh_contrib_issue • allcontributor</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="get_gh_issue_titles — get_gh_issue_titles" />
-<meta property="og:description" content="Extract titles and numbers of all issues associated with a nominated
-repository" />
+<meta property="og:title" content="get_gh_contrib_issue — get_gh_contrib_issue" />
+<meta property="og:description" content="Extract contributors currently listed on an &quot;All Contributions&quot; issue in a
+github repository. This is much easier with the REST API than via graphql." />
 
 
 
@@ -109,17 +109,17 @@ repository" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>get_gh_issue_titles</h1>
+    <h1>get_gh_contrib_issue</h1>
     <small class="dont-index">Source: <a href='https://github.com/mpadge/allcontributor/blob/master/R/github.R'><code>R/github.R</code></a></small>
-    <div class="hidden name"><code>get_gh_issue_titles.Rd</code></div>
+    <div class="hidden name"><code>get_gh_contrib_issue.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract titles and numbers of all issues associated with a nominated
-repository</p>
+    <p>Extract contributors currently listed on an "All Contributions" issue in a
+github repository. This is much easier with the REST API than via graphql.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_gh_issue_titles</span>(<span class='kw'>org</span>, <span class='kw'>repo</span>)</pre>
+    <pre class="usage"><span class='fu'>get_gh_contrib_issue</span>(<span class='kw'>org</span>, <span class='kw'>repo</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,8 +137,8 @@ extracted</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code> with one column of issue numbers, and one column of
-issue titles.</p>
+    <p>Character vector of github logins for all contributors listed in
+current issue</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
