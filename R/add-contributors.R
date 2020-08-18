@@ -109,10 +109,18 @@ add_contributors <- function (ncols = 7,
 
     chk <- rep (FALSE, length (files))
 
-    if (any (!current_ctbs %in% ctbs$logins)) {
+    if (any (!ctbs$logins %in% current_ctbs)) {
 
-        if (open_issue)
-            open_allcontribs_issue (or$org, or$repo, ctbs)
+        if (open_issue) {
+            newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs), ]
+            pinged <- get_gh_contrib_issue (or$org, or$repo)
+            if (length (pinged) == 0) {
+                open_allcontribs_issue (or$org, or$repo, newctbs)
+            } else {
+                newctbs <- newctbs [which (!newctbs$logins %in% pinged)]
+                extend_allcontribs_issue (or$org, or$repo, newctbs)
+            }
+        }
 
         # code contributions to files:
         chk <- lapply (files, function (i)
@@ -369,7 +377,41 @@ open_allcontribs_issue <- function (org, repo, ctbs) {
                    "--body", paste0 ("\"", b, "\""),
                    "--web")
         system2 ("gh", args = args)
+
+        if (length (logins) > 51) {
+            m <- paste0 ("You have more than 50 contributors, yet ",
+                         "github only allows a maximum of 50 people ",
+                         "to be notified in one issue comment.\n",
+                         "You'll have to manually edit the issue ",
+                         "to divide the list into multiple individual ",
+                         "comments in order for all of your ",
+                         "contributors to be notified.")
+            cli::cli_alert_warning (m, wrap = TRUE)
+        }
     } else {
         # TODO: Add code to add new names to existing issue
     }
+}
+
+extend_allcontribs_issue <- function (org, repo, ctbs, issue_num) {
+
+    pings <- get_gh_contrib_issue (org, repo)
+    pings <- pings [which (!pings %in% ctbs$login)]
+    message (cli::col_cyan (cli::symbol$Star),
+             " The following new contributors have been copied to the clipboard:")
+    ulid <- cli::cli_ul()
+    for (p in pings)
+        cli::cli_li(p)
+    cli::cli_end(ulid)
+
+
+    titles <- get_gh_issue_titles (org, repo)
+    issue_num <- titles$number [grep ("all contrib", tolower (titles$title))]
+    if (length (issue_num) == 0)
+        stop ("There is no 'All Contributions' issue")
+
+    args <- c ("issue", "view", issue_num, "--web")
+    system2 ("gh", args = args)
+
+    invisible (clipr::write_clip (pings))
 }

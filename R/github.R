@@ -232,3 +232,42 @@ get_gh_issue_titles <- function (org, repo) {
                 title = issue_title,
                 stringsAsFactors = FALSE)
 }
+
+#' get_gh_contrib_issue
+#'
+#' Extract contributors currently listed on an "All Contributions" issue in a
+#' github repository. This is much easier with the REST API than via graphql.
+#'
+#' @inheritParams get_contributors
+#' @return Character vector of github logins for all contributors listed in
+#' current issue
+#' @export
+get_gh_contrib_issue <- function (org, repo) {
+    issues <- get_gh_issue_titles (org, repo)
+    issue_num <- issues$number [grep ("all contrib", tolower (issues$title))]
+    if (length (issue_num) == 0)
+        return (NULL)
+
+    u <- paste0 ("https://api.github.com/repos/",
+                 org,
+                 "/",
+                 repo,
+                 "/issues/",
+                 issue_num)
+    x <- httr::GET (u,
+                    query = list (state = "all", per_page = 100, page = 1))
+    txt <- httr::content (x)$body
+    # That's just the body of the opening comment; the following lines extract
+    # all subsequent comments:
+    x <- httr::GET (paste0 (u, "/comments"),
+                    query = list (state = "all", per_page = 100, page = 1))
+    txt <- c (txt, lapply (httr::content (x), function (i) i$body))
+
+    pings <- lapply (txt, function (i) {
+        first <- regexpr ("@", i)
+        i <- strsplit (substring (i, first - 1, nchar (i)), "\\r") [[1]]
+        gsub ("\\n", "", i [grep ("@", i)])
+                    })
+
+    unlist (pings)
+}
