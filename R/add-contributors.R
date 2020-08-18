@@ -99,22 +99,32 @@ add_contributors <- function (ncols = 7,
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
 
-    if (open_issue)
-        open_allcontribs_issue (or$org, or$repo, ctbs)
-
     attr (ctbs, "num_sections") <- min (num_sections, length (type),
                                         length (unique (ctbs$type)))
 
     files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
 
-    # code contributions to files:
-    chk <- lapply (files, function (i)
-            contribs_to_readme (ctbs,
-                                orgrepo = or,
-                                ncols = ncols,
-                                format = format,
-                                filename = i))
+    current_ctbs <- get_current_contribs (files [grep ("\\.md$", files)], or)
+
+    chk <- rep (FALSE, length (files))
+
+    if (any (!current_ctbs %in% ctbs$logins)) {
+
+        if (open_issue)
+            open_allcontribs_issue (or$org, or$repo, ctbs)
+
+        # code contributions to files:
+        chk <- lapply (files, function (i)
+                contribs_to_readme (ctbs,
+                                    orgrepo = or,
+                                    ncols = ncols,
+                                    format = format,
+                                    filename = i))
+    } else {
+        message (cli::col_green (cli::symbol$tick),
+                 " All current contributors already listed")
+    }
 
     names (chk) <- vapply (files, function (i)
                            utils::tail (strsplit (i, "/") [[1]], 1),
@@ -134,6 +144,37 @@ get_org_repo <- function (remote) {
     repo <- utils::tail (strsplit (remote, "/") [[1]], 1) [1]
     list (org = org,
           repo = repo)
+}
+
+# strip current list of contributors from filename
+get_current_contribs <- function (filename, orgrepo) {
+    x <- readLines (filename)
+
+    ghurl <- paste0 ("https://github.com/",
+                     orgrepo$org,
+                     "/",
+                     orgrepo$repo,
+                     "/")
+    # terminal slash important, because text generally also has link to repo
+    # without slash
+
+    res <- NULL # default if no contributors present
+
+    contribs_sec <- grep ("# Contributors$", x)
+    has_contribs_sec <- length (contribs_sec) == 1
+    if (has_contribs_sec) {
+
+        contribs_start <- grep ("<!-- ALL-CONTRIBUTORS-LIST:START", x)
+        contribs_end <- grep ("<!-- ALL-CONTRIBUTORS-LIST:END", x)
+        if (length (contribs_start) == 1 & length (contribs_end) == 1) {
+            res <- x [(contribs_start + 1):(contribs_end - 1)]
+            res <- res [grep (ghurl, res)]
+            res <- vapply (strsplit (res, "\">"), function (i)
+                           strsplit (i [2], "</a>") [[1]] [1], character (1))
+        }
+    }
+
+    return (res)
 }
 
 contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
