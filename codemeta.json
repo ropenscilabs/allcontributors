@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/mpadge/allcontributor",
   "issueTracker": "https://github.com/mpadge/allcontributor/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.004",
+  "version": "0.0.1.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,7 @@
     }
   ],
   "readme": "https://github.com/mpadge/allcontributor/blob/master/README.md",
-  "fileSize": "53.136KB",
+  "fileSize": "50.999KB",
   "contIntegration": "https://codecov.io/gh/mpadge/allcontributor",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }

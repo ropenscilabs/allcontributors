@@ -38,9 +38,14 @@ the `allcontributor` package are:
 
 ## Installation
 
-Currently only on github, so package must be installed with
+Not yet on CRAN, so must be installed from remote repository host
+systems using any one of the following options:
 
 ``` r
+# install.packages("remotes")
+remotes::install_git("https://git.sr.ht/~mpadge/allcontributor")
+remotes::install_bitbucket("mpadge/allcontributor")
+remotes::install_gitlab("mpadge/allcontributor")
 remotes::install_github("mpadge/allcontributor")
 ```
 
@@ -82,7 +87,7 @@ function
 ``` r
 get_contributors(org = "mpadge", repo = "allcontributor")
 #>   logins contributions                                               avatar
-#> 1 mpadge            42 https://avatars1.githubusercontent.com/u/6697851?v=4
+#> 1 mpadge            49 https://avatars1.githubusercontent.com/u/6697851?v=4
 ```
 
 If the main `README` file(s) contains a markdown section entitled

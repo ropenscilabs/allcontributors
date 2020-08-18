@@ -60,9 +60,13 @@ avatar as listed on the README. In comparison, the advantages of the
 
 ## Installation
 
-Currently only on github, so package must be installed with
-
-```{r install, eval = FALSE}
+Not yet on CRAN, so must be installed from remote repository host systems using
+any one of the following options:
+```{r gh-installation, eval = FALSE}
+# install.packages("remotes")
+remotes::install_git("https://git.sr.ht/~mpadge/allcontributor")
+remotes::install_bitbucket("mpadge/allcontributor")
+remotes::install_gitlab("mpadge/allcontributor")
 remotes::install_github("mpadge/allcontributor")
 ```
 
@@ -143,5 +147,3 @@ This project uses the [`allcontributor` package](https://github.com/mpadge/allco
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-
