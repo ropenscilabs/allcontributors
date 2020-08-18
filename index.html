@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">allcontributor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.005</span>
       </span>
     </div>
 
@@ -82,8 +82,12 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>Currently only on github, so package must be installed with</p>
+<p>Not yet on CRAN, so must be installed from remote repository host systems using any one of the following options:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install.packages("remotes")</span>
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html">install_git</a></span>(<span class="st">"https://git.sr.ht/~mpadge/allcontributor"</span>)
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_bitbucket.html">install_bitbucket</a></span>(<span class="st">"mpadge/allcontributor"</span>)
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html">install_gitlab</a></span>(<span class="st">"mpadge/allcontributor"</span>)
 <span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"mpadge/allcontributor"</span>)
 </pre></div>
 <p>The package can then be loaded the usual way:</p>
@@ -107,7 +111,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span>(org = <span class="st">"mpadge"</span>, repo = <span class="st">"allcontributor"</span>)
 <span class="co">#&gt;   logins contributions                                               avatar</span>
-<span class="co">#&gt; 1 mpadge            42 https://avatars1.githubusercontent.com/u/6697851?v=4</span>
+<span class="co">#&gt; 1 mpadge            49 https://avatars1.githubusercontent.com/u/6697851?v=4</span>
 </pre></div>
 <p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a> function will add a table of contributors will there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
 <p>Any time you wish to update your contributor list, simply re-run the <code><a href="reference/add_contributors.html">add_contributors()</a></code> function.</p>
