@@ -61,3 +61,7 @@ assigned to a return value).
 \description{
 Add contributors to README.Rmd
 }
+\note{
+Opening an issue on github requires the github command-line interface
+to be locally installed. See \url{https://cli.github.com/}.
+}

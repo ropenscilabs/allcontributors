@@ -1,6 +1,6 @@
 Package: allcontributor
 Title: Acknowledge all contributors in your 'README'
-Version: 0.0.1.007
+Version: 0.0.1.008
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",

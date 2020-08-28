@@ -34,6 +34,9 @@
 #' @param open_issue If `TRUE`, open or edit an issue on github in order to
 #' notify all contributors that they've been added to your `README` (see Note).
 #'
+#' @note Opening an issue on github requires the github command-line interface
+#' to be locally installed. See \url{https://cli.github.com/}.
+#'
 #' @return Named list of logical values indicating whether files of given names
 #' were updated or not is returned invisibly (that is, only if explicitly
 #' assigned to a return value).
