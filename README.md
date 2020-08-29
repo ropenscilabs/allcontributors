@@ -87,7 +87,7 @@ function
 ``` r
 get_contributors(org = "mpadge", repo = "allcontributor")
 #>   logins contributions                                               avatar
-#> 1 mpadge            49 https://avatars1.githubusercontent.com/u/6697851?v=4
+#> 1 mpadge            54 https://avatars1.githubusercontent.com/u/6697851?v=4
 ```
 
 If the main `README` file(s) contains a markdown section entitled
@@ -100,7 +100,10 @@ start by adding an empty `"## Contributors` section to the file(s) and
 the function will insert the table at that point.
 
 Any time you wish to update your contributor list, simply re-run the
-`add_contributors()` function.
+`add_contributors()` function. There’s even an `open_issue` parameter
+that will automatically open or update a github issue on your repository
+so that contributors will be pinged about them being added to your list
+of contributors.
 
 ## Contributors
 

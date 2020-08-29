@@ -120,7 +120,10 @@ empty `"## Contributors` section to the file(s) and the function will insert
 the table at that point.
 
 Any time you wish to update your contributor list, simply re-run the
-`add_contributors()` function.
+`add_contributors()` function. There's even an `open_issue` parameter that will
+automatically open or update a github issue on your repository so that
+contributors will be pinged about them being added to your list of
+contributors.
 
 
 ## Contributors
