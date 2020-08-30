@@ -19,14 +19,14 @@ The original [`all-contributors`](https://allcontributors.org/) is
 primarily a bot which responds to commit messages such as `add @user for
 <contribution>`, where `<contribution>` is one of the [recognized
 types](https://allcontributors.org/docs/en/emoji-key). The relative
-advantage of this system lies primarily in the diversity of contribution
-types able to be acknowledged, with each type for a given user appearing
-as a corresponding
+advantage of that original system lies primarily in the diversity of
+contribution types able to be acknowledged, with each type for a given
+user appearing as a corresponding
 [emoji](https://allcontributors.org/docs/en/emoji-key) below their
 github avatar as listed on the README. In comparison, the advantages of
 the `allcontributor` package are:
 
-1.  It works locally without any bot integration with a repository
+1.  It works locally without any bot integration
 2.  It can add contributors to any file, not just the main README
 3.  It offers a variety of formats for listing contributors:
     1)  divided into sections by types of contributions, or as a single
@@ -79,22 +79,13 @@ including:
 Contribution data are obtained by querying the github API, for which a
 local key should be set as an environmental variable containing the name
 `"GITHUB"` (either via `Sys.setenv()`, or as an equivalent entry in a
-file `~/.Renviron`). The data used to construct the contributions table
-can be extracted without writing to the `README` file(s) with the
-function
-[`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
-
-``` r
-get_contributors(org = "mpadge", repo = "allcontributor")
-#>   logins contributions                                               avatar
-#> 1 mpadge            54 https://avatars1.githubusercontent.com/u/6697851?v=4
-```
+file `~/.Renviron`).
 
 If the main `README` file(s) contains a markdown section entitled
 `"Contributors"`, the
 [`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html)
-function will add a table of contributors will there, otherwise it will
-be appended to the end of the document(s). If you wish your contributors
+function will add a table of contributors there, otherwise it will be
+appended to the end of the document(s). If you wish your contributors
 table to be somewhere other than at the end of the `README` file(s),
 start by adding an empty `"## Contributors` section to the file(s) and
 the function will insert the table at that point.
@@ -104,6 +95,16 @@ Any time you wish to update your contributor list, simply re-run the
 that will automatically open or update a github issue on your repository
 so that contributors will be pinged about them being added to your list
 of contributors.
+
+The data used to construct the contributions table can also be extracted
+without writing to the `README` file(s) with the function
+[`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
+
+``` r
+get_contributors(org = "mpadge", repo = "allcontributor")
+#>   logins contributions                                               avatar
+#> 1 mpadge            55 https://avatars1.githubusercontent.com/u/6697851?v=4
+```
 
 ## Contributors
 

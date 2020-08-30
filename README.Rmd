@@ -39,21 +39,21 @@ contributors in your 'README' (or elsewhere).
 ## Why then?
 
 The original [`all-contributors`](https://allcontributors.org/) is primarily
-a bot which responds to commit messages such as `add
-@user for <contribution>`, where `<contribution>` is one of the [recognized
+a bot which responds to commit messages such as `add @user for <contribution>`,
+where `<contribution>` is one of the [recognized
 types](https://allcontributors.org/docs/en/emoji-key). The relative advantage
-of this system lies primarily in the diversity of contribution types able to be
-acknowledged, with each type for a given user appearing as a corresponding
-[emoji](https://allcontributors.org/docs/en/emoji-key) below their github
-avatar as listed on the README. In comparison, the advantages of the
-`allcontributor` package are:
+of that original system lies primarily in the diversity of contribution types
+able to be acknowledged, with each type for a given user appearing as
+a corresponding [emoji](https://allcontributors.org/docs/en/emoji-key) below
+their github avatar as listed on the README. In comparison, the advantages of
+the `allcontributor` package are:
 
-1. It works locally without any bot integration with a repository
+1. It works locally without any bot integration
 2. It can add contributors to any file, not just the main README
 3. It offers a variety of formats for listing contributors:
    (i) divided into sections by types of contributions, or as a single section
    (ii) presented as full grids (like [the
-        original](https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-)), 
+        original](https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-)),
         numbered lists of github user names only, or single text strings of
         comma-separated names.
 
@@ -62,6 +62,7 @@ avatar as listed on the README. In comparison, the advantages of the
 
 Not yet on CRAN, so must be installed from remote repository host systems using
 any one of the following options:
+
 ```{r gh-installation, eval = FALSE}
 # install.packages("remotes")
 remotes::install_git("https://git.sr.ht/~mpadge/allcontributor")
@@ -101,21 +102,13 @@ determined by several parameters in that function, including:
 Contribution data are obtained by querying the github API, for which a local
 key should be set as an environmental variable containing the name `"GITHUB"`
 (either via `Sys.setenv()`, or as an equivalent entry in a file `~/.Renviron`).
-The data used to construct the contributions table can be extracted without
-writing to the `README` file(s) with the function
-[`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
-
-```{r get_contributors}
-get_contributors(org = "mpadge", repo = "allcontributor")
-```
-
 
 If the main `README` file(s) contains a markdown section entitled
-`"Contributors"`, the 
+`"Contributors"`, the
 [`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html)
-function will add a table of contributors will there, otherwise it will be
-appended to the end of the document(s). If you wish your contributors table to
-be somewhere other than at the end of the `README` file(s), start by adding an
+function will add a table of contributors there, otherwise it will be appended
+to the end of the document(s). If you wish your contributors table to be
+somewhere other than at the end of the `README` file(s), start by adding an
 empty `"## Contributors` section to the file(s) and the function will insert
 the table at that point.
 
@@ -124,6 +117,14 @@ Any time you wish to update your contributor list, simply re-run the
 automatically open or update a github issue on your repository so that
 contributors will be pinged about them being added to your list of
 contributors.
+
+The data used to construct the contributions table can also be extracted
+without writing to the `README` file(s) with the function
+[`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
+
+```{r get_contributors}
+get_contributors(org = "mpadge", repo = "allcontributor")
+```
 
 
 ## Contributors
