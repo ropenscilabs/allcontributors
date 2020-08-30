@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">allcontributor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.010</span>
       </span>
     </div>
 
@@ -72,9 +72,9 @@
 <div id="why-then" class="section level2">
 <h2 class="hasAnchor">
 <a href="#why-then" class="anchor"></a>Why then?</h2>
-<p>The original <a href="https://allcontributors.org/"><code>all-contributors</code></a> is primarily a bot which responds to commit messages such as <code>add @user for &lt;contribution&gt;</code>, where <code>&lt;contribution&gt;</code> is one of the <a href="https://allcontributors.org/docs/en/emoji-key">recognized types</a>. The relative advantage of this system lies primarily in the diversity of contribution types able to be acknowledged, with each type for a given user appearing as a corresponding <a href="https://allcontributors.org/docs/en/emoji-key">emoji</a> below their github avatar as listed on the README. In comparison, the advantages of the <code>allcontributor</code> package are:</p>
+<p>The original <a href="https://allcontributors.org/"><code>all-contributors</code></a> is primarily a bot which responds to commit messages such as <code>add @user for &lt;contribution&gt;</code>, where <code>&lt;contribution&gt;</code> is one of the <a href="https://allcontributors.org/docs/en/emoji-key">recognized types</a>. The relative advantage of that original system lies primarily in the diversity of contribution types able to be acknowledged, with each type for a given user appearing as a corresponding <a href="https://allcontributors.org/docs/en/emoji-key">emoji</a> below their github avatar as listed on the README. In comparison, the advantages of the <code>allcontributor</code> package are:</p>
 <ol>
-<li>It works locally without any bot integration with a repository</li>
+<li>It works locally without any bot integration</li>
 <li>It can add contributors to any file, not just the main README</li>
 <li>It offers a variety of formats for listing contributors: 1) divided into sections by types of contributions, or as a single section 2) presented as full grids (like <a href="https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-">the original</a>), numbered lists of github user names only, or single text strings of comma-separated names.</li>
 </ol>
@@ -107,14 +107,15 @@
 <li>
 <code>format</code> Determining whether contributors are presented in a grid with associated avatars of each contributor, as in <a href="https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-">the original</a>, an enumerated list of github user names only, or a single text string of comma-separated names.</li>
 </ol>
-<p>Contribution data are obtained by querying the github API, for which a local key should be set as an environmental variable containing the name <code>"GITHUB"</code> (either via <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv()</a></code>, or as an equivalent entry in a file <code>~/.Renviron</code>). The data used to construct the contributions table can be extracted without writing to the <code>README</code> file(s) with the function <a href="https://mpadge.github.io/allcontributor/reference/get_contributors.html"><code>get_contributors()</code></a>:</p>
+<p>Contribution data are obtained by querying the github API, for which a local key should be set as an environmental variable containing the name <code>"GITHUB"</code> (either via <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv()</a></code>, or as an equivalent entry in a file <code>~/.Renviron</code>).</p>
+<p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a> function will add a table of contributors there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
+<p>Any time you wish to update your contributor list, simply re-run the <code><a href="reference/add_contributors.html">add_contributors()</a></code> function. There’s even an <code>open_issue</code> parameter that will automatically open or update a github issue on your repository so that contributors will be pinged about them being added to your list of contributors.</p>
+<p>The data used to construct the contributions table can also be extracted without writing to the <code>README</code> file(s) with the function <a href="https://mpadge.github.io/allcontributor/reference/get_contributors.html"><code>get_contributors()</code></a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span>(org = <span class="st">"mpadge"</span>, repo = <span class="st">"allcontributor"</span>)
 <span class="co">#&gt;   logins contributions                                               avatar</span>
-<span class="co">#&gt; 1 mpadge            54 https://avatars1.githubusercontent.com/u/6697851?v=4</span>
+<span class="co">#&gt; 1 mpadge            55 https://avatars1.githubusercontent.com/u/6697851?v=4</span>
 </pre></div>
-<p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a> function will add a table of contributors will there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
-<p>Any time you wish to update your contributor list, simply re-run the <code><a href="reference/add_contributors.html">add_contributors()</a></code> function. There’s even an <code>open_issue</code> parameter that will automatically open or update a github issue on your repository so that contributors will be pinged about them being added to your list of contributors.</p>
 </div>
 <div id="contributors" class="section level2">
 <h2 class="hasAnchor">
