@@ -107,35 +107,41 @@ add_contributors <- function (ncols = 7,
 
     files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
+    files <- files [grep ("\\.md$|\\.Rmd$", files)]
 
-    current_ctbs <- get_current_contribs (files [grep ("\\.md$", files)], or)
+    current_ctbs <- lapply (files, function (i) get_current_contribs (i, or))
 
     chk <- rep (FALSE, length (files))
 
-    if (any (!ctbs$logins %in% current_ctbs)) {
+    for (i in seq (files)) {
 
-        if (open_issue) {
-            newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs), ]
-            pinged <- get_gh_contrib_issue (or$org, or$repo)
-            if (length (pinged) == 0) {
-                open_allcontribs_issue (or$org, or$repo, newctbs)
-            } else {
-                newctbs <- newctbs [which (!newctbs$logins %in% pinged)]
-                extend_allcontribs_issue (or$org, or$repo, newctbs)
+        if (any (!ctbs$logins %in% current_ctbs [[i]])) {
+
+            if (open_issue) {
+                newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs [[i]]), ]
+                pinged <- get_gh_contrib_issue (or$org, or$repo)
+                if (length (pinged) == 0) {
+                    open_allcontribs_issue (or$org, or$repo, newctbs)
+                } else {
+                    newctbs <- newctbs [which (!newctbs$logins %in% pinged)]
+                    extend_allcontribs_issue (or$org, or$repo, newctbs)
+                }
             }
-        }
 
-        # code contributions to files:
-        chk <- lapply (files, function (i)
-                contribs_to_readme (ctbs,
-                                    orgrepo = or,
-                                    ncols = ncols,
-                                    format = format,
-                                    filename = i))
-    } else {
-        message (cli::col_green (cli::symbol$tick),
-                 " All current contributors already listed")
-    }
+            # code contributions to files:
+            chk [i] <- contribs_to_readme (ctbs,
+                                           orgrepo = or,
+                                           ncols = ncols,
+                                           format = format,
+                                           filename = files [i])
+        } else {
+            this_file <- utils::tail (strsplit (files [i], .Platform$file.sep) [[1]], 1)
+            message (cli::col_green (cli::symbol$tick),
+                     " All current contributors already listed for [",
+                     this_file,
+                     "]")
+        }
+    } # end for i over files
 
     names (chk) <- vapply (files, function (i)
                            utils::tail (strsplit (i, "/") [[1]], 1),
