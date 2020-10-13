@@ -18,6 +18,8 @@
 #' \item{3} Contributions divided into single sections for each of the three
 #' `type` arguments.
 #' }
+#' @param section_names Names of the sections to appear on the nominated
+#' `files`.
 #' @param alphabetical If `TRUE`, order contributors alphabetically, otherwise
 #' order by decreasing numbers of contributions.
 #' @param format One of ("grid", "list", "text") to control display of
@@ -45,6 +47,7 @@ add_contributors <- function (ncols = 7,
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
                               num_sections = 3,
+                              section_names = c ("Code", "Issue Authors", "Issue Contributors"),
                               format = "grid",
                               alphabetical = FALSE,
                               open_issue = FALSE) {
@@ -101,6 +104,11 @@ add_contributors <- function (ncols = 7,
     }
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+
+    ctbs$type <- section_names [match (ctbs$type,
+                                       c ("code",
+                                          "issue_authors",
+                                          "issue_contributors"))]
 
     attr (ctbs, "num_sections") <- min (num_sections, length (type),
                                         length (unique (ctbs$type)))
@@ -240,10 +248,13 @@ contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
     num_sections <- attr (dat, "num_sections")
     if (num_sections == 1) {
         xmid <- c (xmid, add_one_section (dat, orgrepo, ncols,
-                                          type = "code", format))
+                                          type = dat$type [1], format))
     } else {
-        if (num_sections < 3)
-            dat$type [dat$type == "issue_contributors"] <- "issue_authors"
+        if (num_sections < 3) {
+            # types are always sorted (code, issue authors, issue contributors)
+            types <- unique (dat$type)
+            dat$type [dat$type == types [3]] <- types [2]
+        }
 
         dat <- split (dat, as.factor (dat$type))
         for (i in dat) {

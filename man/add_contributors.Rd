@@ -9,6 +9,7 @@ add_contributors(
   files = c("README.Rmd", "README.md"),
   type = c("code", "issues", "discussion"),
   num_sections = 3,
+  section_names = c("Code", "Issue Authors", "Issue Contributors"),
   format = "grid",
   alphabetical = FALSE,
   open_issue = FALSE
@@ -34,6 +35,9 @@ second section for all other issue-related contributions.
 \item{3} Contributions divided into single sections for each of the three
 \code{type} arguments.
 }}
+
+\item{section_names}{Names of the sections to appear on the nominated
+\code{files}.}
 
 \item{format}{One of ("grid", "list", "text") to control display of
 contributors as
