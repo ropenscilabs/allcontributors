@@ -4,7 +4,8 @@ context("vcr")
 #library (webmockr)
 #u <- "https://api.github.com"
 #path <- "repos/hypertidy/geodist/contributors"
-#vcr_configure (dir = file.path (here::here (), "tests", "testthat"))
+#vcr_configure (dir = "../fixtures", write_disk_path = "../files")
+#vcr_configure (dir = ".", write_disk_path = ".")
 #y <- use_cassette(name = "geodist", {
 #             z <- httr::GET(u, path = path)
 #})
@@ -28,4 +29,3 @@ test_that("vcr test", {
              })
 
 vcr::eject_cassette ("geodist")
-

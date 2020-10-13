@@ -14,19 +14,19 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 30 May 2020 19:59:46 GMT
+      date: Tue, 13 Oct 2020 09:40:21 GMT
       content-type: application/json; charset=utf-8
       server: GitHub.com
       status: 200 OK
       cache-control: public, max-age=60, s-maxage=60
       vary: Accept, Accept-Encoding, Accept, X-Requested-With, Accept-Encoding
-      etag: W/"243aab3e0e47bc1f40e5afdaf8f36fa5"
-      last-modified: Tue, 19 May 2020 09:59:33 GMT
+      etag: W/"e3d3b68a9b709e286decea72acbc145759254ed84e8257a4d21dcbb97e588621"
+      last-modified: Mon, 12 Oct 2020 09:53:41 GMT
       x-github-media-type: github.v3
       access-control-expose-headers: ETag, Link, Location, Retry-After, X-GitHub-OTP,
-        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
-        Sunset
+        X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type,
+        Deprecation, Sunset
       access-control-allow-origin: '*'
       strict-transport-security: max-age=31536000; includeSubdomains; preload
       x-frame-options: deny
@@ -37,10 +37,11 @@ http_interactions:
       content-encoding: gzip
       x-ratelimit-limit: '60'
       x-ratelimit-remaining: '58'
-      x-ratelimit-reset: '1590872177'
+      x-ratelimit-reset: '1602585152'
+      x-ratelimit-used: '2'
       accept-ranges: bytes
-      content-length: '359'
-      x-github-request-id: 9D4C:2668C:2BB4B23:3408BEE:5ED2BB31
+      content-length: '360'
+      x-github-request-id: D524:FB12:D8093B9:FDB7CC1:5F857604
     body:
       encoding: UTF-8
       file: no
@@ -65,8 +66,8 @@ http_interactions:
             "received_events_url": "https://api.github.com/users/mpadge/received_events",
             "type": "User",
             "site_admin": false,
-            "contributions": 121
+            "contributions": 137
           }
         ]
-  recorded_at: 2020-05-30 19:59:46 GMT
-  recorded_with: vcr/0.5.4, webmockr/0.6.2
+  recorded_at: 2020-10-13 09:40:21 GMT
+  recorded_with: vcr/0.5.4, webmockr/0.7.0

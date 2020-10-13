@@ -10,13 +10,13 @@
   "codeRepository": "https://github.com/mpadge/allcontributor",
   "issueTracker": "https://github.com/mpadge/allcontributor/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.013",
+  "version": "0.0.1.14",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -185,7 +185,7 @@
     }
   ],
   "readme": "https://github.com/mpadge/allcontributor/blob/master/README.md",
-  "fileSize": "57.896KB",
+  "fileSize": "60.242KB",
   "contIntegration": "https://codecov.io/gh/mpadge/allcontributor",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }
