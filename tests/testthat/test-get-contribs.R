@@ -1,20 +1,26 @@
-context("vcr")
+context("webmockr")
 
-#library (vcr)
-#library (webmockr)
-#u <- "https://api.github.com"
-#path <- "repos/hypertidy/geodist/contributors"
-#vcr_configure (dir = "../fixtures", write_disk_path = "../files")
-#vcr_configure (dir = ".", write_disk_path = ".")
-#y <- use_cassette(name = "geodist", {
-#             z <- httr::GET(u, path = path)
-#})
+u_base <- "https://api.github.com"
+path <- "repos/hypertidy/geodist/contributors"
+u <- httr::modify_url (u_base, path = path)
+#z <- httr::GET (u)
+#saveRDS (httr::content (z), file = "geodist.Rds")
+#saveRDS (z$headers, file = "geodist-hdrs.Rds")
+
+library (webmockr)
+httr_mock()
+
+stub_request ("get", uri = u) %>%
+    wi_th (
+           headers = list('Accept' = 'application/json, text/xml, application/xml, */*')
+           ) %>%
+    to_return(status = 200,
+              body = readRDS ("geodist.Rds"),
+              headers = readRDS ("geodist-hdrs.Rds"))
 
 test_all <- (identical (Sys.getenv ("MPADGE_LOCAL"), "true") |
              identical (Sys.getenv ("TRAVIS"), "true"))
 
-
-vcr::insert_cassette ("geodist")
 
 test_that("vcr test", {
 
@@ -27,5 +33,3 @@ test_that("vcr test", {
     expect_identical (names (x), c ("logins", "contributions", "avatar"))
 
              })
-
-vcr::eject_cassette ("geodist")

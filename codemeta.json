@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/mpadge/allcontributor",
   "issueTracker": "https://github.com/mpadge/allcontributor/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.14",
+  "version": "0.0.1.15",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -75,15 +75,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "vcr",
-      "name": "vcr",
+      "identifier": "webmockr",
+      "name": "webmockr",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=vcr"
+      "sameAs": "https://CRAN.R-project.org/package=webmockr"
     }
   ],
   "softwareRequirements": [
@@ -185,7 +185,7 @@
     }
   ],
   "readme": "https://github.com/mpadge/allcontributor/blob/master/README.md",
-  "fileSize": "60.242KB",
+  "fileSize": "55.557KB",
   "contIntegration": "https://codecov.io/gh/mpadge/allcontributor",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }

@@ -1,6 +1,6 @@
 Package: allcontributor
 Title: Acknowledge all contributors in your 'README'
-Version: 0.0.1.014
+Version: 0.0.1.015
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",
@@ -23,7 +23,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    vcr
+    webmockr
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
