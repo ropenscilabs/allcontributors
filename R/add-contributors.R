@@ -105,10 +105,10 @@ add_contributors <- function (ncols = 7,
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
 
-    ctbs$type <- section_names [match (ctbs$type,
-                                       c ("code",
-                                          "issue_authors",
-                                          "issue_contributors"))]
+    ctbs$type_name <- section_names [match (ctbs$type,
+                                            c ("code",
+                                               "issue_authors",
+                                               "issue_contributors"))]
 
     attr (ctbs, "num_sections") <- min (num_sections, length (type),
                                         length (unique (ctbs$type)))
@@ -252,16 +252,16 @@ contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
     } else {
         if (num_sections < 3) {
             # types are always sorted (code, issue authors, issue contributors)
-            types <- unique (dat$type)
-            dat$type [dat$type == types [3]] <- types [2]
+            type_names <- unique (dat$type_name)
+            dat$type_name [dat$type_name == type_names [3]] <- type_names [2]
         }
 
         dat <- split (dat, as.factor (dat$type))
         for (i in dat) {
-            typei <- tools::toTitleCase (gsub ("\\_", " ", i$type [1]))
+            type_namei <- tools::toTitleCase (gsub ("\\_", " ", i$type_name [1]))
             xmid <- c (xmid,
                        "",
-                       paste0 ("## ", typei))
+                       paste0 ("## ", type_namei))
             xmid <- c (xmid, add_one_section (i, orgrepo, ncols,
                                               i$type [1],
                                               format))
