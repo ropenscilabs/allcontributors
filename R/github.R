@@ -257,19 +257,33 @@ get_gh_contrib_issue <- function (org, repo) {
     if (length (issue_num) == 0)
         return (NULL)
 
+    tok <- get_gh_token ()
+    user <- get_git_user ()
+
     u <- paste0 ("https://api.github.com/repos/",
                  org,
                  "/",
                  repo,
                  "/issues/",
                  issue_num)
-    x <- httr::GET (u,
-                    query = list (state = "all", per_page = 100, page = 1))
+
+    qry <- list (state = "all", per_page = 100, page = 1)
+    if (nchar (tok) > 0) {
+        x <- httr::GET (u, httr::authenticate (user, tok), query = qry)
+    } else {
+        x <- httr::GET (u, query = qry)
+    }
+
     txt <- httr::content (x)$body
     # That's just the body of the opening comment; the following lines extract
     # all subsequent comments:
-    x <- httr::GET (paste0 (u, "/comments"),
-                    query = list (state = "all", per_page = 100, page = 1))
+    if (nchar (tok) > 0) {
+        x <- httr::GET (paste0 (u, "/comments"),
+                        httr::authenticate (user, tok),
+                        query = qry)
+    } else {
+        x <- httr::GET (paste0 (u, "/comments"), query = qry)
+    }
     txt <- c (txt, lapply (httr::content (x), function (i) i$body))
 
     pings <- lapply (txt, function (i) {
