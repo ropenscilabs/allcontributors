@@ -63,8 +63,17 @@ get_gh_token <- function (token = "") {
         toks <- e [grep (token, names (e))]
     else {
         toks <- e [grep ("GITHUB|GH", names (e))]
-        if (length (toks) > 1)
-            toks <- toks [grep ("QL", names (toks))]
+        if (length (toks) > 1) {
+            un <- unique (toks)
+            names (un) <- names (toks) [match (un, toks)]
+            if (length (grep ("QL", names (un))) == 1) {
+                un <- un [grep ("QL", names (toks))]
+            } else if (length (grep ("^GITHUB", names (un))) == 1) {
+                un <- un [grep ("GITHUB", names (un))]
+            }
+            # Then just return the 1st token
+            toks <- un [1]
+        }
     }
 
     if (length (unique (toks)) > 1)
