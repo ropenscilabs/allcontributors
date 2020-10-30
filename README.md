@@ -10,7 +10,15 @@ Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repo
 
 An alternative implementation in R of the original
 [`all-contributors`](https://allcontributors.org/) to acknowledge all
-contributors in your ‘README’ (or elsewhere).
+contributors in your ‘README’ (or elsewhere). The original is intended
+to help acknowledge *all* contributions including those beyond the
+contents of an actual repository (such as community or other or
+less-tangible organisational contributions). This version restricts
+acknowledgements to direct and tangible contributions to a repository
+only, but automates that task to a single function call, in the hope
+that such simplicity will spur greater usage. In short: This package
+can’t do everything the original does, but what it does it does much
+easier.
 
 Why then?
 ---------
@@ -18,17 +26,17 @@ Why then?
 The original [`all-contributors`](https://allcontributors.org/) is
 primarily a bot which responds to commit messages such as
 `add @user for <contribution>`, where `<contribution>` is one of the
-[recognized types](https://allcontributors.org/docs/en/emoji-key). The
-relative advantage of that original system lies primarily in the
-diversity of contribution types able to be acknowledged, with each type
-for a given user appearing as a corresponding
-[emoji](https://allcontributors.org/docs/en/emoji-key) below their
-github avatar as listed on the README. In comparison, the advantages of
-the `allcontributors` package are:
+[recognized types](https://allcontributors.org/docs/en/emoji-key). As
+said above, the relative advantage of that original system lies
+primarily in the diversity of contribution types able to be
+acknowledged, with each type for a given user appearing as a
+corresponding [emoji](https://allcontributors.org/docs/en/emoji-key)
+below their github avatar as listed on the README. In comparison, this R
+package:
 
-1.  It works locally without any bot integration
-2.  It can add contributors to any file, not just the main README
-3.  It offers a variety of formats for listing contributors:
+1.  Works locally without any bot integration
+2.  Can add contributors to any file, not just the main README
+3.  Offers a variety of formats for listing contributors:
     1.  divided into sections by types of contributions, or as a single
         section
     2.  presented as full grids (like [the
@@ -58,10 +66,10 @@ Usage
 The primary function of the package,
 [`add_contributors()`](https://mpadge.github.io/allcontributors/reference/add_contributors.html),
 adds a table of all contributors to the main `README.md` file (and
-`README.Rmd` if that exists). Tables can be added to other files by
-specifying the `files` argument of that function. The appearance of the
-contributors table is determined by several parameters in that function,
-including:
+`README.Rmd` if that exists). Tables or lists can be added to other
+files by specifying the `files` argument of that function. The
+appearance of the contributors table is determined by several parameters
+in that function, including:
 
 1.  `type` For the type of contributions to include (code, contributors
     who open issues, contributors who discuss issues).
@@ -100,7 +108,7 @@ without writing to the `README` file(s) with the function
 
     get_contributors(org = "mpadge", repo = "allcontributors")
     #>   logins contributions                                               avatar
-    #> 1 mpadge            67 https://avatars1.githubusercontent.com/u/6697851?v=4
+    #> 1 mpadge            70 https://avatars1.githubusercontent.com/u/6697851?v=4
 
 Contributors
 ------------
