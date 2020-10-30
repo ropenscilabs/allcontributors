@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acknowledge all contributors in your README • allcontributor</title>
+<title>Acknowledge all contributors in your README • allcontributors</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -30,8 +30,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">allcontributor</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.021</span>
+        <a class="navbar-link" href="index.html">allcontributors</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.022</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/mpadge/allcontributor/">
+  <a href="https://github.com/mpadge/allcontributors/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -66,31 +66,34 @@
 <div id="why-then" class="section level2">
 <h2 class="hasAnchor">
 <a href="#why-then" class="anchor"></a>Why then?</h2>
-<p>The original <a href="https://allcontributors.org/"><code>all-contributors</code></a> is primarily a bot which responds to commit messages such as <code>add @user for &lt;contribution&gt;</code>, where <code>&lt;contribution&gt;</code> is one of the <a href="https://allcontributors.org/docs/en/emoji-key">recognized types</a>. The relative advantage of that original system lies primarily in the diversity of contribution types able to be acknowledged, with each type for a given user appearing as a corresponding <a href="https://allcontributors.org/docs/en/emoji-key">emoji</a> below their github avatar as listed on the README. In comparison, the advantages of the <code>allcontributor</code> package are:</p>
+<p>The original <a href="https://allcontributors.org/"><code>all-contributors</code></a> is primarily a bot which responds to commit messages such as <code>add @user for &lt;contribution&gt;</code>, where <code>&lt;contribution&gt;</code> is one of the <a href="https://allcontributors.org/docs/en/emoji-key">recognized types</a>. The relative advantage of that original system lies primarily in the diversity of contribution types able to be acknowledged, with each type for a given user appearing as a corresponding <a href="https://allcontributors.org/docs/en/emoji-key">emoji</a> below their github avatar as listed on the README. In comparison, the advantages of the <code>allcontributors</code> package are:</p>
 <ol>
 <li>It works locally without any bot integration</li>
 <li>It can add contributors to any file, not just the main README</li>
-<li>It offers a variety of formats for listing contributors: 1) divided into sections by types of contributions, or as a single section 2) presented as full grids (like <a href="https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-">the original</a>), numbered lists of github user names only, or single text strings of comma-separated names.</li>
+<li>It offers a variety of formats for listing contributors:
+<ol>
+<li>divided into sections by types of contributions, or as a single section</li>
+<li>presented as full grids (like <a href="https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-">the original</a>), numbered lists of github user names only, or single text strings of comma-separated names.</li>
+</ol>
+</li>
 </ol>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Not yet on CRAN, so must be installed from remote repository host systems using any one of the following options:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_git.html">install_git</a></span><span class="op">(</span><span class="st">"https://git.sr.ht/~mpadge/allcontributor"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_bitbucket.html">install_bitbucket</a></span><span class="op">(</span><span class="st">"mpadge/allcontributor"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html">install_gitlab</a></span><span class="op">(</span><span class="st">"mpadge/allcontributor"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mpadge/allcontributor"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("remotes")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>remotes<span class="op">::</span><span class="kw">install_git</span>(<span class="st">"https://git.sr.ht/~mpadge/allcontributors"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>remotes<span class="op">::</span><span class="kw">install_bitbucket</span>(<span class="st">"mpadge/allcontributors"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>remotes<span class="op">::</span><span class="kw">install_gitlab</span>(<span class="st">"mpadge/allcontributors"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"mpadge/allcontributors"</span>)</span></code></pre></div>
 <p>The package can then be loaded the usual way:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span> <span class="op">(</span><span class="va"><a href="https://github.com/mpadge/allcontributor">allcontributor</a></span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span> (allcontributors)</span></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>The primary function of the package, <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a>, adds a table of all contributors to the main <code>README.md</code> file (and <code>README.Rmd</code> if that exists). Tables can be added to other files by specifying the <code>files</code> argument of that function. The appearance of the contributors table is determined by several parameters in that function, including:</p>
+<p>The primary function of the package, <a href="https://mpadge.github.io/allcontributors/reference/add_contributors.html"><code>add_contributors()</code></a>, adds a table of all contributors to the main <code>README.md</code> file (and <code>README.Rmd</code> if that exists). Tables can be added to other files by specifying the <code>files</code> argument of that function. The appearance of the contributors table is determined by several parameters in that function, including:</p>
 <ol>
 <li>
 <code>type</code> For the type of contributions to include (code, contributors who open issues, contributors who discuss issues).</li>
@@ -100,13 +103,12 @@
 <code>format</code> Determining whether contributors are presented in a grid with associated avatars of each contributor, as in <a href="https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-">the original</a>, an enumerated list of github user names only, or a single text string of comma-separated names.</li>
 </ol>
 <p>Contribution data are obtained by querying the github API, for which a local key should be set as an environmental variable containing the name <code>"GITHUB"</code> (either via <code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv()</a></code>, or as an equivalent entry in a file <code>~/.Renviron</code>).</p>
-<p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributor/reference/add_contributors.html"><code>add_contributors()</code></a> function will add a table of contributors there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
+<p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://mpadge.github.io/allcontributors/reference/add_contributors.html"><code>add_contributors()</code></a> function will add a table of contributors there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
 <p>Any time you wish to update your contributor list, simply re-run the <code><a href="reference/add_contributors.html">add_contributors()</a></code> function. There’s even an <code>open_issue</code> parameter that will automatically open or update a github issue on your repository so that contributors will be pinged about them being added to your list of contributors.</p>
-<p>The data used to construct the contributions table can also be extracted without writing to the <code>README</code> file(s) with the function <a href="https://mpadge.github.io/allcontributor/reference/get_contributors.html"><code>get_contributors()</code></a>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span><span class="op">(</span>org <span class="op">=</span> <span class="st">"mpadge"</span>, repo <span class="op">=</span> <span class="st">"allcontributor"</span><span class="op">)</span>
-<span class="co">#&gt;   logins contributions                                               avatar</span>
-<span class="co">#&gt; 1 mpadge            55 https://avatars1.githubusercontent.com/u/6697851?v=4</span></pre></div>
+<p>The data used to construct the contributions table can also be extracted without writing to the <code>README</code> file(s) with the function <a href="https://mpadge.github.io/allcontributors/reference/get_contributors.html"><code>get_contributors()</code></a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">get_contributors</span>(<span class="dt">org =</span> <span class="st">"mpadge"</span>, <span class="dt">repo =</span> <span class="st">"allcontributors"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;   logins contributions                                               avatar</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; 1 mpadge            67 https://avatars1.githubusercontent.com/u/6697851?v=4</span></span></code></pre></div>
 </div>
 <div id="contributors" class="section level2">
 <h2 class="hasAnchor">
@@ -114,10 +116,10 @@
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<p>This project uses the <a href="https://github.com/mpadge/allcontributor"><code>allcontributor</code> package</a> following the <a href="https://allcontributors.org">all-contributors</a> specification. Contributions of any kind are welcome!</p>
+<p>This project uses the <a href="https://github.com/mpadge/allcontributors"><code>allcontributors</code> package</a> following the <a href="https://allcontributors.org">all-contributors</a> specification. Contributions of any kind are welcome!</p>
 <table class="table"><tr>
 <td align="center">
-<p><a href="https://github.com/mpadge"> <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""></a><br><a href="https://github.com/mpadge/allcontributor/commits?author=mpadge">mpadge</a></p>
+<a href="https://github.com/mpadge"> <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""></a><br><a href="https://github.com/mpadge/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr></table>
 <!-- markdownlint-enable --><!-- prettier-ignore-end --><!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -129,9 +131,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/mpadge/allcontributor/">https://​github.com/​mpadge/​allcontributor/​</a>
+<li>Browse source code at <br><a href="https://github.com/mpadge/allcontributors/">https://​github.com/​mpadge/​allcontributors/​</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/mpadge/allcontributor/issues">https://​github.com/​mpadge/​allcontributor/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/mpadge/allcontributors/issues">https://​github.com/​mpadge/​allcontributors/​issues</a>
 </li>
 </ul>
 </div>
@@ -151,8 +153,8 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/mpadge/allcontributor/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/mpadge/allcontributor/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/mpadge/allcontributor"><img src="https://codecov.io/gh/mpadge/allcontributor/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/mpadge/allcontributors/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/mpadge/allcontributors/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/mpadge/allcontributors"><img src="https://codecov.io/gh/mpadge/allcontributors/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://www.repostatus.org/#concept"><img src="https://www.repostatus.org/badges/latest/concept.svg" alt="Project Status: Concept"></a></li>
 </ul>
 </div>
