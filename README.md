@@ -1,10 +1,9 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/mpadge/allcontributor/workflows/R-CMD-check/badge.svg)](https://github.com/mpadge/allcontributor/actions?query=workflow%3AR-CMD-check)
-[![codecov](https://codecov.io/gh/mpadge/allcontributor/branch/master/graph/badge.svg)](https://codecov.io/gh/mpadge/allcontributor)
+status](https://github.com/mpadge/allcontributors/workflows/R-CMD-check/badge.svg)](https://github.com/mpadge/allcontributors/actions?query=workflow%3AR-CMD-check)
+[![codecov](https://codecov.io/gh/mpadge/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/mpadge/allcontributors)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 <!-- badges: end -->
@@ -13,52 +12,51 @@ An alternative implementation in R of the original
 [`all-contributors`](https://allcontributors.org/) to acknowledge all
 contributors in your ‘README’ (or elsewhere).
 
-## Why then?
+Why then?
+---------
 
 The original [`all-contributors`](https://allcontributors.org/) is
-primarily a bot which responds to commit messages such as `add @user for
-<contribution>`, where `<contribution>` is one of the [recognized
-types](https://allcontributors.org/docs/en/emoji-key). The relative
-advantage of that original system lies primarily in the diversity of
-contribution types able to be acknowledged, with each type for a given
-user appearing as a corresponding
+primarily a bot which responds to commit messages such as
+`add @user for <contribution>`, where `<contribution>` is one of the
+[recognized types](https://allcontributors.org/docs/en/emoji-key). The
+relative advantage of that original system lies primarily in the
+diversity of contribution types able to be acknowledged, with each type
+for a given user appearing as a corresponding
 [emoji](https://allcontributors.org/docs/en/emoji-key) below their
 github avatar as listed on the README. In comparison, the advantages of
-the `allcontributor` package are:
+the `allcontributors` package are:
 
 1.  It works locally without any bot integration
 2.  It can add contributors to any file, not just the main README
 3.  It offers a variety of formats for listing contributors:
-    1)  divided into sections by types of contributions, or as a single
+    1.  divided into sections by types of contributions, or as a single
         section
-    2)  presented as full grids (like [the
+    2.  presented as full grids (like [the
         original](https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-)),
         numbered lists of github user names only, or single text strings
         of comma-separated names.
 
-## Installation
+Installation
+------------
 
 Not yet on CRAN, so must be installed from remote repository host
 systems using any one of the following options:
 
-``` r
-# install.packages("remotes")
-remotes::install_git("https://git.sr.ht/~mpadge/allcontributor")
-remotes::install_bitbucket("mpadge/allcontributor")
-remotes::install_gitlab("mpadge/allcontributor")
-remotes::install_github("mpadge/allcontributor")
-```
+    # install.packages("remotes")
+    remotes::install_git("https://git.sr.ht/~mpadge/allcontributors")
+    remotes::install_bitbucket("mpadge/allcontributors")
+    remotes::install_gitlab("mpadge/allcontributors")
+    remotes::install_github("mpadge/allcontributors")
 
 The package can then be loaded the usual way:
 
-``` r
-library (allcontributor)
-```
+    library (allcontributors)
 
-## Usage
+Usage
+-----
 
 The primary function of the package,
-[`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html),
+[`add_contributors()`](https://mpadge.github.io/allcontributors/reference/add_contributors.html),
 adds a table of all contributors to the main `README.md` file (and
 `README.Rmd` if that exists). Tables can be added to other files by
 specifying the `files` argument of that function. The appearance of the
@@ -83,7 +81,7 @@ file `~/.Renviron`).
 
 If the main `README` file(s) contains a markdown section entitled
 `"Contributors"`, the
-[`add_contributors()`](https://mpadge.github.io/allcontributor/reference/add_contributors.html)
+[`add_contributors()`](https://mpadge.github.io/allcontributors/reference/add_contributors.html)
 function will add a table of contributors there, otherwise it will be
 appended to the end of the document(s). If you wish your contributors
 table to be somewhere other than at the end of the `README` file(s),
@@ -98,46 +96,34 @@ of contributors.
 
 The data used to construct the contributions table can also be extracted
 without writing to the `README` file(s) with the function
-[`get_contributors()`](https://mpadge.github.io/allcontributor/reference/get_contributors.html):
+[`get_contributors()`](https://mpadge.github.io/allcontributors/reference/get_contributors.html):
 
-``` r
-get_contributors(org = "mpadge", repo = "allcontributor")
-#>   logins contributions                                               avatar
-#> 1 mpadge            55 https://avatars1.githubusercontent.com/u/6697851?v=4
-```
+    get_contributors(org = "mpadge", repo = "allcontributors")
+    #>   logins contributions                                               avatar
+    #> 1 mpadge            67 https://avatars1.githubusercontent.com/u/6697851?v=4
 
-## Contributors
+Contributors
+------------
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
 <!-- prettier-ignore-start -->
-
 <!-- markdownlint-disable -->
 
-This project uses the [`allcontributor`
-package](https://github.com/mpadge/allcontributor) following the
+This project uses the [`allcontributors`
+package](https://github.com/mpadge/allcontributors) following the
 [all-contributors](https://allcontributors.org) specification.
-Contributions of any kind are welcome\!
+Contributions of any kind are welcome!
 
 <table>
-
 <tr>
-
 <td align="center">
-
 <a href="https://github.com/mpadge">
 <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/mpadge/allcontributor/commits?author=mpadge">mpadge</a>
-
+<a href="https://github.com/mpadge/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
-
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
-
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
