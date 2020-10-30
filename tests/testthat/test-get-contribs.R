@@ -18,9 +18,7 @@ stub_request ("get", uri = u) %>%
               body = readRDS ("geodist.Rds"),
               headers = readRDS ("geodist-hdrs.Rds"))
 
-test_all <- (identical (Sys.getenv ("MPADGE_LOCAL"), "true") |
-             identical (Sys.getenv ("TRAVIS"), "true"))
-
+test_all <- (identical (Sys.getenv ("MPADGE_LOCAL"), "true"))
 
 test_that("vcr test", {
 
