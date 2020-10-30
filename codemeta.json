@@ -4,13 +4,13 @@
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
-  "identifier": "allcontributor",
+  "identifier": "allcontributors",
   "description": "Acknowledge all contributors in your 'README'.",
-  "name": "allcontributor: Acknowledge all contributors in your 'README'",
-  "codeRepository": "https://github.com/mpadge/allcontributor",
-  "issueTracker": "https://github.com/mpadge/allcontributor/issues",
+  "name": "allcontributors: Acknowledge all contributors in your 'README'",
+  "codeRepository": "https://github.com/mpadge/allcontributors",
+  "issueTracker": "https://github.com/mpadge/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.022",
+  "version": "0.0.1.23",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -184,8 +184,8 @@
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     }
   ],
-  "readme": "https://github.com/mpadge/allcontributor/blob/master/README.md",
-  "fileSize": "55.557KB",
-  "contIntegration": "https://codecov.io/gh/mpadge/allcontributor",
+  "readme": "https://github.com/mpadge/allcontributors/blob/master/README.md",
+  "fileSize": "57.609KB",
+  "contIntegration": "https://codecov.io/gh/mpadge/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }
