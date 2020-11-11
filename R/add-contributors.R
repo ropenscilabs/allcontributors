@@ -109,13 +109,15 @@ add_contributors <- function (repo = ".",
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
 
-    attr (ctbs, "num_sections") <- min (num_sections, length (type),
-                                        length (unique (ctbs$type)))
-
     ctbs$type_name <- section_names [match (ctbs$type,
                                             c ("code",
                                                "issue_authors",
                                                "issue_contributors"))]
+
+    attr (ctbs, "num_sections") <- min (num_sections, length (type),
+                                        length (unique (ctbs$type)))
+
+    ctbs <- rename_default_sections (ctbs)
 
     files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
@@ -230,8 +232,7 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
     }
 
     xmid <- NULL
-    if (!has_contribs_sec (x))
-    {
+    if (!has_contribs_sec (x)) {
         sec_fmt <- section_format (x)
         if (sec_fmt == 0)
             xmid <- "## Contributors"
@@ -259,12 +260,10 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
                                           type = dat$type [1], format))
     } else {
         if (num_sections < 3) {
-            # types are always sorted (code, issue authors, issue contributors)
             type_names <- unique (dat$type_name)
-            dat$type_name [dat$type_name == type_names [3]] <- type_names [2]
         }
 
-        dat <- split (dat, as.factor (dat$type))
+        dat <- split (dat, as.factor (dat$type_name))
         for (i in dat) {
             type_namei <- tools::toTitleCase (gsub ("\\_", " ", i$type_name [1]))
 
@@ -376,4 +375,17 @@ add_one_section <- function (dat, orgrepo, ncols,
     x <- c (x, "")
 
     return (x)
+}
+
+rename_default_sections <- function (ctbs) {
+    default_type_names <- c ("Code", "Issue Authors", "Issue Contributors")
+    if (all (ctbs$type_name %in% default_type_names)) {
+        num_sections <- attr (ctbs, "num_sections")
+        if (num_sections == 1)
+            ctbs$type_name <- ""
+        else if (num_sections == 2)
+            ctbs$type_name [ctbs$type_name %in% default_type_names [2:3]] <- "Issues"
+    }
+
+    return (ctbs)
 }
