@@ -227,7 +227,15 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
 
     xmid <- NULL
     if (!has_contribs_sec (x))
-        xmid <- c ("", "## Contributors", "")
+    {
+        sec_fmt <- section_format (x)
+        if (sec_fmt == 0)
+            xmid <- "## Contributors"
+        else
+            xmid <- c ("Contributors",
+                       paste0 (rep ("-", sec_fmt), collapse = ""))
+        xmid <- c ("", xmid, "")
+    }
 
     xmid <- c (xmid,
                "",
@@ -255,9 +263,9 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
         dat <- split (dat, as.factor (dat$type))
         for (i in dat) {
             type_namei <- tools::toTitleCase (gsub ("\\_", " ", i$type_name [1]))
-            xmid <- c (xmid,
-                       "",
-                       paste0 ("## ", type_namei))
+
+            xmid <- c (xmid, "", paste0 ("### ", type_namei))
+
             xmid <- c (xmid, add_one_section (i, orgrepo, ncols,
                                               i$type [1],
                                               format))
