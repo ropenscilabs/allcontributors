@@ -110,24 +110,23 @@ without writing to the `README` file(s) with the function
 
     get_contributors(org = "ropenscilabs", repo = "allcontributors")
     #>   logins contributions                                               avatar
-    #> 1 mpadge            75 https://avatars1.githubusercontent.com/u/6697851?v=4
+    #> 1 mpadge            76 https://avatars1.githubusercontent.com/u/6697851?v=4
+
 
 Contributors
-------------
+---------
+
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-This project uses the [`allcontributors`
-package](https://github.com/ropenscilabs/allcontributors) following the
-[all-contributors](https://allcontributors.org) specification.
-Contributions of any kind are welcome!
+This project uses the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
-Code
-----
+### Code
 
 <table>
+
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -136,12 +135,14 @@ Code
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
+
 </table>
 
-Issue Authors
--------------
+
+### Issue Authors
 
 <table>
+
 <tr>
 <td align="center">
 <a href="https://github.com/maelle">
@@ -150,7 +151,9 @@ Issue Authors
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Amaelle">maelle</a>
 </td>
 </tr>
+
 </table>
+
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
