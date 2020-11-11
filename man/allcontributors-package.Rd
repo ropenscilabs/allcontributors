@@ -11,8 +11,8 @@ Acknowledge all contributors in your 'README'.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/mpadge/allcontributors}
-  \item Report bugs at \url{https://github.com/mpadge/allcontributors/issues}
+  \item \url{https://github.com/ropenscilabs/allcontributors}
+  \item Report bugs at \url{https://github.com/ropenscilabs/allcontributors/issues}
 }
 
 }

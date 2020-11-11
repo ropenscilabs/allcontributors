@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all contributors in your 'README'
-Version: 0.0.1.026
+Version: 0.0.1.027
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",
@@ -8,8 +8,9 @@ Authors@R:
            email = "mark.padgham@email.com")
 Description: Acknowledge all contributors in your 'README'.
 License: GPL-3
-URL: https://github.com/mpadge/allcontributors
-BugReports: https://github.com/mpadge/allcontributors/issues
+URL: https://github.com/ropenscilabs/allcontributors
+BugReports: 
+    https://github.com/ropenscilabs/allcontributors/issues
 Imports:
     cli,
     clipr,

@@ -7,10 +7,10 @@
   "identifier": "allcontributors",
   "description": "Acknowledge all contributors in your 'README'.",
   "name": "allcontributors: Acknowledge all contributors in your 'README'",
-  "codeRepository": "https://github.com/mpadge/allcontributors",
-  "issueTracker": "https://github.com/mpadge/allcontributors/issues",
+  "codeRepository": "https://github.com/ropenscilabs/allcontributors",
+  "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.26",
+  "version": "0.0.1.027",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -184,8 +184,8 @@
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     }
   ],
-  "readme": "https://github.com/mpadge/allcontributors/blob/master/README.md",
-  "fileSize": "58.244KB",
-  "contIntegration": "https://codecov.io/gh/mpadge/allcontributors",
+  "readme": "https://github.com/ropenscilabs/allcontributors/blob/master/README.md",
+  "fileSize": "58.199KB",
+  "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }

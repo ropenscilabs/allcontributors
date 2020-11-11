@@ -2,8 +2,8 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/mpadge/allcontributors/workflows/R-CMD-check/badge.svg)](https://github.com/mpadge/allcontributors/actions?query=workflow%3AR-CMD-check)
-[![codecov](https://codecov.io/gh/mpadge/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/mpadge/allcontributors)
+status](https://github.com/ropenscilabs/allcontributors/workflows/R-CMD-check/badge.svg)](https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check)
+[![codecov](https://codecov.io/gh/ropenscilabs/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/allcontributors)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 <!-- badges: end -->
@@ -51,7 +51,7 @@ Not yet on CRAN, so must be installed from remote repository host
 systems using any one of the following options:
 
     # install.packages("remotes")
-    remotes::install_git("https://git.sr.ht/~mpadge/allcontributors")
+    remotes::install_git("https://git.sr.ht/~ropenscilabs/allcontributors")
     remotes::install_bitbucket("mpadge/allcontributors")
     remotes::install_gitlab("mpadge/allcontributors")
     remotes::install_github("mpadge/allcontributors")
@@ -64,7 +64,7 @@ Usage
 -----
 
 The primary function of the package,
-[`add_contributors()`](https://mpadge.github.io/allcontributors/reference/add_contributors.html),
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html),
 adds a table of all contributors to the main `README.md` file (and
 `README.Rmd` if that exists). Tables or lists can be added to other
 files by specifying the `files` argument of that function. The
@@ -89,7 +89,7 @@ file `~/.Renviron`).
 
 If the main `README` file(s) contains a markdown section entitled
 `"Contributors"`, the
-[`add_contributors()`](https://mpadge.github.io/allcontributors/reference/add_contributors.html)
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
 function will add a table of contributors there, otherwise it will be
 appended to the end of the document(s). If you wish your contributors
 table to be somewhere other than at the end of the `README` file(s),
@@ -104,11 +104,11 @@ of contributors.
 
 The data used to construct the contributions table can also be extracted
 without writing to the `README` file(s) with the function
-[`get_contributors()`](https://mpadge.github.io/allcontributors/reference/get_contributors.html):
+[`get_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/get_contributors.html):
 
-    get_contributors(org = "mpadge", repo = "allcontributors")
+    get_contributors(org = "ropenscilabs", repo = "allcontributors")
     #>   logins contributions                                               avatar
-    #> 1 mpadge            70 https://avatars1.githubusercontent.com/u/6697851?v=4
+    #> 1 mpadge            72 https://avatars1.githubusercontent.com/u/6697851?v=4
 
 Contributors
 ------------
@@ -118,7 +118,7 @@ Contributors
 <!-- markdownlint-disable -->
 
 This project uses the [`allcontributors`
-package](https://github.com/mpadge/allcontributors) following the
+package](https://github.com/ropenscilabs/allcontributors) following the
 [all-contributors](https://allcontributors.org) specification.
 Contributions of any kind are welcome!
 
@@ -128,7 +128,7 @@ Contributions of any kind are welcome!
 <a href="https://github.com/mpadge">
 <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/mpadge/allcontributors/commits?author=mpadge">mpadge</a>
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
 </table>
