@@ -185,9 +185,7 @@ get_current_contribs <- function (filename, orgrepo) {
 
     res <- NULL # default if no contributors present
 
-    contribs_sec <- grep ("# Contributors$", x)
-    has_contribs_sec <- length (contribs_sec) == 1
-    if (has_contribs_sec) {
+    if (has_contribs_sec (x)) {
 
         contribs_start <- grep ("<!-- ALL-CONTRIBUTORS-LIST:START", x)
         contribs_end <- grep ("<!-- ALL-CONTRIBUTORS-LIST:END", x)
@@ -205,9 +203,7 @@ get_current_contribs <- function (filename, orgrepo) {
 contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
     x <- readLines (filename)
 
-    contribs_sec <- grep ("# Contributors$", x)
-    has_contribs_sec <- length (contribs_sec) == 1
-    if (!has_contribs_sec) {
+    if (!has_contribs_sec (x)) {
         fshort <- utils::tail (strsplit (filename, "/") [[1]], 1)
         message ("File [", fshort, "] has no section titled 'Contributors'; ",
                  "Table will be added to bottom of file.")
@@ -230,7 +226,7 @@ contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
     }
 
     xmid <- NULL
-    if (!has_contribs_sec)
+    if (!has_contribs_sec (x))
         xmid <- c ("", "## Contributors", "")
 
     xmid <- c (xmid,
