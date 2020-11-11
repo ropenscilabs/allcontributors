@@ -2,6 +2,8 @@
 #'
 #' Add contributors to README.Rmd
 #'
+#' @param repo Location of repository for which contributions are to be
+#' extracted. This must be a git project with a github remote.
 #' @param ncols Number of columns for contributors in 'README'
 #' @param files Names of files in which to add contributors
 #' @param type Type of contributions to include: 'code' for direct code
@@ -43,7 +45,8 @@
 #' were updated or not is returned invisibly (that is, only if explicitly
 #' assigned to a return value).
 #' @export
-add_contributors <- function (ncols = 7,
+add_contributors <- function (repo = ".",
+                              ncols = 7,
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
                               num_sections = 3,
@@ -51,14 +54,15 @@ add_contributors <- function (ncols = 7,
                               format = "grid",
                               alphabetical = FALSE,
                               open_issue = FALSE) {
-    if (!git2r::in_repository ())
-        stop ("This does not appear to be a git repository")
+
+    if (!git2r::in_repository (repo))
+        stop ("The path [", repo, "] does not appear to be a git repository")
 
     type <- match_type_arg (type)
 
     format <- match.arg (tolower (format), c ("grid", "list", "text"))
 
-    remote <- git2r::remote_url ()
+    remote <- git2r::remote_url (repo)
     remote <- remote [grep ("github", remote)] [1]
 
     if (length (remote) != 1)

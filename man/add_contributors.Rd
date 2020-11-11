@@ -5,6 +5,7 @@
 \title{add_contributors}
 \usage{
 add_contributors(
+  repo = ".",
   ncols = 7,
   files = c("README.Rmd", "README.md"),
   type = c("code", "issues", "discussion"),
@@ -16,6 +17,9 @@ add_contributors(
 )
 }
 \arguments{
+\item{repo}{Location of repository for which contributions are to be
+extracted. This must be a git project with a github remote.}
+
 \item{ncols}{Number of columns for contributors in 'README'}
 
 \item{files}{Names of files in which to add contributors}
