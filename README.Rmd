@@ -135,6 +135,12 @@ without writing to the `README` file(s) with the function
 get_contributors(org = "ropenscilabs", repo = "allcontributors")
 ```
 
+## More Information
+
+The package has a [single
+vignette](https://ropenscilabs.github.io/allcontributors/articles/allcontributors.html)
+which visually demonstrates the various formats in which an "allcontributors"
+section can be presented.
 
 ## Contributors
 
