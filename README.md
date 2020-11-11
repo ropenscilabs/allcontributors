@@ -17,7 +17,7 @@ less-tangible organisational contributions). This version restricts
 acknowledgements to direct and tangible contributions to a repository
 only, but automates that task to a single function call, in the hope
 that such simplicity will spur greater usage. In short: This package
-can’t do everything the original does, but what it does it does much
+can’t do everything the original does, but it makes what it does much
 easier.
 
 Why then?
@@ -34,9 +34,11 @@ corresponding [emoji](https://allcontributors.org/docs/en/emoji-key)
 below their github avatar as listed on the README. In comparison, this R
 package:
 
-1.  Works locally without any bot integration
-2.  Can add contributors to any file, not just the main README
-3.  Offers a variety of formats for listing contributors:
+1.  Works automatically, by calling `add_contributors()` at any time to
+    add or update contributor acknowledgements.
+2.  Works locally without any bot integration
+3.  Can add contributors to any file, not just the main README
+4.  Offers a variety of formats for listing contributors:
     1.  divided into sections by types of contributions, or as a single
         section
     2.  presented as full grids (like [the
@@ -65,8 +67,8 @@ Usage
 
 The primary function of the package,
 [`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html),
-adds a table of all contributors to the main `README.md` file (and
-`README.Rmd` if that exists). Tables or lists can be added to other
+adds a table of all contributors by default to the main `README.md` file
+(and `README.Rmd` if that exists). Tables or lists can be added to other
 files by specifying the `files` argument of that function. The
 appearance of the contributors table is determined by several parameters
 in that function, including:
@@ -108,22 +110,24 @@ without writing to the `README` file(s) with the function
 
     get_contributors(org = "ropenscilabs", repo = "allcontributors")
     #>   logins contributions                                               avatar
-    #> 1 mpadge            72 https://avatars1.githubusercontent.com/u/6697851?v=4
+    #> 1 mpadge            75 https://avatars1.githubusercontent.com/u/6697851?v=4
 
 Contributors
 ------------
-
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-This project uses the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+This project uses the [`allcontributors`
+package](https://github.com/ropenscilabs/allcontributors) following the
+[all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
 
-## Code
+Code
+----
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -132,14 +136,12 @@ This project uses the [`allcontributors` package](https://github.com/ropenscilab
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
-
 </table>
 
-
-## Issue Authors
+Issue Authors
+-------------
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/maelle">
@@ -148,9 +150,7 @@ This project uses the [`allcontributors` package](https://github.com/ropenscilab
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Amaelle">maelle</a>
 </td>
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
