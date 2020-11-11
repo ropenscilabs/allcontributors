@@ -58,6 +58,9 @@ add_contributors <- function (repo = ".",
     if (!git2r::in_repository (repo))
         stop ("The path [", repo, "] does not appear to be a git repository")
 
+    if (length (section_names) > num_sections)
+        stop ("section_names can not have more entries than num_sections")
+
     type <- match_type_arg (type)
 
     format <- match.arg (tolower (format), c ("grid", "list", "text"))
