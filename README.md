@@ -113,16 +113,17 @@ without writing to the `README` file(s) with the function
 Contributors
 ------------
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-This project uses the [`allcontributors`
-package](https://github.com/ropenscilabs/allcontributors) following the
-[all-contributors](https://allcontributors.org) specification.
-Contributions of any kind are welcome!
+This project uses the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+## Code
 
 <table>
+
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -131,7 +132,25 @@ Contributions of any kind are welcome!
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
+
 </table>
+
+
+## Issue Authors
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/maelle">
+<img src="https://avatars1.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Amaelle">maelle</a>
+</td>
+</tr>
+
+</table>
+
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
