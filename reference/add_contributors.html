@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.034</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.035</span>
       </span>
     </div>
 
@@ -112,6 +112,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>add_contributors</span><span class='op'>(</span>
+  repo <span class='op'>=</span> <span class='st'>"."</span>,
   ncols <span class='op'>=</span> <span class='fl'>7</span>,
   files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"README.Rmd"</span>, <span class='st'>"README.md"</span><span class='op'>)</span>,
   type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"code"</span>, <span class='st'>"issues"</span>, <span class='st'>"discussion"</span><span class='op'>)</span>,
@@ -125,6 +126,11 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>repo</th>
+      <td><p>Location of repository for which contributions are to be
+extracted. This must be a git project with a github remote.</p></td>
+    </tr>
     <tr>
       <th>ncols</th>
       <td><p>Number of columns for contributors in 'README'</p></td>
