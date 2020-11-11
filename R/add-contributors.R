@@ -137,11 +137,11 @@ add_contributors <- function (ncols = 7,
             }
 
             # code contributions to files:
-            chk [i] <- contribs_to_readme (ctbs,
-                                           orgrepo = or,
-                                           ncols = ncols,
-                                           format = format,
-                                           filename = files [i])
+            chk [i] <- add_contribs_to_file (ctbs,
+                                             orgrepo = or,
+                                             ncols = ncols,
+                                             format = format,
+                                             filename = files [i])
         } else {
             this_file <- utils::tail (strsplit (files [i], .Platform$file.sep) [[1]], 1)
             message (cli::col_green (cli::symbol$tick),
@@ -200,7 +200,7 @@ get_current_contribs <- function (filename, orgrepo) {
     return (res)
 }
 
-contribs_to_readme <- function (dat, orgrepo, ncols, format, filename) {
+add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
     x <- readLines (filename)
 
     if (!has_contribs_sec (x)) {
