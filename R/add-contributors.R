@@ -69,20 +69,22 @@ add_contributors <- function (repo = ".",
         stop ("Repository must have github remote")
 
     or <- get_org_repo (remote)
-    message (cli::col_cyan (cli::symbol$star), 
-             " Extracting code contributors", appendLF = FALSE)
+    cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
+    flush.console ()
     ctb_code <- get_contributors (or$org,
                                   or$repo,
                                   alphabetical = alphabetical)
-    message ("\r", cli::col_green (cli::symbol$tick), " Extracted code contributors")
+    message ("\r", cli::col_green (cli::symbol$tick),
+             " Extracted code contributors   ")
 
     ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
     ctb_code$type <- "code"
 
     issue_authors <- issue_contributors <- NULL
     if ("issues" %in% type) {
-        message (cli::col_cyan (cli::symbol$star), 
-                 " Extracting github issue contributors", appendLF = FALSE)
+        cat (cli::col_cyan (cli::symbol$star), 
+             " Extracting github issue contributors")
+        flush.console ()
         ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
 
         index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
@@ -104,7 +106,7 @@ add_contributors <- function (repo = ".",
             issue_contributors <- add_na_contribs (ctb_issues$contributors,
                                                    "issue_contributors")
         message ("\r", cli::col_green (cli::symbol$tick),
-                 " Extracted github issue contributors")
+                 " Extracted github issue contributors    ")
     }
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
