@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.042",
+  "version": "0.0.1.043",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",

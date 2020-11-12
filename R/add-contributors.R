@@ -334,45 +334,8 @@ add_one_section <- function (dat, orgrepo, ncols,
                          orgrepo$org,
                          "/",
                          orgrepo$repo)
-            if (type == "code") {
-                href <- paste0 (u,
-                                "/commits?author=",
-                                i$logins [j],
-                                "\">",
-                                i$logins [j],
-                                "</a>")
-            } else if (type == "issue_authors") {
-                href <- paste0 (u,
-                                "/issues?q=is%3Aissue+author%3A",
-                                i$logins [j],
-                                "\">",
-                                i$logins [j],
-                                "</a>")
-            } else if (type == "issue_contributors") {
-                href <- paste0 (u,
-                                "/issues?q=is%3Aissue+commenter%3A",
-                                i$logins [j],
-                                "\">",
-                                i$logins [j],
-                                "</a>")
-            }
-            if (format == "grid") {
-                x <- c (x,
-                        "<td align=\"center\">",
-                        paste0 ("<a href=\"https://github.com/",
-                                i$logins [j],
-                                "\">"),
-                        paste0 ("<img src=\"",
-                                i$avatar [j],
-                                "\" width=\"100px;\" alt=\"\"/>"),
-                        "</a><br>",
-                        href,
-                        "</td>")
-            } else if (format == "list") {
-                x <- c (x, paste0 ("<li>", href, "</li>"))
-            } else {
-                x <- c (x, paste0 (href, ifelse (j == nrow (i), "", ", ")))
-            }
+            href <- href_from_type (u, i, j, type)
+            x <- c (x, format_contribs (href, i, j, format))
         }
 
         if (format == "grid")
@@ -389,6 +352,60 @@ add_one_section <- function (dat, orgrepo, ncols,
     x <- c (x, "")
 
     return (x)
+}
+
+href_from_type <- function (u, i, j, type) {
+
+    href <- NULL
+
+    if (type == "code") {
+        href <- paste0 (u,
+                        "/commits?author=",
+                        i$logins [j],
+                        "\">",
+                        i$logins [j],
+                        "</a>")
+    } else if (type == "issue_authors") {
+        href <- paste0 (u,
+                        "/issues?q=is%3Aissue+author%3A",
+                        i$logins [j],
+                        "\">",
+                        i$logins [j],
+                        "</a>")
+    } else if (type == "issue_contributors") {
+        href <- paste0 (u,
+                        "/issues?q=is%3Aissue+commenter%3A",
+                        i$logins [j],
+                        "\">",
+                        i$logins [j],
+                        "</a>")
+    }
+
+    return (href)
+}
+
+format_contribs <- function (href, i, j, format) {
+
+    ret <- NULL
+
+    if (format == "grid") {
+        ret <- c ("<td align=\"center\">",
+                  paste0 ("<a href=\"https://github.com/",
+                          i$logins [j],
+                          "\">"),
+                  paste0 ("<img src=\"",
+                          i$avatar [j],
+                          "\" width=\"100px;\" alt=\"\"/>"),
+                  "</a><br>",
+                  href,
+                  "</td>")
+    } else if (format == "list") {
+        ret <- paste0 ("<li>", href, "</li>")
+    } else {
+        ret <- paste0 (href, ifelse (j == nrow (i), "", ", "))
+    }
+
+    return (ret)
 }
 
 rename_default_sections <- function (ctbs) {
