@@ -32,7 +32,7 @@ get_contributors <- function (org, repo, alphabetical = FALSE) {
     res <- x
     while (length (x) == 30) {
         pg <- pg + 1
-        u2 <- paste0 (u, "?page=", pg)
+        #u2 <- paste0 (u, "?page=", pg)
         if (length (tok) > 0) {
             x <- httr::GET (u, httr::authenticate (user, tok)) %>%
                 httr::content ()
@@ -93,13 +93,13 @@ get_git_user <- function () {
 }
 
 
-# ********************  GITHUB ISSUE EXTRACTION ********************  
+# ********************  GITHUB ISSUE EXTRACTION ********************
 
 
-get_issues_qry <- function (gh_cli, org, repo, endCursor = NULL) {
+get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
     after_txt <- ""
-    if (!is.null (endCursor))
-        after_txt <- paste0 (", after:\"", endCursor, "\"")
+    if (!is.null (end_cursor))
+        after_txt <- paste0 (", after:\"", end_cursor, "\"")
 
     q <- paste0 ("{
         repository(owner:\"", org, "\", name:\"", repo, "\") {
@@ -158,32 +158,33 @@ get_gh_issue_people <- function (org, repo) {
         headers = list (Authorization = paste0 ("Bearer ", token))
     )
 
-    hasNextPage <- TRUE
-    endCursor <- NULL
+    has_next_page <- TRUE
+    end_cursor <- NULL
     issue_authors <- issue_author_avatar <-
         issue_contributors <- issue_contributors_avatar <- NULL
-    while (hasNextPage) {
+    while (has_next_page) {
         qry <- ghql::Query$new()
         q <- get_issues_qry (gh_cli, org = org, repo = repo,
-                             endCursor = endCursor)
+                             end_cursor = end_cursor)
         qry$query('issues', q)
 
         dat <- gh_cli$exec(qry$queries$issues) %>%
             jsonlite::fromJSON ()
 
-        hasNextPage <- dat$data$repository$issues$pageInfo$hasNextPage
-        endCursor <- dat$data$repository$issues$pageInfo$endCursor
+        has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
+        end_cursor <- dat$data$repository$issues$pageInfo$endCursor
 
         dat <- dat$data$repository$issues$edges
         issue_authors <- c (issue_authors, dat$node$author$login)
-        issue_avatars <- c (issue_author_avatar, dat$node$author$avatarUrl)
+        #issue_avatars <- c (issue_author_avatar, dat$node$author$avatarUrl)
 
         author <- dat$node$participants$edges
 
         author_login <- unlist (lapply (author, function (i) i$node$login))
         author_avatar <- unlist (lapply (author, function (i) i$node$avatarUrl))
         issue_contributors <- c (issue_contributors, author_login)
-        issue_contributors_avatar <- c (issue_contributors_avatar, author_avatar)
+        issue_contributors_avatar <- c (issue_contributors_avatar,
+                                        author_avatar)
     }
 
     index <- which (!duplicated (author_login))
@@ -221,20 +222,20 @@ get_gh_issue_titles <- function (org, repo) {
         headers = list (Authorization = paste0 ("Bearer ", token))
     )
 
-    hasNextPage <- TRUE
-    endCursor <- NULL
+    has_next_page <- TRUE
+    end_cursor <- NULL
     issue_title <- issue_number <- NULL
-    while (hasNextPage) {
+    while (has_next_page) {
         qry <- ghql::Query$new()
         q <- get_issues_qry (gh_cli, org = org, repo = repo,
-                             endCursor = endCursor)
+                             end_cursor = end_cursor)
         qry$query('issues', q)
 
         dat <- gh_cli$exec(qry$queries$issues) %>%
             jsonlite::fromJSON ()
 
-        hasNextPage <- dat$data$repository$issues$pageInfo$hasNextPage
-        endCursor <- dat$data$repository$issues$pageInfo$endCursor
+        has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
+        end_cursor <- dat$data$repository$issues$pageInfo$endCursor
 
         dat <- dat$data$repository$issues$edges
         issue_title <- c (issue_title, dat$node$title)

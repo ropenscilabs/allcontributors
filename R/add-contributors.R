@@ -50,7 +50,9 @@ add_contributors <- function (repo = ".",
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
                               num_sections = 3,
-                              section_names = c ("Code", "Issue Authors", "Issue Contributors"),
+                              section_names = c ("Code",
+                                                 "Issue Authors",
+                                                 "Issue Contributors"),
                               format = "grid",
                               alphabetical = FALSE,
                               open_issue = FALSE) {
@@ -85,7 +87,7 @@ add_contributors <- function (repo = ".",
 
     issue_authors <- issue_contributors <- NULL
     if ("issues" %in% type) {
-        cat (cli::col_cyan (cli::symbol$star), 
+        cat (cli::col_cyan (cli::symbol$star),
              " Extracting github issue contributors")
         flush.console ()
         ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
@@ -104,7 +106,8 @@ add_contributors <- function (repo = ".",
             return (x)
         }
         if (nrow (ctb_issues$authors) > 0)
-            issue_authors <- add_na_contribs (ctb_issues$authors, "issue_authors")
+            issue_authors <- add_na_contribs (ctb_issues$authors,
+                                              "issue_authors")
         if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0)
             issue_contributors <- add_na_contribs (ctb_issues$contributors,
                                                    "issue_contributors")
@@ -154,7 +157,8 @@ add_contributors <- function (repo = ".",
                                              format = format,
                                              filename = files [i])
         } else {
-            this_file <- utils::tail (strsplit (files [i], .Platform$file.sep) [[1]], 1)
+            this_file <- utils::tail (strsplit (files [i],
+                                                .Platform$file.sep) [[1]], 1)
             message (cli::col_green (cli::symbol$tick),
                      " All current contributors already listed for [",
                      this_file,
@@ -171,7 +175,8 @@ add_contributors <- function (repo = ".",
 
 match_type_arg <- function (type) {
     if (length (type) > 3)
-        stop ("There are only three possible types: code, issues, and discussion")
+        stop (paste0 ("There are only three possible types: ",
+                      "code, issues, and discussion"))
     c ("code", "issues", "discussion") [seq (length (type))]
 }
 
@@ -249,14 +254,17 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
 
     xmid <- c (xmid,
                "",
-               "<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->",
+               paste0 ("<!-- ALL-CONTRIBUTORS-LIST:START - ",
+                       "Do not remove or modify this section -->"),
                "<!-- prettier-ignore-start -->",
                "<!-- markdownlint-disable -->",
                "",
                paste0 ("This project uses the ",
-                       "[`allcontributors` package](https://github.com/ropenscilabs/allcontributors)",
+                       "[`allcontributors` package]",
+                       "(https://github.com/ropenscilabs/allcontributors)",
                        " following the ",
-                       "[all-contributors](https://allcontributors.org) specification. ",
+                       "[all-contributors](https://allcontributors.org) ",
+                       "specification. ",
                        "Contributions of any kind are welcome!"))
 
     num_sections <- attr (dat, "num_sections")
@@ -264,13 +272,10 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
         xmid <- c (xmid, add_one_section (dat, orgrepo, ncols,
                                           type = dat$type [1], format))
     } else {
-        if (num_sections < 3) {
-            type_names <- unique (dat$type_name)
-        }
-
         dat <- split (dat, as.factor (dat$type_name))
         for (i in dat) {
-            type_namei <- tools::toTitleCase (gsub ("\\_", " ", i$type_name [1]))
+            type_namei <- tools::toTitleCase (gsub ("\\_", " ",
+                                                    i$type_name [1]))
 
             xmid <- c (xmid, "", paste0 ("### ", type_namei))
 
@@ -279,7 +284,7 @@ add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
                                               format))
         }
     }
-    
+
     xmid <- c (xmid, "<!-- markdownlint-enable -->",
                "<!-- prettier-ignore-end -->",
                "<!-- ALL-CONTRIBUTORS-LIST:END -->",
@@ -330,7 +335,7 @@ add_one_section <- function (dat, orgrepo, ncols,
                          "/",
                          orgrepo$repo)
             if (type == "code") {
-                href <- paste0 (u, 
+                href <- paste0 (u,
                                 "/commits?author=",
                                 i$logins [j],
                                 "\">",
@@ -354,8 +359,12 @@ add_one_section <- function (dat, orgrepo, ncols,
             if (format == "grid") {
                 x <- c (x,
                         "<td align=\"center\">",
-                        paste0 ("<a href=\"https://github.com/", i$logins [j], "\">"),
-                        paste0 ("<img src=\"", i$avatar [j], "\" width=\"100px;\" alt=\"\"/>"),
+                        paste0 ("<a href=\"https://github.com/",
+                                i$logins [j],
+                                "\">"),
+                        paste0 ("<img src=\"",
+                                i$avatar [j],
+                                "\" width=\"100px;\" alt=\"\"/>"),
                         "</a><br>",
                         href,
                         "</td>")
@@ -389,7 +398,8 @@ rename_default_sections <- function (ctbs) {
         if (num_sections == 1)
             ctbs$type_name <- ""
         else if (num_sections == 2)
-            ctbs$type_name [ctbs$type_name %in% default_type_names [2:3]] <- "Issues"
+            ctbs$type_name [ctbs$type_name %in%
+                            default_type_names [2:3]] <- "Issues"
     }
 
     return (ctbs)
