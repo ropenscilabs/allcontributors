@@ -36,12 +36,11 @@ An alternative implementation in R of the original
 [`all-contributors`](https://allcontributors.org/) to acknowledge all
 contributors in your 'README' (or elsewhere). The original is intended to help
 acknowledge *all* contributions including those beyond the contents of an
-actual repository (such as community or other or less-tangible organisational
-contributions). This version restricts acknowledgements to direct and tangible
-contributions to a repository only, but automates that task to a single
-function call, in the hope that such simplicity will spur greater usage.
-In short: This package can't do everything the original does, but it makes what
-it does much easier.
+actual repository, such as community or other or less-tangible organisational
+contributions. This version only acknowledges tangible contributions to
+a repository, but automates that task to a single function call, in the hope
+that such simplicity will spur greater usage. In short: This package can't do
+everything the original does, but it makes what it does much easier.
 
 ## Why then?
 

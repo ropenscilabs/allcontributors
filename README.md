@@ -12,13 +12,12 @@ An alternative implementation in R of the original
 [`all-contributors`](https://allcontributors.org/) to acknowledge all
 contributors in your ‘README’ (or elsewhere). The original is intended
 to help acknowledge *all* contributions including those beyond the
-contents of an actual repository (such as community or other or
-less-tangible organisational contributions). This version restricts
-acknowledgements to direct and tangible contributions to a repository
-only, but automates that task to a single function call, in the hope
-that such simplicity will spur greater usage. In short: This package
-can’t do everything the original does, but it makes what it does much
-easier.
+contents of an actual repository, such as community or other or
+less-tangible organisational contributions. This version only
+acknowledges tangible contributions to a repository, but automates that
+task to a single function call, in the hope that such simplicity will
+spur greater usage. In short: This package can’t do everything the
+original does, but it makes what it does much easier.
 
 Why then?
 ---------
@@ -52,15 +51,19 @@ Installation
 Not yet on CRAN, so must be installed from remote repository host
 systems using any one of the following options:
 
-    # install.packages("remotes")
-    remotes::install_git("https://git.sr.ht/~ropenscilabs/allcontributors")
-    remotes::install_bitbucket("mpadge/allcontributors")
-    remotes::install_gitlab("mpadge/allcontributors")
-    remotes::install_github("mpadge/allcontributors")
+``` r
+# install.packages("remotes")
+remotes::install_git("https://git.sr.ht/~ropenscilabs/allcontributors")
+remotes::install_bitbucket("mpadge/allcontributors")
+remotes::install_gitlab("mpadge/allcontributors")
+remotes::install_github("mpadge/allcontributors")
+```
 
 The package can then be loaded the usual way:
 
-    library (allcontributors)
+``` r
+library (allcontributors)
+```
 
 Usage
 -----
@@ -108,9 +111,11 @@ The data used to construct the contributions table can also be extracted
 without writing to the `README` file(s) with the function
 [`get_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/get_contributors.html):
 
-    get_contributors(org = "ropenscilabs", repo = "allcontributors")
-    #>   logins contributions                                               avatar
-    #> 1 mpadge            85 https://avatars1.githubusercontent.com/u/6697851?v=4
+``` r
+get_contributors(org = "ropenscilabs", repo = "allcontributors")
+#>   logins contributions                                               avatar
+#> 1 mpadge            88 https://avatars1.githubusercontent.com/u/6697851?v=4
+```
 
 More Information
 ----------------
