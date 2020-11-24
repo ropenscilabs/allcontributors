@@ -132,15 +132,11 @@ get_gh_token <- function (token = "") {
             names (un) <- names (toks) [match (un, toks)]
             is_a_token <- which (!grepl ("^http(s?)://", un))
             un <- un [is_a_token]
-            if (length (grep ("TOKEN", names (un))) == 1) {
+            if (length (un) > 1)
                 un <- un [grep ("TOKEN", names (un))]
-            } else if (length (grep ("QL", names (un))) == 1) {
+            if (length (un) > 1)
                 un <- un [grep ("QL", names (un))]
-            } else if (length (grep ("^GITHUB", names (un))) == 1) {
-                un <- un [grep ("GITHUB", names (un))]
-            }
-            # Then just return the 1st token
-            toks <- un [1]
+            toks <- un
         }
     }
 
