@@ -68,54 +68,18 @@ add_contributors <- function (repo = ".",
     format <- match.arg (tolower (format), c ("grid", "list", "text"))
 
     or <- get_org_repo (repo)
-    cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
-    utils::flush.console ()
 
-    ctb_code <- get_gh_code_contributors (or$org,
-                                  or$repo,
-                                  alphabetical = alphabetical)
-    message ("\r", cli::col_green (cli::symbol$tick),
-             " Extracted code contributors   ")
-
-    ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
-    ctb_code$type <- "code"
-
-    issue_authors <- issue_contributors <- NULL
-    if ("issues" %in% type) {
-        cat (cli::col_cyan (cli::symbol$star),
-             " Extracting github issue contributors")
-        utils::flush.console ()
-        ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
-
-        index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
-        ctb_issues$authors <- ctb_issues$authors [index, ]
-
-        index <- which (!ctb_issues$contributors$login %in%
-                        c (ctb_code$logins, ctb_issues$authors$login))
-        ctb_issues$contributors <- ctb_issues$contributors [index, ]
-
-        add_na_contribs <- function (x, type) {
-            x <- cbind (x, NA_integer_) [, c (1, 3, 2)]
-            names (x) [2] <- "contributions"
-            x$type <- type
-            return (x)
-        }
-        if (nrow (ctb_issues$authors) > 0)
-            issue_authors <- add_na_contribs (ctb_issues$authors,
-                                              "issue_authors")
-        if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0)
-            issue_contributors <- add_na_contribs (ctb_issues$contributors,
-                                                   "issue_contributors")
-        message ("\r", cli::col_green (cli::symbol$tick),
-                 " Extracted github issue contributors    ")
-    }
-
-    ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+    ctbs <- get_contributors (or$org,
+                              or$repo,
+                              type = type,
+                              alphabetical = alphabetical,
+                              quiet = FALSE)
 
     ctbs$type_name <- section_names [match (ctbs$type,
                                             c ("code",
                                                "issue_authors",
                                                "issue_contributors"))]
+
 
     attr (ctbs, "num_sections") <- min (num_sections, length (type),
                                         length (unique (ctbs$type)))

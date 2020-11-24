@@ -27,6 +27,8 @@ individuals not present in 'code'.}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}
+
+\item{quiet}{If \code{FALSE}, display progress information on screen.}
 }
 \description{
 Get all contributors to a repository, including those who contribute to code,

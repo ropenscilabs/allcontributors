@@ -5,20 +5,21 @@
 #' @param org Github organisation name for repository
 #' @param repo Repository within `org` for which contributors are to be
 #' extracted
+#' @param quiet If `FALSE`, display progress information on screen.
 #' @inheritParams add_contributors
 #' @export
 get_contributors <- function (org, repo, 
-                                 type = c ("code", "issues", "discussion"),
-                                 alphabetical = FALSE,
-                                 quiet = FALSE) {
+                              type = c ("code", "issues", "discussion"),
+                              alphabetical = FALSE,
+                              quiet = FALSE) {
 
     if (!quiet) {
         cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
         utils::flush.console ()
     }
 
-    ctb_code <- get_gh_code_contributors (or$org,
-                                          or$repo,
+    ctb_code <- get_gh_code_contributors (org,
+                                          repo,
                                           alphabetical = alphabetical)
     ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
     ctb_code$type <- "code"
@@ -33,7 +34,7 @@ get_contributors <- function (org, repo,
                  " Extracting github issue contributors")
             utils::flush.console ()
         }
-        ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
+        ctb_issues <- get_gh_issue_people (org = org, repo = repo)
 
         index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
         ctb_issues$authors <- ctb_issues$authors [index, ]
@@ -61,13 +62,9 @@ get_contributors <- function (org, repo,
     }
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+    rownames (ctbs) <- NULL
 
-    ctbs$type_name <- section_names [match (ctbs$type,
-                                            c ("code",
-                                               "issue_authors",
-                                               "issue_contributors"))]
-
-    retrun (ctbs)
+    return (ctbs)
 }
 
 #' get_gh_code_contributors
