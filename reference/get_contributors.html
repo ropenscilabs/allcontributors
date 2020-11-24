@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="get_contributors — get_contributors" />
-<meta property="og:description" content="Get list of all contributors to a repository" />
+<meta property="og:description" content="Get all contributors to a repository, including those who contribute to code,
+open issues, and contribute to discussions in issues." />
 
 
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.044</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.053</span>
       </span>
     </div>
 
@@ -111,10 +112,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Get list of all contributors to a repository</p>
+    <p>Get all contributors to a repository, including those who contribute to code,
+open issues, and contribute to discussions in issues.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_contributors</span><span class='op'>(</span><span class='va'>org</span>, <span class='va'>repo</span>, alphabetical <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_contributors</span><span class='op'>(</span>
+  <span class='va'>org</span>,
+  <span class='va'>repo</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"code"</span>, <span class='st'>"issues"</span>, <span class='st'>"discussion"</span><span class='op'>)</span>,
+  alphabetical <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,15 +137,25 @@
 extracted</p></td>
     </tr>
     <tr>
+      <th>type</th>
+      <td><p>Type of contributions to include: 'code' for direct code
+contributions (including documentation), 'issues' to recognise contributors
+who open issues, and 'discussion' for contributing to discussions within
+issues. Discussion contributions are only from individuals not present in
+either 'issues' or 'code'; and 'issues' contributions are only from
+individuals not present in 'code'.</p></td>
+    </tr>
+    <tr>
       <th>alphabetical</th>
-      <td><p>If <code>TRUE</code> contributors are alphabetically sorted by
-login.</p></td>
+      <td><p>If <code>TRUE</code>, order contributors alphabetically, otherwise
+order by decreasing numbers of contributions.</p></td>
+    </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p>If <code>FALSE</code>, display progress information on screen.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>data.frame</code> of two columns of contributor (name, login)</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
