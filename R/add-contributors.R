@@ -67,15 +67,10 @@ add_contributors <- function (repo = ".",
 
     format <- match.arg (tolower (format), c ("grid", "list", "text"))
 
-    remote <- git2r::remote_url (repo)
-    remote <- remote [grep ("github", remote)] [1]
-
-    if (length (remote) != 1)
-        stop ("Repository must have github remote")
-
-    or <- get_org_repo (remote)
+    or <- get_org_repo (repo)
     cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
     flush.console ()
+
     ctb_code <- get_contributors (or$org,
                                   or$repo,
                                   alphabetical = alphabetical)
@@ -180,9 +175,16 @@ match_type_arg <- function (type) {
     c ("code", "issues", "discussion") [seq (length (type))]
 }
 
-get_org_repo <- function (remote) {
+get_org_repo <- function (repo) {
+    remote <- git2r::remote_url (repo)
+    remote <- remote [grep ("github", remote)] [1]
+
+    if (length (remote) != 1)
+        stop ("Repository must have github remote")
+
     org <- utils::tail (strsplit (remote, "/") [[1]], 2) [1]
     repo <- utils::tail (strsplit (remote, "/") [[1]], 1) [1]
+
     list (org = org,
           repo = repo)
 }
