@@ -169,7 +169,6 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
                 }
             }
 
-            # code contributions to files:
             chk [i] <- add_contribs_to_one_file (ctbs,
                                                  orgrepo = orgrepo,
                                                  ncols = ncols,
@@ -193,6 +192,7 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
 }
 
 add_contribs_to_one_file <- function (dat, orgrepo, ncols, format, filename) {
+
     x <- readLines (filename)
 
     if (!has_contribs_sec (x)) {
