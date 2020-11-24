@@ -39,7 +39,8 @@ test_that ("add-contributors", {
 
 test_that ("sections", {
                expect_identical (unique (ctbs$type_name),
-                                 c ("Code", "Issue Authors", "Issue Contributors"))
+                                 c ("Code", "Issue Authors",
+                                    "Issue Contributors"))
 
                ctbs2 <- ctbs
                attr (ctbs2, "num_sections") <- 2
@@ -48,8 +49,9 @@ test_that ("sections", {
 
                f <- tempfile (fileext = ".Rmd")
                writeLines ("", f)
-               chk <- add_contribs_to_files (ctbs2, or, ncols = 7, format = "grid",
-                                             files = f, open_issue = FALSE)
+               chk <- add_contribs_to_files (ctbs2, or, ncols = 7,
+                                             format = "grid", files = f,
+                                             open_issue = FALSE)
                expect_true (chk)
                x <- readLines (f)
                index <- grep ("^###\\s", x)
@@ -62,10 +64,24 @@ test_that ("sections", {
 
                f <- tempfile (fileext = ".Rmd")
                writeLines ("", f)
-               chk <- add_contribs_to_files (ctbs1, or, ncols = 7, format = "grid",
-                                             files = f, open_issue = FALSE)
+               chk <- add_contribs_to_files (ctbs1, or, ncols = 7,
+                                             format = "grid", files = f,
+                                             open_issue = FALSE)
                expect_true (chk)
                x <- readLines (f)
                index <- grep ("^###\\s", x)
                expect_equal (length (index), 0)
+             })
+
+test_that ("ghql-calls", {
+               skip_on_cran ()
+
+               x <- get_contributors (org = "hypertidy", repo = "geodist")
+               expect_is (x, "data.frame")
+               expect_identical (names (x),
+                                 c ("logins", "contributions",
+                                    "avatar", "type"))
+               expect_true (all (unique (x$type) %in% c ("code",
+                                                         "issue_authors",
+                                                         "issue_contributors")))
              })
