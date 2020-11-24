@@ -69,7 +69,7 @@ add_contributors <- function (repo = ".",
 
     or <- get_org_repo (repo)
     cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
-    flush.console ()
+    utils::flush.console ()
 
     ctb_code <- get_contributors (or$org,
                                   or$repo,
@@ -84,7 +84,7 @@ add_contributors <- function (repo = ".",
     if ("issues" %in% type) {
         cat (cli::col_cyan (cli::symbol$star),
              " Extracting github issue contributors")
-        flush.console ()
+        utils::flush.console ()
         ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
 
         index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
