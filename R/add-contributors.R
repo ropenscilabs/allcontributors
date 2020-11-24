@@ -143,9 +143,12 @@ get_current_contribs <- function (filename, orgrepo) {
 add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
                                    open_issue) {
 
-    files <- file.path (here::here(), files)
+    #files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
     files <- files [grep ("\\.md$|\\.Rmd$", files)]
+
+    if (length (files) == 0)
+        stop ("None of theose files exist, or are either '.Rmd' or '.md' files")
 
     current_ctbs <- lapply (files, function (i) get_current_contribs (i, orgrepo))
 
