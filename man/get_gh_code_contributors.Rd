@@ -12,12 +12,12 @@ get_gh_code_contributors(org, repo, alphabetical = FALSE)
 \item{repo}{Repository within \code{org} for which contributors are to be
 extracted}
 
-\item{alphabetical}{If \code{TRUE} contributors are alphabetically sorted by
-login.}
+\item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
+order by decreasing numbers of contributions.}
 }
 \value{
 A \code{data.frame} of two columns of contributor (name, login)
 }
 \description{
-Get list of all code contributors to a repository
+Get list of all code contributors to the code of a repository
 }

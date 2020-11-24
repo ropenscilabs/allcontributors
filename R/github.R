@@ -1,12 +1,79 @@
-
-#' get_gh_code_contributors
+#' get_contributors
 #'
-#' Get list of all code contributors to a repository
+#' Get all contributors to a repository, including those who contribute to code,
+#' open issues, and contribute to discussions in issues.
 #' @param org Github organisation name for repository
 #' @param repo Repository within `org` for which contributors are to be
 #' extracted
-#' @param alphabetical If `TRUE` contributors are alphabetically sorted by
-#' login.
+#' @inheritParams add_contributors
+#' @export
+get_contributors <- function (org, repo, 
+                                 type = c ("code", "issues", "discussion"),
+                                 alphabetical = FALSE,
+                                 quiet = FALSE) {
+
+    if (!quiet) {
+        cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
+        utils::flush.console ()
+    }
+
+    ctb_code <- get_gh_code_contributors (or$org,
+                                          or$repo,
+                                          alphabetical = alphabetical)
+    ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
+    ctb_code$type <- "code"
+    if (!quiet)
+        message ("\r", cli::col_green (cli::symbol$tick),
+                 " Extracted code contributors   ")
+
+    issue_authors <- issue_contributors <- NULL
+    if ("issues" %in% type) {
+        if (!quiet) {
+            cat (cli::col_cyan (cli::symbol$star),
+                 " Extracting github issue contributors")
+            utils::flush.console ()
+        }
+        ctb_issues <- get_gh_issue_people (org = or$org, repo = or$repo)
+
+        index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
+        ctb_issues$authors <- ctb_issues$authors [index, ]
+
+        index <- which (!ctb_issues$contributors$login %in%
+                        c (ctb_code$logins, ctb_issues$authors$login))
+        ctb_issues$contributors <- ctb_issues$contributors [index, ]
+
+        add_na_contribs <- function (x, type) {
+            x <- cbind (x, NA_integer_) [, c (1, 3, 2)]
+            names (x) [2] <- "contributions"
+            x$type <- type
+            return (x)
+        }
+        if (nrow (ctb_issues$authors) > 0)
+            issue_authors <- add_na_contribs (ctb_issues$authors,
+                                              "issue_authors")
+        if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0)
+            issue_contributors <- add_na_contribs (ctb_issues$contributors,
+                                                   "issue_contributors")
+        
+        if (!quiet)
+            message ("\r", cli::col_green (cli::symbol$tick),
+                     " Extracted github issue contributors    ")
+    }
+
+    ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+
+    ctbs$type_name <- section_names [match (ctbs$type,
+                                            c ("code",
+                                               "issue_authors",
+                                               "issue_contributors"))]
+
+    retrun (ctbs)
+}
+
+#' get_gh_code_contributors
+#'
+#' Get list of all code contributors to the code of a repository
+#' @inheritParams get_contributors
 #' @return A `data.frame` of two columns of contributor (name, login)
 #' @export
 get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
@@ -146,7 +213,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' Extract lists of (1) all authors of, and (2) all contributors to, all github
 #' issues for nominated repository
 #'
-#' @inheritParams get_gh_code_contributors
+#' @inheritParams get_contributors
 #' @return List of (authors, contributors), each as character vector of github
 #' login names.
 #' @export
@@ -210,7 +277,7 @@ get_gh_issue_people <- function (org, repo) {
 #' Extract titles and numbers of all issues associated with a nominated
 #' repository
 #'
-#' @inheritParams get_gh_code_contributors
+#' @inheritParams get_contributors
 #' @return `data.frame` with one column of issue numbers, and one column of
 #' issue titles.
 #' @export
@@ -252,7 +319,7 @@ get_gh_issue_titles <- function (org, repo) {
 #' Extract contributors currently listed on an "All Contributions" issue in a
 #' github repository. This is much easier with the REST API than via graphql.
 #'
-#' @inheritParams get_gh_code_contributors
+#' @inheritParams get_contributors
 #' @return Character vector of github logins for all contributors listed in
 #' current issue
 #' @export
