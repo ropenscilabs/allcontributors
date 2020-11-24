@@ -85,48 +85,7 @@ add_contributors <- function (repo = ".",
 
     ctbs <- rename_default_sections (ctbs)
 
-    files <- file.path (here::here(), files)
-    files <- files [which (file.exists (files))]
-    files <- files [grep ("\\.md$|\\.Rmd$", files)]
-
-    current_ctbs <- lapply (files, function (i) get_current_contribs (i, or))
-
-    chk <- rep (FALSE, length (files))
-
-    for (i in seq (files)) {
-
-        if (any (!ctbs$logins %in% current_ctbs [[i]])) {
-
-            if (open_issue) {
-                newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs [[i]]), ]
-                pinged <- get_gh_contrib_issue (or$org, or$repo)
-                if (length (pinged) == 0) {
-                    open_allcontribs_issue (or$org, or$repo, newctbs)
-                } else {
-                    newctbs <- newctbs [which (!newctbs$logins %in% pinged)]
-                    extend_allcontribs_issue (or$org, or$repo, newctbs)
-                }
-            }
-
-            # code contributions to files:
-            chk [i] <- add_contribs_to_one_file (ctbs,
-                                                 orgrepo = or,
-                                                 ncols = ncols,
-                                                 format = format,
-                                                 filename = files [i])
-        } else {
-            this_file <- utils::tail (strsplit (files [i],
-                                                .Platform$file.sep) [[1]], 1)
-            message (cli::col_green (cli::symbol$tick),
-                     " All current contributors already listed for [",
-                     this_file,
-                     "]")
-        }
-    } # end for i over files
-
-    names (chk) <- vapply (files, function (i)
-                           utils::tail (strsplit (i, "/") [[1]], 1),
-                           character (1), USE.NAMES = FALSE)
+    chk <- add_contribs_to_files (ctbs, or, ncols, format, files, open_issue)
 
     invisible (unlist (chk))
 }
@@ -179,6 +138,55 @@ get_current_contribs <- function (filename, orgrepo) {
     }
 
     return (res)
+}
+
+add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
+                                   open_issue) {
+
+    files <- file.path (here::here(), files)
+    files <- files [which (file.exists (files))]
+    files <- files [grep ("\\.md$|\\.Rmd$", files)]
+
+    current_ctbs <- lapply (files, function (i) get_current_contribs (i, orgrepo))
+
+    chk <- rep (FALSE, length (files))
+
+    for (i in seq (files)) {
+
+        if (any (!ctbs$logins %in% current_ctbs [[i]])) {
+
+            if (open_issue) {
+                newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs [[i]]), ]
+                pinged <- get_gh_contrib_issue (orgrepo$org, orgrepo$repo)
+                if (length (pinged) == 0) {
+                    open_allcontribs_issue (orgrepo$org, orgrepo$repo, newctbs)
+                } else {
+                    newctbs <- newctbs [which (!newctbs$logins %in% pinged)]
+                    extend_allcontribs_issue (orgrepo$org, orgrepo$repo, newctbs)
+                }
+            }
+
+            # code contributions to files:
+            chk [i] <- add_contribs_to_one_file (ctbs,
+                                                 orgrepo = orgrepo,
+                                                 ncols = ncols,
+                                                 format = format,
+                                                 filename = files [i])
+        } else {
+            this_file <- utils::tail (strsplit (files [i],
+                                                .Platform$file.sep) [[1]], 1)
+            message (cli::col_green (cli::symbol$tick),
+                     " All current contributors already listed for [",
+                     this_file,
+                     "]")
+        }
+    } # end for i over files
+
+    names (chk) <- vapply (files, function (i)
+                           utils::tail (strsplit (i, "/") [[1]], 1),
+                           character (1), USE.NAMES = FALSE)
+
+    return (chk)
 }
 
 add_contribs_to_one_file <- function (dat, orgrepo, ncols, format, filename) {
