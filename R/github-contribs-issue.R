@@ -39,8 +39,6 @@ open_allcontribs_issue <- function (org, repo, ctbs) {
                          "contributors to be notified.")
             cli::cli_alert_warning (m, wrap = TRUE)
         }
-    } else {
-        # TODO: Add code to add new names to existing issue
     }
 }
 
