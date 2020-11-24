@@ -80,7 +80,6 @@ add_contributors <- function (repo = ".",
                                                "issue_authors",
                                                "issue_contributors"))]
 
-
     attr (ctbs, "num_sections") <- min (num_sections, length (type),
                                         length (unique (ctbs$type)))
 
@@ -110,11 +109,11 @@ add_contributors <- function (repo = ".",
             }
 
             # code contributions to files:
-            chk [i] <- add_contribs_to_file (ctbs,
-                                             orgrepo = or,
-                                             ncols = ncols,
-                                             format = format,
-                                             filename = files [i])
+            chk [i] <- add_contribs_to_one_file (ctbs,
+                                                 orgrepo = or,
+                                                 ncols = ncols,
+                                                 format = format,
+                                                 filename = files [i])
         } else {
             this_file <- utils::tail (strsplit (files [i],
                                                 .Platform$file.sep) [[1]], 1)
@@ -182,7 +181,7 @@ get_current_contribs <- function (filename, orgrepo) {
     return (res)
 }
 
-add_contribs_to_file <- function (dat, orgrepo, ncols, format, filename) {
+add_contribs_to_one_file <- function (dat, orgrepo, ncols, format, filename) {
     x <- readLines (filename)
 
     if (!has_contribs_sec (x)) {
