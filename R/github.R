@@ -1,7 +1,7 @@
 
-#' get_contributors
+#' get_gh_code_contributors
 #'
-#' Get list of all contributors to a repository
+#' Get list of all code contributors to a repository
 #' @param org Github organisation name for repository
 #' @param repo Repository within `org` for which contributors are to be
 #' extracted
@@ -9,7 +9,7 @@
 #' login.
 #' @return A `data.frame` of two columns of contributor (name, login)
 #' @export
-get_contributors <- function (org, repo, alphabetical = FALSE) {
+get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
     tok <- get_gh_token ()
     user <- get_git_user ()
@@ -146,7 +146,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' Extract lists of (1) all authors of, and (2) all contributors to, all github
 #' issues for nominated repository
 #'
-#' @inheritParams get_contributors
+#' @inheritParams get_gh_code_contributors
 #' @return List of (authors, contributors), each as character vector of github
 #' login names.
 #' @export
@@ -210,7 +210,7 @@ get_gh_issue_people <- function (org, repo) {
 #' Extract titles and numbers of all issues associated with a nominated
 #' repository
 #'
-#' @inheritParams get_contributors
+#' @inheritParams get_gh_code_contributors
 #' @return `data.frame` with one column of issue numbers, and one column of
 #' issue titles.
 #' @export
@@ -252,7 +252,7 @@ get_gh_issue_titles <- function (org, repo) {
 #' Extract contributors currently listed on an "All Contributions" issue in a
 #' github repository. This is much easier with the REST API than via graphql.
 #'
-#' @inheritParams get_contributors
+#' @inheritParams get_gh_code_contributors
 #' @return Character vector of github logins for all contributors listed in
 #' current issue
 #' @export

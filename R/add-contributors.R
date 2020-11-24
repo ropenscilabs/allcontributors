@@ -71,7 +71,7 @@ add_contributors <- function (repo = ".",
     cat (cli::col_cyan (cli::symbol$star), " Extracting code contributors")
     utils::flush.console ()
 
-    ctb_code <- get_contributors (or$org,
+    ctb_code <- get_gh_code_contributors (or$org,
                                   or$repo,
                                   alphabetical = alphabetical)
     message ("\r", cli::col_green (cli::symbol$tick),

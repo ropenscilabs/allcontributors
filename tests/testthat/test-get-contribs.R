@@ -24,7 +24,7 @@ test_that("vcr test", {
 
     org <- "hypertidy"
     repo <- "geodist"
-    x <- get_contributors (org, repo)
+    x <- get_gh_code_contributors (org, repo)
 
     expect_is (x, "data.frame")
     expect_equal (ncol (x), 3)
