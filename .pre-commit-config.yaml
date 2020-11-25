@@ -45,7 +45,7 @@ repos:
         name: Don't commit common R artifacts
         entry: Cannot commit .Rhistory, .RData, .Rds or .rds.
         language: fail
-        files: '\.Rhistory|\.RData|\.rds$'
+        files: '\.Rhistory|\.RData|\.Rds|\.rds$'
     -   id: description version
         name: Version has been incremeneted in DESCRIPTION
         entry: /home/smexus/bin/precommit/description
