@@ -317,4 +317,26 @@ The shortest possible way of acknowledging your contributors would be like this:
 ```{r short, eval = FALSE}
 add_contributors (num_sectons = 1, format = "text")
 ```
+which would in this case convert the above into the single list of,
 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=this-person">this-person</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=that-person">that-person</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=somebody">somebody</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=somebody-else">somebody-else</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=them">them</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=others">others</a>,
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Anobody">nobody</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Asomebody">somebody</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Aanybody">anybody</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Anope">nope</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Ayep">yep</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Amaybe">maybe</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Adoubtful">doubtful</a>,
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Ahere">here</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Athere">there</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Aanywhere">anywhere</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Asomewhere">somewhere</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Anowhere">nowhere</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Asometime">sometime</a>, 
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+commenter%3Alater">later</a>
