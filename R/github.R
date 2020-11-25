@@ -76,6 +76,8 @@ get_contributors <- function (org, repo,
 get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
     tok <- get_gh_token ()
+    if (length (tok) == 0)
+        tok <- ""
     user <- get_git_user ()
 
     # This query can not be done via GraphQL, so have to use v3 REST API
