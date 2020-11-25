@@ -12,7 +12,10 @@ httr_mock()
 
 stub_request ("get", uri = u) %>%
     wi_th (
-           headers = list('Accept' = 'application/json, text/xml, application/xml, */*')
+           headers = list ('Accept' = 'application/json,
+                           text/xml,
+                           application/xml,
+                           */*')
            ) %>%
     to_return(status = 200,
               body = readRDS ("geodist.Rds"),

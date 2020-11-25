@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all contributors in your 'README'
-Version: 0.0.1.059
+Version: 0.0.1.060
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",
@@ -16,7 +16,6 @@ Imports:
     clipr,
     ghql,
     git2r,
-    here,
     httr,
     jsonlite,
     magrittr

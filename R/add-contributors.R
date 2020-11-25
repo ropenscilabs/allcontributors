@@ -150,7 +150,8 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
     if (length (files) == 0)
         stop ("None of theose files exist, or are either '.Rmd' or '.md' files")
 
-    current_ctbs <- lapply (files, function (i) get_current_contribs (i, orgrepo))
+    current_ctbs <- lapply (files, function (i)
+                            get_current_contribs (i, orgrepo))
 
     chk <- rep (FALSE, length (files))
 
@@ -165,7 +166,9 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
                     open_allcontribs_issue (orgrepo$org, orgrepo$repo, newctbs)
                 } else {
                     newctbs <- newctbs [which (!newctbs$logins %in% pinged)]
-                    extend_allcontribs_issue (orgrepo$org, orgrepo$repo, newctbs)
+                    extend_allcontribs_issue (orgrepo$org,
+                                              orgrepo$repo,
+                                              newctbs)
                 }
             }
 
