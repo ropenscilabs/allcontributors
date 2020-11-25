@@ -60,7 +60,14 @@ add_contributors <- function (repo = ".",
     if (!git2r::in_repository (repo))
         stop ("The path [", repo, "] does not appear to be a git repository")
 
-    if (length (section_names) > num_sections)
+    if (identical (section_names, c ("Code", "Issue Authors", "Issue Contributors")) &
+        num_sections < 3)
+    {
+        if (num_sections == 1)
+            section_names <- rep ("", 3)
+        if (num_sections == 2)
+            section_names <- c ("Code", "Issues", "Issues")
+    } else if (length (section_names) > num_sections)
         stop ("section_names can not have more entries than num_sections")
 
     type <- match_type_arg (type)
@@ -155,7 +162,7 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
 
     chk <- rep (FALSE, length (files))
 
-    for (i in seq (files)) {
+    for (i in seq_along (files)) {
 
         if (any (!ctbs$logins %in% current_ctbs [[i]])) {
 
@@ -194,15 +201,21 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
     return (chk)
 }
 
-add_contribs_to_one_file <- function (dat, orgrepo, ncols, format, filename) {
+add_contribs_to_one_file <- function (ctbs, orgrepo, ncols, format, filename) {
 
     x <- readLines (filename)
 
+    contribs_sec <- length (x)
     if (!has_contribs_sec (x)) {
         fshort <- utils::tail (strsplit (filename, "/") [[1]], 1)
         message ("File [", fshort, "] has no section titled 'Contributors'; ",
                  "Table will be added to bottom of file.")
-        contribs_sec <- length (x)
+    } else {
+        contribs_sec <- grep ("^\\#\\#\\sContributors$|^Contributors$", x)
+        if (x [contribs_sec + 1] == "^-+$")
+            contribs_sec <- contribs_sec + 1
+        if (x [contribs_sec + 1] == "")
+            contribs_sec <- contribs_sec + 1
     }
 
     contribs_start <- grep ("<!-- ALL-CONTRIBUTORS-LIST:START", x)
@@ -246,13 +259,13 @@ add_contribs_to_one_file <- function (dat, orgrepo, ncols, format, filename) {
                        "specification. ",
                        "Contributions of any kind are welcome!"))
 
-    num_sections <- attr (dat, "num_sections")
+    num_sections <- attr (ctbs, "num_sections")
     if (num_sections == 1) {
-        xmid <- c (xmid, add_one_section (dat, orgrepo, ncols,
-                                          type = dat$type [1], format))
+        xmid <- c (xmid, add_one_section (ctbs, orgrepo, ncols,
+                                          type = ctbs$type [1], format))
     } else {
-        dat <- split (dat, as.factor (dat$type_name))
-        for (i in dat) {
+        ctbs <- split (ctbs, as.factor (ctbs$type_name))
+        for (i in ctbs) {
             type_namei <- tools::toTitleCase (gsub ("\\_", " ",
                                                     i$type_name [1]))
 
@@ -286,15 +299,15 @@ add_contribs_to_one_file <- function (dat, orgrepo, ncols, format, filename) {
 }
 
 
-add_one_section <- function (dat, orgrepo, ncols,
+add_one_section <- function (ctbs, orgrepo, ncols,
                              type = "code", format = "grid") {
 
     if (format == "grid") {
-        nmax <- ceiling (nrow (dat) / ncols)
-        index <- rep (1:nmax, each = ncols) [seq (nrow (dat))]
-        dat <- split (dat, as.factor (index))
+        nmax <- ceiling (nrow (ctbs) / ncols)
+        index <- rep (1:nmax, each = ncols) [seq (nrow (ctbs))]
+        ctbs <- split (ctbs, as.factor (index))
     } else
-        dat <- list (dat)
+        ctbs <- list (ctbs)
     x <- ""
 
     if (format == "grid")
@@ -302,7 +315,7 @@ add_one_section <- function (dat, orgrepo, ncols,
     else if (format == "list")
         x <- c (x, "<ol>")
 
-    for (i in dat) {
+    for (i in ctbs) {
         x <- c (x, "")
         if (format == "grid")
             x <- c (x, "<tr>")
