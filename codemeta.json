@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.069",
+  "version": "0.0.1.70",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,7 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/master/README.md",
-  "fileSize": "1469.172KB",
+  "fileSize": "1469.287KB",
   "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }
