@@ -10,18 +10,23 @@ u <- httr::modify_url (u_base, path = path)
 library (webmockr)
 httr_mock()
 
+test_all <- (identical (Sys.getenv ("MPADGE_LOCAL"), "true"))
+if (test_all) {
+    tok1 <- Sys.getenv ("GITHUB_TOKEN")
+    tok2 <- Sys.getenv ("GITHUB_GRAPHQL_TOKEN")
+    Sys.unsetenv ("GITHUB_TOKEN")
+    Sys.unsetenv ("GITHUB_GRAPHQL_TOKEN")
+}
+
+
 stub_request ("get", uri = u) %>%
     wi_th (
-           headers = list ('Accept' = 'application/json,
-                           text/xml,
-                           application/xml,
-                           */*')
+           headers = list ("Accept" =
+                           "application/json, text/xml, application/xml, */*")
            ) %>%
     to_return(status = 200,
               body = readRDS ("geodist.Rds"),
               headers = readRDS ("geodist-hdrs.Rds"))
-
-test_all <- (identical (Sys.getenv ("MPADGE_LOCAL"), "true"))
 
 test_that("vcr test", {
 
@@ -34,3 +39,8 @@ test_that("vcr test", {
     expect_identical (names (x), c ("logins", "contributions", "avatar"))
 
              })
+
+if (test_all) {
+    Sys.setenv ("GITHUB_TOKEN" = tok1)
+    Sys.setenv ("GITHUB_GRAPHQL_TOKEN" = tok2)
+}
