@@ -13,7 +13,8 @@ add_contributors(
   section_names = c("Code", "Issue Authors", "Issue Contributors"),
   format = "grid",
   alphabetical = FALSE,
-  open_issue = FALSE
+  open_issue = FALSE,
+  force_update = FALSE
 )
 }
 \arguments{
@@ -60,6 +61,9 @@ order by decreasing numbers of contributions.}
 
 \item{open_issue}{If \code{TRUE}, open or edit an issue on github in order to
 notify all contributors that they've been added to your \code{README} (see Note).}
+
+\item{force_update}{If \code{TRUE}, update the specified files even if
+contributions have not changed.}
 }
 \value{
 Named list of logical values indicating whether files of given names

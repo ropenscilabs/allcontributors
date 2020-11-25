@@ -134,6 +134,21 @@ without writing to the `README` file(s) with the function
 get_contributors(org = "ropenscilabs", repo = "allcontributors")
 ```
 
+## Updating Contributor Acknowledgements
+
+Contributors sections of files will be automatically updated to reflect any new
+contributions by simply calling
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html).
+If your contributors have not changed then your lists of acknowledgements will
+not be changed. The
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html).
+function has an additional parameter which may be set to `force_update = TRUE`
+to force lists to be updated regardless of whether contributions have changed.
+This can be used to change the formats of acknowledgements at any time. If
+anything goes wrong, the easiest way to replace a contributions section is to
+simply delete the old ones from all files, and call
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
+
 ## More Information
 
 The package has a [single

@@ -113,9 +113,37 @@ without writing to the `README` file(s) with the function
 
 ``` r
 get_contributors(org = "ropenscilabs", repo = "allcontributors")
-#>   logins contributions                                               avatar
-#> 1 mpadge            88 https://avatars1.githubusercontent.com/u/6697851?v=4
+#> ★  Extracting code contributors
+#> ✔ Extracted code contributors
+#> ★  Extracting github issue contributors
+#> ✔ Extracted github issue contributors
+#>   logins contributions
+#> 1 mpadge           109
+#> 2 maelle            NA
+#>                                                                                            avatar
+#> 1                                            https://avatars1.githubusercontent.com/u/6697851?v=4
+#> 2 https://avatars1.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&v=4
+#>            type
+#> 1          code
+#> 2 issue_authors
 ```
+
+Updating Contributor Acknowledgements
+-------------------------------------
+
+Contributors sections of files will be automatically updated to reflect
+any new contributions by simply calling
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html).
+If your contributors have not changed then your lists of
+acknowledgements will not be changed. The
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html).
+function has an additional parameter which may be set to
+`force_update = TRUE` to force lists to be updated regardless of whether
+contributions have changed. This can be used to change the formats of
+acknowledgements at any time. If anything goes wrong, the easiest way to
+replace a contributions section is to simply delete the old ones from
+all files, and call
+[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
 
 More Information
 ----------------

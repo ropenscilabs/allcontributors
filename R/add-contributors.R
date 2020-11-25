@@ -37,6 +37,8 @@
 #' }
 #' @param open_issue If `TRUE`, open or edit an issue on github in order to
 #' notify all contributors that they've been added to your `README` (see Note).
+#' @param force_update If `TRUE`, update the specified files even if
+#' contributions have not changed.
 #'
 #' @note Opening an issue on github requires the github command-line interface
 #' to be locally installed. See \url{https://cli.github.com/}.
@@ -55,12 +57,14 @@ add_contributors <- function (repo = ".",
                                                  "Issue Contributors"),
                               format = "grid",
                               alphabetical = FALSE,
-                              open_issue = FALSE) {
+                              open_issue = FALSE,
+                              force_update = FALSE) {
 
     if (!git2r::in_repository (repo))
         stop ("The path [", repo, "] does not appear to be a git repository")
 
-    if (identical (section_names, c ("Code", "Issue Authors", "Issue Contributors")) &
+    if (identical (section_names,
+                   c ("Code", "Issue Authors", "Issue Contributors")) &
         num_sections < 3)
     {
         if (num_sections == 1)
@@ -92,7 +96,8 @@ add_contributors <- function (repo = ".",
 
     ctbs <- rename_default_sections (ctbs)
 
-    chk <- add_contribs_to_files (ctbs, or, ncols, format, files, open_issue)
+    chk <- add_contribs_to_files (ctbs, or, ncols, format, files,
+                                  open_issue, force_update)
 
     invisible (unlist (chk))
 }
@@ -148,7 +153,7 @@ get_current_contribs <- function (filename, orgrepo) {
 }
 
 add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
-                                   open_issue) {
+                                   open_issue, force_update) {
 
     #files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
@@ -164,9 +169,11 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
 
     for (i in seq_along (files)) {
 
-        if (any (!ctbs$logins %in% current_ctbs [[i]])) {
+        new_ctbs <- any (!ctbs$logins %in% current_ctbs [[i]])
 
-            if (open_issue) {
+        if (force_update | new_ctbs) {
+
+            if (new_ctbs & open_issue) {
                 newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs [[i]]), ]
                 pinged <- get_gh_contrib_issue (orgrepo$org, orgrepo$repo)
                 if (length (pinged) == 0) {
