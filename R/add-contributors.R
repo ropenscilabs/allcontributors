@@ -153,7 +153,8 @@ get_current_contribs <- function (filename, orgrepo) {
 }
 
 add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
-                                   open_issue, force_update) {
+                                   open_issue = FALSE,
+                                   force_update = FALSE) {
 
     #files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
