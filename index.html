@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.064</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.068</span>
       </span>
     </div>
 
@@ -114,8 +114,24 @@
 <p>The data used to construct the contributions table can also be extracted without writing to the <code>README</code> file(s) with the function <a href="https://ropenscilabs.github.io/allcontributors/reference/get_contributors.html"><code>get_contributors()</code></a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span><span class="op">(</span>org <span class="op">=</span> <span class="st">"ropenscilabs"</span>, repo <span class="op">=</span> <span class="st">"allcontributors"</span><span class="op">)</span>
-<span class="co">#&gt;   logins contributions                                               avatar</span>
-<span class="co">#&gt; 1 mpadge            88 https://avatars1.githubusercontent.com/u/6697851?v=4</span></code></pre></div>
+<span class="co">#&gt; ★  Extracting code contributors</span>
+<span class="co">#&gt; ✔ Extracted code contributors</span>
+<span class="co">#&gt; ★  Extracting github issue contributors</span>
+<span class="co">#&gt; ✔ Extracted github issue contributors</span>
+<span class="co">#&gt;   logins contributions</span>
+<span class="co">#&gt; 1 mpadge           109</span>
+<span class="co">#&gt; 2 maelle            NA</span>
+<span class="co">#&gt;                                                                                            avatar</span>
+<span class="co">#&gt; 1                                            https://avatars1.githubusercontent.com/u/6697851?v=4</span>
+<span class="co">#&gt; 2 https://avatars1.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&amp;v=4</span>
+<span class="co">#&gt;            type</span>
+<span class="co">#&gt; 1          code</span>
+<span class="co">#&gt; 2 issue_authors</span></code></pre></div>
+</div>
+<div id="updating-contributor-acknowledgements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#updating-contributor-acknowledgements" class="anchor"></a>Updating Contributor Acknowledgements</h2>
+<p>Contributors sections of files will be automatically updated to reflect any new contributions by simply calling <a href="https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html"><code>add_contributors()</code></a>. If your contributors have not changed then your lists of acknowledgements will not be changed. The <a href="https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html"><code>add_contributors()</code></a>. function has an additional parameter which may be set to <code>force_update = TRUE</code> to force lists to be updated regardless of whether contributions have changed. This can be used to change the formats of acknowledgements at any time. If anything goes wrong, the easiest way to replace a contributions section is to simply delete the old ones from all files, and call <a href="https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html"><code>add_contributors()</code></a></p>
 </div>
 <div id="more-information" class="section level2">
 <h2 class="hasAnchor">
