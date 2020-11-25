@@ -6,11 +6,11 @@
   "@type": "SoftwareSourceCode",
   "identifier": "allcontributors",
   "description": "Acknowledge all contributors in your 'README'.",
-  "name": "allcontributors: Acknowledge all contributors in your 'README'",
+  "name": "allcontributors: Acknowledge all Contributors to a Project",
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.072",
+  "version": "0.0.1.073",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,7 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/master/README.md",
-  "fileSize": "86.85KB",
+  "fileSize": "86.954KB",
   "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }
