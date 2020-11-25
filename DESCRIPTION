@@ -1,12 +1,13 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.0.1.073
+Version: 0.0.1.074
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",
            role = c("aut", "cre"),
            email = "mark.padgham@email.com")
-Description: Acknowledge all contributors in your 'README'.
+Description: Acknowledge all contributors to a project in your
+    'README'.
 License: GPL-3
 URL: https://github.com/ropenscilabs/allcontributors
 BugReports: 

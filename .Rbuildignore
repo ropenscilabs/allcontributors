@@ -1,6 +1,7 @@
 ^README\.Rmd$
 ^_pkgdown\.yml$
 ^README\.md$
+^cran-comments\.md$
 ^makefile$
 ^aaa.Rmd$
 ^vignettes/makefile$
