@@ -5,12 +5,12 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "allcontributors",
-  "description": "Acknowledge all contributors to a project in your\n    'README'.",
+  "description": "Acknowledge all contributors to a project via a\n    single function call. The function appends to a 'README' or other\n    specified file(s) a table with names of all individuals who\n    contributed via code or repository issues.  The package also includes\n    several additional functions to extract and quantify contributions to\n    any repository.",
   "name": "allcontributors: Acknowledge all Contributors to a Project",
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.75",
+  "version": "0.0.1.76",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,7 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/master/README.md",
-  "fileSize": "89.254KB",
+  "fileSize": "89.54KB",
   "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept"
 }
