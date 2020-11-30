@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.074</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.076</span>
       </span>
     </div>
 
@@ -207,6 +207,15 @@ assigned to a return value).</p>
     <p>Opening an issue on github requires the github command-line interface
 to be locally installed. See <a href='https://cli.github.com/'>https://cli.github.com/</a>.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># The following code extracts the contributors from the git repository</span>
+<span class='co'># associated with current working directory and writes them to a file.</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span> <span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".Rmd"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span> <span class='op'>(</span><span class='st'>""</span>, <span class='va'>f</span><span class='op'>)</span> <span class='co'># blank file in tempdir()</span>
+<span class='fu'>add_contributors</span> <span class='op'>(</span>repo <span class='op'>=</span> <span class='st'>"."</span>, files <span class='op'>=</span> <span class='va'>f</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

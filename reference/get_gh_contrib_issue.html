@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="get_gh_contrib_issue — get_gh_contrib_issue" />
 <meta property="og:description" content="Extract contributors currently listed on an &quot;All Contributions&quot; issue in a
-github repository. This is much easier with the REST API than via graphql." />
+github repository." />
 
 
 
@@ -73,7 +73,7 @@ github repository. This is much easier with the REST API than via graphql." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.074</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.076</span>
       </span>
     </div>
 
@@ -113,7 +113,7 @@ github repository. This is much easier with the REST API than via graphql." />
 
     <div class="ref-description">
     <p>Extract contributors currently listed on an "All Contributions" issue in a
-github repository. This is much easier with the REST API than via graphql.</p>
+github repository.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_gh_contrib_issue</span><span class='op'>(</span><span class='va'>org</span>, <span class='va'>repo</span><span class='op'>)</span></pre>
@@ -135,8 +135,11 @@ extracted</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Character vector of github logins for all contributors listed in
-current issue</p>
+current issue, or empty character string if there no issue named "All
+Contributors".</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
