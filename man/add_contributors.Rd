@@ -77,3 +77,12 @@ Add contributors to README.Rmd
 Opening an issue on github requires the github command-line interface
 to be locally installed. See \url{https://cli.github.com/}.
 }
+\examples{
+# The following code extracts the contributors from the git repository
+# associated with current working directory and writes them to a file.
+\dontrun{
+f <- tempfile (fileext = ".Rmd")
+writeLines ("", f) # blank file in tempdir()
+add_contributors (repo = ".", files = f)
+}
+}

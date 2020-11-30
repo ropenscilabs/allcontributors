@@ -20,3 +20,8 @@ issue titles.
 Extract titles and numbers of all issues associated with a nominated
 repository
 }
+\examples{
+\dontrun{
+get_gh_issue_titles (org = "ropenscilabs", repo = "allcontributors")
+}
+}

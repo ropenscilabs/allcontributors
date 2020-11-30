@@ -14,9 +14,15 @@ extracted}
 }
 \value{
 Character vector of github logins for all contributors listed in
-current issue
+current issue, or empty character string if there no issue named "All
+Contributors".
 }
 \description{
 Extract contributors currently listed on an "All Contributions" issue in a
-github repository. This is much easier with the REST API than via graphql.
+github repository.
+}
+\examples{
+/dontrun{
+get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
+}
 }

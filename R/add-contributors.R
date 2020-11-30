@@ -46,6 +46,15 @@
 #' @return Named list of logical values indicating whether files of given names
 #' were updated or not is returned invisibly (that is, only if explicitly
 #' assigned to a return value).
+#'
+#' @examples
+#' # The following code extracts the contributors from the git repository
+#' # associated with current working directory and writes them to a file.
+#' \dontrun{
+#' f <- tempfile (fileext = ".Rmd")
+#' writeLines ("", f) # blank file in tempdir()
+#' add_contributors (repo = ".", files = f)
+#' }
 #' @export
 add_contributors <- function (repo = ".",
                               ncols = 7,

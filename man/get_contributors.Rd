@@ -34,3 +34,8 @@ order by decreasing numbers of contributions.}
 Get all contributors to a repository, including those who contribute to code,
 open issues, and contribute to discussions in issues.
 }
+\examples{
+/dontrun{
+get_contributors (org = "ropenscilabs", repo = "allcontributors")
+}
+}

@@ -4,9 +4,10 @@
 \name{allcontributors-package}
 \alias{allcontributors}
 \alias{allcontributors-package}
-\title{allcontributors: Acknowledge all contributors in your 'README'}
+\title{allcontributors: Acknowledge all Contributors to a Project}
 \description{
-Acknowledge all contributors in your 'README'.
+Acknowledge all contributors to a project in your
+    'README'.
 }
 \seealso{
 Useful links:

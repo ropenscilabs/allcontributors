@@ -7,8 +7,13 @@
 #' extracted
 #' @param quiet If `FALSE`, display progress information on screen.
 #' @inheritParams add_contributors
+#'
+#' @examples
+#' /dontrun{
+#' get_contributors (org = "ropenscilabs", repo = "allcontributors")
+#' }
 #' @export
-get_contributors <- function (org, repo, 
+get_contributors <- function (org, repo,
                               type = c ("code", "issues", "discussion"),
                               alphabetical = FALSE,
                               quiet = FALSE) {
@@ -55,7 +60,7 @@ get_contributors <- function (org, repo,
         if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0)
             issue_contributors <- add_na_contribs (ctb_issues$contributors,
                                                    "issue_contributors")
-        
+
         if (!quiet)
             message ("\r", cli::col_green (cli::symbol$tick),
                      " Extracted github issue contributors    ")
@@ -72,6 +77,11 @@ get_contributors <- function (org, repo,
 #' Get list of all code contributors to the code of a repository
 #' @inheritParams get_contributors
 #' @return A `data.frame` of two columns of contributor (name, login)
+#'
+#' @examples
+#' /dontrun{
+#' get_gh_code_contributors (org = "ropenscilabs", repo = "allcontributors")
+#' }
 #' @export
 get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
@@ -211,6 +221,11 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' @inheritParams get_contributors
 #' @return List of (authors, contributors), each as character vector of github
 #' login names.
+#'
+#' @examples
+#' /dontrun{
+#' get_gh_issue_people (org = "ropenscilabs", repo = "allcontributors")
+#' }
 #' @export
 get_gh_issue_people <- function (org, repo) {
 
@@ -275,6 +290,11 @@ get_gh_issue_people <- function (org, repo) {
 #' @inheritParams get_contributors
 #' @return `data.frame` with one column of issue numbers, and one column of
 #' issue titles.
+#'
+#' @examples
+#' \dontrun{
+#' get_gh_issue_titles (org = "ropenscilabs", repo = "allcontributors")
+#' }
 #' @export
 get_gh_issue_titles <- function (org, repo) {
 
@@ -312,13 +332,22 @@ get_gh_issue_titles <- function (org, repo) {
 #' get_gh_contrib_issue
 #'
 #' Extract contributors currently listed on an "All Contributions" issue in a
-#' github repository. This is much easier with the REST API than via graphql.
+#' github repository.
 #'
 #' @inheritParams get_contributors
 #' @return Character vector of github logins for all contributors listed in
-#' current issue
+#' current issue, or empty character string if there no issue named "All
+#' Contributors".
+#'
+#' @examples
+#' /dontrun{
+#' get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
+#' }
 #' @export
 get_gh_contrib_issue <- function (org, repo) {
+
+    # Note that this is much easier with the REST API than via graphql.
+
     issues <- get_gh_issue_titles (org, repo)
     issue_num <- issues$number [grep ("all contrib", tolower (issues$title))]
     if (length (issue_num) == 0)
