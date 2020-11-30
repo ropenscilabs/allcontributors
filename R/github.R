@@ -9,7 +9,7 @@
 #' @inheritParams add_contributors
 #'
 #' @examples
-#' /dontrun{
+#' \dontrun{
 #' get_contributors (org = "ropenscilabs", repo = "allcontributors")
 #' }
 #' @export
@@ -79,7 +79,7 @@ get_contributors <- function (org, repo,
 #' @return A `data.frame` of two columns of contributor (name, login)
 #'
 #' @examples
-#' /dontrun{
+#' \dontrun{
 #' get_gh_code_contributors (org = "ropenscilabs", repo = "allcontributors")
 #' }
 #' @export
@@ -223,7 +223,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' login names.
 #'
 #' @examples
-#' /dontrun{
+#' \dontrun{
 #' get_gh_issue_people (org = "ropenscilabs", repo = "allcontributors")
 #' }
 #' @export
@@ -340,7 +340,7 @@ get_gh_issue_titles <- function (org, repo) {
 #' Contributors".
 #'
 #' @examples
-#' /dontrun{
+#' \dontrun{
 #' get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
 #' }
 #' @export

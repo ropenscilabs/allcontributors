@@ -21,7 +21,7 @@ Extract lists of (1) all authors of, and (2) all contributors to, all github
 issues for nominated repository
 }
 \examples{
-/dontrun{
+\dontrun{
 get_gh_issue_people (org = "ropenscilabs", repo = "allcontributors")
 }
 }

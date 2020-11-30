@@ -22,7 +22,7 @@ Extract contributors currently listed on an "All Contributions" issue in a
 github repository.
 }
 \examples{
-/dontrun{
+\dontrun{
 get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
 }
 }
