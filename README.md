@@ -6,6 +6,9 @@ status](https://github.com/ropenscilabs/allcontributors/workflows/R-CMD-check/ba
 [![codecov](https://codecov.io/gh/ropenscilabs/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/allcontributors)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/allcontributors)](https://cran.r-project.org/web/packages/allcontributors)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/allcontributors?color=orange)](https://cran.r-project.org/package=allcontributors)
 <!-- badges: end -->
 
 An alternative implementation in R of the original
@@ -48,8 +51,15 @@ package:
 Installation
 ------------
 
-Not yet on CRAN, so must be installed from remote repository host
-systems using any one of the following options:
+The package is now on CRAN (as of 2nd Dec 2020), so can be installed
+with,
+
+``` r
+install.packages ("allcontributors")
+```
+
+Alternatively, a development version can be installed from remote
+repository host systems using any one of the following options:
 
 ``` r
 # install.packages("remotes")
@@ -118,7 +128,7 @@ get_contributors(org = "ropenscilabs", repo = "allcontributors")
 #> ★  Extracting github issue contributors
 #> ✔ Extracted github issue contributors
 #>   logins contributions
-#> 1 mpadge           113
+#> 1 mpadge           124
 #> 2 maelle            NA
 #>                                                                                            avatar
 #> 1                                            https://avatars1.githubusercontent.com/u/6697851?v=4
@@ -157,17 +167,19 @@ which visually demonstrates the various formats in which an
 Contributors
 ------------
 
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+All contributions to this project are gratefully acknowledged using the
+[`allcontributors`
+package](https://github.com/ropenscilabs/allcontributors) following the
+[all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
 
 ### Code
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -176,14 +188,11 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
-
 </table>
-
 
 ### Issues
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/maelle">
@@ -192,9 +201,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Amaelle">maelle</a>
 </td>
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->

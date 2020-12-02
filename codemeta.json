@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.079",
+  "version": "0.0.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,14 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/master/README.md",
-  "fileSize": "90.44KB",
+  "fileSize": "91.912KB",
   "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
-  "developmentStatus": "https://www.repostatus.org/#concept"
+  "developmentStatus": "https://www.repostatus.org/#concept",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
 }

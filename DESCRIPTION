@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.0.1.079
+Version: 0.0.2
 Authors@R: 
     person(given = "Mark",
            family = "Padgham",

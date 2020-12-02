@@ -30,6 +30,8 @@ status](https://github.com/ropenscilabs/allcontributors/workflows/R-CMD-check/ba
 [![codecov](https://codecov.io/gh/ropenscilabs/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/allcontributors)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/allcontributors)](https://cran.r-project.org/web/packages/allcontributors) 
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/allcontributors?color=orange)](https://cran.r-project.org/package=allcontributors)
 <!-- badges: end -->
 
 An alternative implementation in R of the original
@@ -67,8 +69,13 @@ avatar as listed on the README. In comparison, this R package:
 
 ## Installation
 
-Not yet on CRAN, so must be installed from remote repository host systems using
-any one of the following options:
+The package is now on CRAN (as of 2nd Dec 2020), so can be installed with,
+```{r cran-install, eval = FALSE}
+install.packages ("allcontributors")
+```
+
+Alternatively, a development version can be installed from remote repository
+host systems using any one of the following options:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("remotes")
