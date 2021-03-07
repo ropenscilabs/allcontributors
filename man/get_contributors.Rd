@@ -8,6 +8,7 @@ get_contributors(
   org,
   repo,
   type = c("code", "issues", "discussion"),
+  exclude_issues = NULL,
   alphabetical = FALSE,
   quiet = FALSE
 )

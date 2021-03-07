@@ -15,6 +15,7 @@
 #' @export
 get_contributors <- function (org, repo,
                               type = c ("code", "issues", "discussion"),
+                              exclude_issues = NULL,
                               alphabetical = FALSE,
                               quiet = FALSE) {
 
@@ -39,7 +40,8 @@ get_contributors <- function (org, repo,
                  " Extracting github issue contributors")
             utils::flush.console ()
         }
-        ctb_issues <- get_gh_issue_people (org = org, repo = repo)
+        ctb_issues <- get_gh_issue_people (org = org, repo = repo,
+                                           exclude_issues = exclude_issues)
 
         index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
         ctb_issues$authors <- ctb_issues$authors [index, ]
@@ -227,7 +229,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' get_gh_issue_people (org = "ropenscilabs", repo = "allcontributors")
 #' }
 #' @export
-get_gh_issue_people <- function (org, repo) {
+get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
 
     token <- get_gh_token ()
     gh_cli <- ghql::GraphqlClient$new (
@@ -237,8 +239,8 @@ get_gh_issue_people <- function (org, repo) {
 
     has_next_page <- TRUE
     end_cursor <- NULL
-    issue_authors <- issue_author_avatar <-
-        issue_contributors <- issue_contributors_avatar <- NULL
+    issue_authors <- NULL
+    issue_contributors <- issue_contributors_avatar <- list ()
     while (has_next_page) {
         qry <- ghql::Query$new()
         q <- get_issues_qry (gh_cli, org = org, repo = repo,
@@ -257,17 +259,31 @@ get_gh_issue_people <- function (org, repo) {
 
         author <- dat$node$participants$edges
 
-        author_login <- unlist (lapply (author, function (i) i$node$login))
-        author_avatar <- unlist (lapply (author, function (i) i$node$avatarUrl))
+        author_login <- lapply (author, function (i) i$node$login)
+        author_avatar <- lapply (author, function (i) i$node$avatarUrl)
         issue_contributors <- c (issue_contributors, author_login)
         issue_contributors_avatar <- c (issue_contributors_avatar,
                                         author_avatar)
     }
 
+    if (!is.null (exclude_issues)) {
+
+        if (any (!exclude_issues %in% seq (issue_authors)))
+            stop ("exclude_issues extends beyond range of issues in this repo")
+
+        issue_authors <- issue_authors [-exclude_issues]
+        author_login <- author_login [-exclude_issues]
+        author_avatar <- author_avatar [-exclude_issues]
+    }
+
+    author_login <- unlist (author_login)
+    author_avatar <- unlist (author_avatar)
     index <- which (!duplicated (author_login))
     author_login <- author_login [index]
     author_avatar <- author_avatar [index]
 
+    issue_contributors <- unlist (issue_contributors)
+    issue_contributors_avatar <- unlist (issue_contributors_avatar)
     index <- which (!(duplicated (issue_contributors) |
                       issue_contributors %in% author_login))
     issue_contributors <- issue_contributors [index]

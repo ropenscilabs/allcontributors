@@ -4,7 +4,7 @@
 \alias{get_gh_issue_people}
 \title{get_gh_issue_people}
 \usage{
-get_gh_issue_people(org, repo)
+get_gh_issue_people(org, repo, exclude_issues = NULL)
 }
 \arguments{
 \item{org}{Github organisation name for repository}
