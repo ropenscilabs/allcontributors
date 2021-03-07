@@ -11,6 +11,9 @@ get_gh_issue_people(org, repo, exclude_issues = NULL)
 
 \item{repo}{Repository within \code{org} for which contributors are to be
 extracted}
+
+\item{exclude_issues}{Numbers of any issues (or pull requests) to be excluded
+from lists of contributors.}
 }
 \value{
 List of (authors, contributors), each as character vector of github

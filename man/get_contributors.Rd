@@ -26,6 +26,9 @@ issues. Discussion contributions are only from individuals not present in
 either 'issues' or 'code'; and 'issues' contributions are only from
 individuals not present in 'code'.}
 
+\item{exclude_issues}{Numbers of any issues (or pull requests) to be excluded
+from lists of contributors.}
+
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}
 

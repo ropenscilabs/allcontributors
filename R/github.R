@@ -5,6 +5,8 @@
 #' @param org Github organisation name for repository
 #' @param repo Repository within `org` for which contributors are to be
 #' extracted
+#' @param exclude_issues Numbers of any issues (or pull requests) to be excluded
+#' from lists of contributors.
 #' @param quiet If `FALSE`, display progress information on screen.
 #' @inheritParams add_contributors
 #'
