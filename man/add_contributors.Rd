@@ -9,6 +9,7 @@ add_contributors(
   ncols = 7,
   files = c("README.Rmd", "README.md"),
   type = c("code", "issues", "discussion"),
+  exclude_issues = NULL,
   num_sections = 3,
   section_names = c("Code", "Issue Authors", "Issue Contributors"),
   format = "grid",
@@ -31,6 +32,9 @@ who open issues, and 'discussion' for contributing to discussions within
 issues. Discussion contributions are only from individuals not present in
 either 'issues' or 'code'; and 'issues' contributions are only from
 individuals not present in 'code'.}
+
+\item{exclude_issues}{Numbers of any issues (or pull requests) to be excluded
+from lists of contributors.}
 
 \item{num_sections}{Number of sections in which to divide contributors:
 \itemize{

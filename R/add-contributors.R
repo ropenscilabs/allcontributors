@@ -12,6 +12,8 @@
 #' issues. Discussion contributions are only from individuals not present in
 #' either 'issues' or 'code'; and 'issues' contributions are only from
 #' individuals not present in 'code'.
+#' @param exclude_issues Numbers of any issues (or pull requests) to be excluded
+#' from lists of contributors.
 #' @param num_sections Number of sections in which to divide contributors:
 #' \itemize{
 #' \item{1} All contributions within single section regardless of `type`
@@ -60,6 +62,7 @@ add_contributors <- function (repo = ".",
                               ncols = 7,
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
+                              exclude_issues = NULL,
                               num_sections = 3,
                               section_names = c ("Code",
                                                  "Issue Authors",
@@ -76,12 +79,15 @@ add_contributors <- function (repo = ".",
                    c ("Code", "Issue Authors", "Issue Contributors")) &
         num_sections < 3)
     {
+
         if (num_sections == 1)
             section_names <- rep ("", 3)
         if (num_sections == 2)
             section_names <- c ("Code", "Issues", "Issues")
-    } else if (length (section_names) > num_sections)
+    } else if (length (section_names) > num_sections) {
+
         stop ("section_names can not have more entries than num_sections")
+    }
 
     type <- match_type_arg (type)
 
@@ -92,6 +98,7 @@ add_contributors <- function (repo = ".",
     ctbs <- get_contributors (or$org,
                               or$repo,
                               type = type,
+                              exclude_issues = exclude_issues,
                               alphabetical = alphabetical,
                               quiet = FALSE)
 
