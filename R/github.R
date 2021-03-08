@@ -276,6 +276,9 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
         issue_authors <- issue_authors [-exclude_issues]
         author_login <- author_login [-exclude_issues]
         author_avatar <- author_avatar [-exclude_issues]
+
+        issue_contributors <- issue_contributors [-exclude_issues]
+        issue_contributors_avatar <- issue_contributors_avatar [-exclude_issues]
     }
 
     author_login <- unlist (author_login)
