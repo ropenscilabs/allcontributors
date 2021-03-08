@@ -10,13 +10,13 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.2.004",
+  "version": "0.0.2.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
   "author": [
     {
       "@type": "Person",
@@ -172,8 +172,8 @@
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     }
   ],
-  "readme": "https://github.com/ropenscilabs/allcontributors/blob/master/README.md",
-  "fileSize": "91.912KB",
+  "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
+  "fileSize": "93.566KB",
   "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept",
   "provider": {
@@ -182,5 +182,6 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
+  "relatedLink": "https://CRAN.R-project.org/package=allcontributors",
+  "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md"
 }
