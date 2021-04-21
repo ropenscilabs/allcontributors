@@ -5,18 +5,18 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "allcontributors",
-  "description": "Acknowledge all contributors to a project via a\n    single function call. The function appends to a 'README' or other\n    specified file(s) a table with names of all individuals who\n    contributed via code or repository issues.  The package also includes\n    several additional functions to extract and quantify contributions to\n    any repository.",
+  "description": "Acknowledge all contributors to a project via a single\n    function call. The function appends to a 'README' or other specified\n    file(s) a table with names of all individuals who contributed via code\n    or repository issues.  The package also includes several additional\n    functions to extract and quantify contributions to any repository.",
   "name": "allcontributors: Acknowledge all Contributors to a Project",
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
-  "issueTracker": "\n    https://github.com/ropenscilabs/allcontributors/issues",
+  "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.2.5",
+  "version": "0.0.2.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
+  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
   "author": [
     {
       "@type": "Person",
@@ -173,7 +173,7 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "fileSize": "93.566KB",
+  "fileSize": "93.747KB",
   "contIntegration": "https://codecov.io/gh/ropenscilabs/allcontributors",
   "developmentStatus": "https://www.repostatus.org/#concept",
   "provider": {
