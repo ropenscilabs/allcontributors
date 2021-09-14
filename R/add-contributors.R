@@ -136,7 +136,7 @@ get_org_repo <- function (repo) {
     repo <- utils::tail (strsplit (remote, "/") [[1]], 1) [1]
 
     list (org = org,
-          repo = repo)
+          repo = gsub ("\\.git$", "", repo))
 }
 
 # strip current list of contributors from filename
