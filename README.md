@@ -6,7 +6,7 @@ status](https://github.com/ropenscilabs/allcontributors/workflows/R-CMD-check/ba
 [![codecov](https://codecov.io/gh/ropenscilabs/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/allcontributors)
 [![Project Status:
 Concept](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/allcontributors)](https://cran.r-project.org/web/packages/allcontributors)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/allcontributors)](https://cran.r-project.org/web/packages/allcontributors)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/allcontributors?color=orange)](https://cran.r-project.org/package=allcontributors)
 <!-- badges: end -->
@@ -22,8 +22,7 @@ task to a single function call, in the hope that such simplicity will
 spur greater usage. In short: This package can’t do everything the
 original does, but it makes what it does much easier.
 
-Why then?
----------
+## Why then?
 
 The original [`all-contributors`](https://allcontributors.org/) is
 primarily a bot which responds to commit messages such as
@@ -48,8 +47,7 @@ package:
         numbered lists of github user names only, or single text strings
         of comma-separated names.
 
-Installation
-------------
+## Installation
 
 The package is now on CRAN (as of 2nd Dec 2020), so can be installed
 with,
@@ -75,8 +73,7 @@ The package can then be loaded the usual way:
 library (allcontributors)
 ```
 
-Usage
------
+## Usage
 
 The primary function of the package,
 [`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html),
@@ -127,19 +124,21 @@ get_contributors(org = "ropenscilabs", repo = "allcontributors")
 #> ✔ Extracted code contributors
 #> ★  Extracting github issue contributors
 #> ✔ Extracted github issue contributors
-#>   logins contributions
-#> 1 mpadge           124
-#> 2 maelle            NA
-#>                                                                                            avatar
-#> 1                                            https://avatars1.githubusercontent.com/u/6697851?v=4
-#> 2 https://avatars1.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&v=4
+#>       logins contributions
+#> 1     mpadge           136
+#> 2     maelle            NA
+#> 3 shamindras            NA
+#>                                                                                           avatar
+#> 1                                            https://avatars.githubusercontent.com/u/6697851?v=4
+#> 2 https://avatars.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&v=4
+#> 3 https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&v=4
 #>            type
 #> 1          code
 #> 2 issue_authors
+#> 3 issue_authors
 ```
 
-Updating Contributor Acknowledgements
--------------------------------------
+## Updating Contributor Acknowledgements
 
 “Contributors” sections of files will be automatically updated to
 reflect any new contributions by simply calling
@@ -156,28 +155,28 @@ all files, and call
 [`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
 again.
 
-More Information
-----------------
+## More Information
 
 The package has a [single
 vignette](https://ropenscilabs.github.io/allcontributors/articles/allcontributors.html)
 which visually demonstrates the various formats in which an
 “allcontributors” section can be presented.
 
-Contributors
-------------
-
+## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+All contributions to this project are gratefully acknowledged using the
+[`allcontributors`
+package](https://github.com/ropenscilabs/allcontributors) following the
+[all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
 
 ### Code
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -186,14 +185,11 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
-
 </table>
-
 
 ### Issues
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/maelle">
@@ -208,9 +204,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Ashamindras">shamindras</a>
 </td>
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
