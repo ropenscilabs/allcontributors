@@ -72,23 +72,3 @@ test_that ("sections", {
                index <- grep ("^###\\s", x)
                expect_equal (length (index), 0)
              })
-
-test_that ("ghql-calls", {
-               skip_on_cran ()
-
-               # fails on github because "Resource not accessible by
-               # integration":
-               # https://github.com/actions/first-interaction/issues/10
-
-               if (Sys.getenv ("GITHUB_WORKFLOW") == "") {
-
-               x <- get_contributors (org = "hypertidy", repo = "geodist")
-               expect_is (x, "data.frame")
-               expect_identical (names (x),
-                                 c ("logins", "contributions",
-                                    "avatar", "type"))
-               expect_true (all (unique (x$type) %in% c ("code",
-                                                         "issue_authors",
-                                                         "issue_contributors")))
-               }
-             })
