@@ -239,7 +239,7 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
 
     has_next_page <- TRUE
     end_cursor <- NULL
-    issue_authors <- issue_numbers <- NULL
+    issue_authors <- issue_numbers <- issue_author_avatar <- NULL
     issue_contributors <- issue_contributors_avatar <- list ()
     while (has_next_page) {
         qry <- ghql::Query$new()
@@ -256,7 +256,7 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
         dat <- dat$data$repository$issues$edges
         issue_numbers <- c (issue_numbers, dat$node$number)
         issue_authors <- c (issue_authors, dat$node$author$login)
-        #issue_avatars <- c (issue_author_avatar, dat$node$author$avatarUrl)
+        issue_author_avatar <- c (issue_author_avatar, dat$node$author$avatarUrl)
 
         author <- dat$node$participants$edges
 
@@ -274,28 +274,25 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
 
         exclude_issues <- which (issue_numbers %in% exclude_issues)
         issue_authors <- issue_authors [-exclude_issues]
-        author_login <- author_login [-exclude_issues]
-        author_avatar <- author_avatar [-exclude_issues]
-
+        issue_author_avatar <- issue_author_avatar [-exclude_issues]
         issue_contributors <- issue_contributors [-exclude_issues]
         issue_contributors_avatar <- issue_contributors_avatar [-exclude_issues]
     }
 
-    author_login <- unlist (author_login)
-    author_avatar <- unlist (author_avatar)
-    index <- which (!duplicated (author_login))
-    author_login <- author_login [index]
-    author_avatar <- author_avatar [index]
+    index <- which (!duplicated (issue_authors) &
+                    !is.na (issue_authors))
+    issue_authors <- issue_authors [index]
+    issue_author_avatar <- issue_author_avatar [index]
 
     issue_contributors <- unlist (issue_contributors)
     issue_contributors_avatar <- unlist (issue_contributors_avatar)
     index <- which (!(duplicated (issue_contributors) |
-                      issue_contributors %in% author_login))
+                      issue_contributors %in% issue_authors))
     issue_contributors <- issue_contributors [index]
     issue_contributors_avatar <- issue_contributors_avatar [index]
 
-    list (authors = data.frame (logins = author_login,
-                                avatar = author_avatar,
+    list (authors = data.frame (logins = issue_authors,
+                                avatar = issue_author_avatar,
                                 stringsAsFactors = FALSE),
           contributors = data.frame (logins = issue_contributors,
                                      avatar = issue_contributors_avatar,
