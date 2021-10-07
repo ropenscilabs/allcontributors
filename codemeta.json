@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.2.013",
+  "version": "0.0.2.14",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,12 +173,9 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "fileSize": "65.969KB",
-  "contIntegration": [
-    "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
-    "https://codecov.io/gh/ropenscilabs/allcontributors"
-  ],
-  "developmentStatus": "https://www.repostatus.org/#concept",
+  "fileSize": "66.052KB",
+  "contIntegration": ["https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check", "https://codecov.io/gh/ropenscilabs/allcontributors"],
+  "developmentStatus": "https://www.repostatus.org/#active",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",

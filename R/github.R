@@ -239,7 +239,7 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
 
     has_next_page <- TRUE
     end_cursor <- NULL
-    issue_authors <- NULL
+    issue_authors <- issue_numbers <- NULL
     issue_contributors <- issue_contributors_avatar <- list ()
     while (has_next_page) {
         qry <- ghql::Query$new()
@@ -254,6 +254,7 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
         end_cursor <- dat$data$repository$issues$pageInfo$endCursor
 
         dat <- dat$data$repository$issues$edges
+        issue_numbers <- c (issue_numbers, dat$node$number)
         issue_authors <- c (issue_authors, dat$node$author$login)
         #issue_avatars <- c (issue_author_avatar, dat$node$author$avatarUrl)
 
@@ -268,9 +269,10 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
 
     if (!is.null (exclude_issues)) {
 
-        if (any (!exclude_issues %in% seq (issue_authors)))
+        if (any (!exclude_issues %in% issue_numbers))
             stop ("exclude_issues extends beyond range of issues in this repo")
 
+        exclude_issues <- which (issue_numbers %in% exclude_issues)
         issue_authors <- issue_authors [-exclude_issues]
         author_login <- author_login [-exclude_issues]
         author_avatar <- author_avatar [-exclude_issues]
