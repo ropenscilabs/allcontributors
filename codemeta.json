@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.2.023",
+  "version": "0.0.2.024",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -113,6 +113,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "gh",
+      "name": "gh",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=gh"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ghql",
       "name": "ghql",
       "provider": {
@@ -173,7 +185,7 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "fileSize": "66.052KB",
+  "fileSize": "65.403KB",
   "contIntegration": [
     "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
     "https://codecov.io/gh/ropenscilabs/allcontributors"
