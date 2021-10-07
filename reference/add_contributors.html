@@ -72,23 +72,32 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.017</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../articles/allcontributors.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropenscilabs/allcontributors/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -119,6 +128,7 @@
   ncols <span class='op'>=</span> <span class='fl'>7</span>,
   files <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"README.Rmd"</span>, <span class='st'>"README.md"</span><span class='op'>)</span>,
   type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"code"</span>, <span class='st'>"issues"</span>, <span class='st'>"discussion"</span><span class='op'>)</span>,
+  exclude_issues <span class='op'>=</span> <span class='cn'>NULL</span>,
   num_sections <span class='op'>=</span> <span class='fl'>3</span>,
   section_names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Code"</span>, <span class='st'>"Issue Authors"</span>, <span class='st'>"Issue Contributors"</span><span class='op'>)</span>,
   format <span class='op'>=</span> <span class='st'>"grid"</span>,
@@ -151,6 +161,11 @@ who open issues, and 'discussion' for contributing to discussions within
 issues. Discussion contributions are only from individuals not present in
 either 'issues' or 'code'; and 'issues' contributions are only from
 individuals not present in 'code'.</p></td>
+    </tr>
+    <tr>
+      <th>exclude_issues</th>
+      <td><p>Numbers of any issues (or pull requests) to be excluded
+from lists of contributors.</p></td>
     </tr>
     <tr>
       <th>num_sections</th>
@@ -231,7 +246,7 @@ to be locally installed. See <a href='https://cli.github.com/'>https://cli.githu
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
