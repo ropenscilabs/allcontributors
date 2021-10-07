@@ -125,7 +125,7 @@ get_contributors(org = "ropenscilabs", repo = "allcontributors")
 #> ★  Extracting github issue contributors
 #> ✔ Extracted github issue contributors
 #>       logins contributions
-#> 1     mpadge           136
+#> 1     mpadge           142
 #> 2     maelle            NA
 #> 3 shamindras            NA
 #>                                                                                           avatar
@@ -161,6 +161,12 @@ The package has a [single
 vignette](https://ropenscilabs.github.io/allcontributors/articles/allcontributors.html)
 which visually demonstrates the various formats in which an
 “allcontributors” section can be presented.
+
+## Code of Conduct
+
+Please note that this package is released with a [Contributor Code of
+Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
+project, you agree to abide by its terms.
 
 ## Contributors
 
