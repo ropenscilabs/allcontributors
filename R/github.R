@@ -137,7 +137,7 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
 get_gh_token <- function (token = "") {
 
-    gh::gh_whoami ()$token
+    gitcreds::gitcreds_get ()$password
 }
 
 get_git_user <- function () {

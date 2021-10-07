@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.2.025",
+  "version": "0.0.2.26",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -113,18 +113,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "gh",
-      "name": "gh",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=gh"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ghql",
       "name": "ghql",
       "provider": {
@@ -146,6 +134,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=git2r"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "gitcreds",
+      "name": "gitcreds",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=gitcreds"
     },
     {
       "@type": "SoftwareApplication",
@@ -185,11 +185,8 @@
     }
   ],
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "fileSize": "65.403KB",
-  "contIntegration": [
-    "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
-    "https://codecov.io/gh/ropenscilabs/allcontributors"
-  ],
+  "fileSize": "65.26KB",
+  "contIntegration": ["https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check", "https://codecov.io/gh/ropenscilabs/allcontributors"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "provider": {
     "@id": "https://cran.r-project.org",
