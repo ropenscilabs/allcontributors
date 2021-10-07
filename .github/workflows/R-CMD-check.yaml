@@ -41,6 +41,11 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      - name: Configure Git user
+        run: |
+          git config --global user.email "ghau@example.com"
+          git config --global user.name "GitHub Actions User"
+
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: rcmdcheck
