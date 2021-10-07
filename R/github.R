@@ -136,29 +136,8 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 }
 
 get_gh_token <- function (token = "") {
-    e <- Sys.getenv ()
-    if (token != "")
-        toks <- e [grep (token, names (e))]
-    else {
-        toks <- e [grep ("GITHUB|GH", names (e))]
-        if (length (toks) > 1) {
-            un <- unique (toks)
-            names (un) <- names (toks) [match (un, toks)]
-            is_a_token <- which (!grepl ("^http(s?)://", un))
-            un <- un [is_a_token]
-            if (length (un) > 1)
-                un <- un [grep ("TOKEN", names (un))]
-            if (length (un) > 1)
-                un <- un [grep ("QL", names (un))]
-            toks <- un
-        }
-    }
 
-    if (length (unique (toks)) > 1)
-        stop (paste0 ("No unambiguous token found; please use ",
-                      "Sys.setenv() to set a github tokan with a ",
-                      "name which includes 'GITHUB'"))
-    return (unique (toks))
+    gh::gh_whoami ()$token
 }
 
 get_git_user <- function () {
