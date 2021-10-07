@@ -76,7 +76,11 @@ test_that ("sections", {
 test_that ("ghql-calls", {
                skip_on_cran ()
 
-               # fails on github:
+               # fails on github because "Resource not accessible by
+               # integration":
+               # https://github.com/actions/first-interaction/issues/10
+
+               if (Sys.getenv ("GITHUB_WORKFLOW") == "") {
 
                x <- get_contributors (org = "hypertidy", repo = "geodist")
                expect_is (x, "data.frame")
@@ -86,4 +90,5 @@ test_that ("ghql-calls", {
                expect_true (all (unique (x$type) %in% c ("code",
                                                          "issue_authors",
                                                          "issue_contributors")))
+               }
              })
