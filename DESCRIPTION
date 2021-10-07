@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.0.2.026
+Version: 0.0.2.027
 Authors@R: 
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre"))
 Description: Acknowledge all contributors to a project via a single
@@ -24,6 +24,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
+    vcr (>= 0.6.0),
     webmockr
 VignetteBuilder: 
     knitr
