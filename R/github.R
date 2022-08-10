@@ -101,23 +101,27 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
                  repo,
                  "/contributors")
 
+    per_page <- 100L
+    pagenum <- 1L
+    params <- list (per_page = per_page, page = pagenum)
+
     if (nchar (tok) > 0) {
-        x <- httr::GET (u, httr::authenticate (user, tok)) %>%
+        x <- httr::GET (u, httr::authenticate (user, tok), query = params) %>%
             httr::content ()
     } else {
-        x <- httr::GET (u) %>%
+        x <- httr::GET (u, query = params) %>%
             httr::content ()
     }
-    pg <- 1
+
     res <- x
-    while (length (x) == 30) {
-        pg <- pg + 1
-        #u2 <- paste0 (u, "?page=", pg)
+    while (length (x) == per_page) {
+        params$page <- params$page + 1L
+
         if (length (tok) > 0) {
-            x <- httr::GET (u, httr::authenticate (user, tok)) %>%
+            x <- httr::GET (u, httr::authenticate (user, tok), query = params) %>%
                 httr::content ()
         } else {
-            x <- httr::GET (u) %>%
+            x <- httr::GET (u, query = params) %>%
                 httr::content ()
         }
         res <- c (res, x)
