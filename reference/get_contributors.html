@@ -18,7 +18,7 @@ open issues, and contribute to discussions in issues."><!-- mathjax --><script s
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2.033</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2.041</span>
       </span>
     </div>
 
@@ -64,6 +64,7 @@ open issues, and contribute to discussions in issues.</p>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"code"</span>, <span class="st">"issues"</span>, <span class="st">"discussion"</span><span class="op">)</span>,</span>
 <span>  exclude_issues <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  alphabetical <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  check_urls <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -96,6 +97,12 @@ from lists of contributors.</p></dd>
 <dt>alphabetical</dt>
 <dd><p>If <code>TRUE</code>, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.</p></dd>
+
+
+<dt>check_urls</dt>
+<dd><p>If <code>TRUE</code> (default), GitHub URLs of all contributors are
+checked to ensure they are still valid. (This is generally the most
+time-consuming stage, so set to 'FALSE' if you are sure all URLs are valid.)</p></dd>
 
 
 <dt>quiet</dt>

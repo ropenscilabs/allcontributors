@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   allcontributors: allcontributors.html
-last_built: 2022-08-10T08:25Z
+last_built: 2022-08-10T09:45Z
 urls:
   reference: https://docs.ropensci.org/allcontributors/reference
   article: https://docs.ropensci.org/allcontributors/articles
