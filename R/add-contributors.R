@@ -86,7 +86,7 @@ add_contributors <- function (repo = ".",
     if (identical (
         section_names,
         c ("Code", "Issue Authors", "Issue Contributors")
-    ) &
+    ) &&
         num_sections < 3) {
 
         if (num_sections == 1) {
@@ -187,7 +187,7 @@ get_current_contribs <- function (filename, orgrepo) {
 
         contribs_start <- grep ("<!-- ALL-CONTRIBUTORS-LIST:START", x)
         contribs_end <- grep ("<!-- ALL-CONTRIBUTORS-LIST:END", x)
-        if (length (contribs_start) == 1 & length (contribs_end) == 1) {
+        if (length (contribs_start) == 1 && length (contribs_end) == 1) {
             res <- x [(contribs_start + 1):(contribs_end - 1)]
             res <- res [grep (ghurl, res)]
             res <- vapply (strsplit (res, "\">"), function (i) {
@@ -221,9 +221,9 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
 
         new_ctbs <- any (!ctbs$logins %in% current_ctbs [[i]])
 
-        if (force_update | new_ctbs) {
+        if (force_update || new_ctbs) {
 
-            if (new_ctbs & open_issue) {
+            if (new_ctbs && open_issue) {
                 newctbs <- ctbs [which (!ctbs$logins %in% current_ctbs [[i]]), ]
                 pinged <- get_gh_contrib_issue (orgrepo$org, orgrepo$repo)
                 if (length (pinged) == 0) {
@@ -291,7 +291,7 @@ add_contribs_to_one_file <- function (ctbs, orgrepo, ncols, format, filename) {
 
     contribs_start <- grep ("<!-- ALL-CONTRIBUTORS-LIST:START", x)
     contribs_end <- grep ("<!-- ALL-CONTRIBUTORS-LIST:END", x)
-    if (length (contribs_start) == 1 & length (contribs_end) == 1) {
+    if (length (contribs_start) == 1 && length (contribs_end) == 1) {
         xtop <- x [1:(contribs_start - 1)]
         xbottom <- NULL
         if (contribs_end < length (x)) {
