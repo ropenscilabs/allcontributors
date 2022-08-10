@@ -1,22 +1,25 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "allcontributors",
-  "description": "Acknowledge all contributors to a project via a single\n    function call. The function appends to a 'README' or other specified\n    file(s) a table with names of all individuals who contributed via code\n    or repository issues.  The package also includes several additional\n    functions to extract and quantify contributions to any repository.",
+  "description": "Acknowledge all contributors to a project via a single function call. The function appends to a 'README' or other specified file(s) a table with names of all individuals who contributed via code or repository issues. The package also includes several additional functions to extract and quantify contributions to any repository.",
   "name": "allcontributors: Acknowledge all Contributors to a Project",
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.2.041",
+  "version": "0.0.2.042",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -25,9 +28,6 @@
       "email": "mark.padgham@email.com"
     }
   ],
-  "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -87,8 +87,8 @@
       "sameAs": "https://CRAN.R-project.org/package=vcr"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "cli",
       "name": "cli",
@@ -100,7 +100,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=cli"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "clipr",
       "name": "clipr",
@@ -112,7 +112,19 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=clipr"
     },
-    {
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "curl",
+      "name": "curl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=curl"
+    },
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "ghql",
       "name": "ghql",
@@ -124,7 +136,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ghql"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "git2r",
       "name": "git2r",
@@ -136,7 +148,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=git2r"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "gitcreds",
       "name": "gitcreds",
@@ -148,7 +160,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=gitcreds"
     },
-    {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
@@ -160,7 +172,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr"
     },
-    {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
@@ -172,7 +184,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
-    {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
@@ -183,21 +195,16 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    }
-  ],
+    },
+    "SystemRequirements": {}
+  },
+  "fileSize": "158.992KB",
+  "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "fileSize": "91.795KB",
   "contIntegration": [
     "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
     "https://codecov.io/gh/ropenscilabs/allcontributors"
   ],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
-  "relatedLink": "https://CRAN.R-project.org/package=allcontributors",
-  "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md"
+  "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
 }
