@@ -1,4 +1,4 @@
-library(testthat)
-library(allcontributors)
+library (testthat)
+library (allcontributors)
 
-test_check("allcontributors")
+test_check ("allcontributors")
