@@ -81,7 +81,7 @@ get_contributors <- function (org, repo,
                 "issue_authors"
             )
         }
-        if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0) {
+        if ("discussion" %in% type && nrow (ctb_issues$contributors) > 0) {
             issue_contributors <- add_na_contribs (
                 ctb_issues$contributors,
                 "issue_contributors"
@@ -152,7 +152,10 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
         params$page <- params$page + 1L
 
         if (length (tok) > 0) {
-            x <- httr::GET (u, httr::authenticate (user, tok), query = params) %>%
+            x <- httr::GET (
+                    u,
+                    httr::authenticate (user, tok),
+                    query = params) %>%
                 httr::content ()
         } else {
             x <- httr::GET (u, query = params) %>%
@@ -260,7 +263,8 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' }
 #' @family github
 #' @export
-get_gh_issue_people <- function (org, repo, exclude_issues = NULL, exclude_label = "wontfix") {
+get_gh_issue_people <- function (org, repo, exclude_issues = NULL,
+                                 exclude_label = "wontfix") {
 
     token <- get_gh_token ()
     gh_cli <- ghql::GraphqlClient$new (
@@ -291,7 +295,10 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL, exclude_label
         dat <- dat$data$repository$issues$edges
         issue_numbers <- c (issue_numbers, dat$node$number)
         issue_authors <- c (issue_authors, dat$node$author$login)
-        issue_author_avatar <- c (issue_author_avatar, dat$node$author$avatarUrl)
+        issue_author_avatar <- c (
+            issue_author_avatar,
+            dat$node$author$avatarUrl
+        )
 
         author <- dat$node$participants$edges
 
