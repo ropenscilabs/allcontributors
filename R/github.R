@@ -25,30 +25,41 @@ get_contributors <- function (org, repo,
         utils::flush.console ()
     }
 
-    ctb_code <- get_gh_code_contributors (org,
-                                          repo,
-                                          alphabetical = alphabetical)
+    ctb_code <- get_gh_code_contributors (
+        org,
+        repo,
+        alphabetical = alphabetical
+    )
     ctb_code <- ctb_code [which (!is.na (ctb_code$login)), ]
     ctb_code$type <- "code"
-    if (!quiet)
-        message ("\r", cli::col_green (cli::symbol$tick),
-                 " Extracted code contributors   ")
+    if (!quiet) {
+        message (
+            "\r", cli::col_green (cli::symbol$tick),
+            " Extracted code contributors   "
+        )
+    }
 
     issue_authors <- issue_contributors <- NULL
     if ("issues" %in% type) {
         if (!quiet) {
-            cat (cli::col_cyan (cli::symbol$star),
-                 " Extracting github issue contributors")
+            cat (
+                cli::col_cyan (cli::symbol$star),
+                " Extracting github issue contributors"
+            )
             utils::flush.console ()
         }
-        ctb_issues <- get_gh_issue_people (org = org, repo = repo,
-                                           exclude_issues = exclude_issues)
+        ctb_issues <- get_gh_issue_people (
+            org = org, repo = repo,
+            exclude_issues = exclude_issues
+        )
 
         index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
         ctb_issues$authors <- ctb_issues$authors [index, ]
 
-        index <- which (!ctb_issues$contributors$login %in%
-                        c (ctb_code$logins, ctb_issues$authors$login))
+        index <- which (
+            !ctb_issues$contributors$login %in%
+            c (ctb_code$logins, ctb_issues$authors$login)
+        )
         ctb_issues$contributors <- ctb_issues$contributors [index, ]
 
         add_na_contribs <- function (x, type) {
@@ -57,16 +68,25 @@ get_contributors <- function (org, repo,
             x$type <- type
             return (x)
         }
-        if (nrow (ctb_issues$authors) > 0)
-            issue_authors <- add_na_contribs (ctb_issues$authors,
-                                              "issue_authors")
-        if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0)
-            issue_contributors <- add_na_contribs (ctb_issues$contributors,
-                                                   "issue_contributors")
+        if (nrow (ctb_issues$authors) > 0) {
+            issue_authors <- add_na_contribs (
+                ctb_issues$authors,
+                "issue_authors"
+            )
+        }
+        if ("discussion" %in% type & nrow (ctb_issues$contributors) > 0) {
+            issue_contributors <- add_na_contribs (
+                ctb_issues$contributors,
+                "issue_contributors"
+            )
+        }
 
-        if (!quiet)
-            message ("\r", cli::col_green (cli::symbol$tick),
-                     " Extracted github issue contributors    ")
+        if (!quiet) {
+            message (
+                "\r", cli::col_green (cli::symbol$tick),
+                " Extracted github issue contributors    "
+            )
+        }
     }
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
@@ -90,16 +110,19 @@ get_contributors <- function (org, repo,
 get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
     tok <- get_gh_token ()
-    if (length (tok) == 0)
+    if (length (tok) == 0) {
         tok <- ""
+    }
     user <- get_git_user ()
 
     # This query can not be done via GraphQL, so have to use v3 REST API
-    u <- paste0 ("https://api.github.com/repos/",
-                 org,
-                 "/",
-                 repo,
-                 "/contributors")
+    u <- paste0 (
+        "https://api.github.com/repos/",
+        org,
+        "/",
+        repo,
+        "/contributors"
+    )
 
     per_page <- 100L
     pagenum <- 1L
@@ -132,13 +155,16 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
     avatars <- vapply (x, function (i) i$avatar_url, character (1))
 
     index <- seq (logins)
-    if (alphabetical)
+    if (alphabetical) {
         index <- order (res$logins)
+    }
 
-    data.frame (logins = logins,
-                contributions = contributions,
-                avatar = avatars,
-                stringsAsFactors = FALSE) [index, ]
+    data.frame (
+        logins = logins,
+        contributions = contributions,
+        avatar = avatars,
+        stringsAsFactors = FALSE
+    ) [index, ]
 }
 
 get_gh_token <- function (token = "") {
@@ -147,7 +173,7 @@ get_gh_token <- function (token = "") {
 }
 
 get_git_user <- function () {
-    #whoami::whoami ()
+    # whoami::whoami ()
     git2r::config ()$global$user.name
 }
 
@@ -157,8 +183,9 @@ get_git_user <- function () {
 
 get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
     after_txt <- ""
-    if (!is.null (end_cursor))
+    if (!is.null (end_cursor)) {
         after_txt <- paste0 (", after:\"", end_cursor, "\"")
+    }
 
     q <- paste0 ("{
         repository(owner:\"", org, "\", name:\"", repo, "\") {
@@ -228,12 +255,16 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
     issue_authors <- issue_numbers <- issue_author_avatar <- NULL
     issue_contributors <- issue_contributors_avatar <- list ()
     while (has_next_page) {
-        qry <- ghql::Query$new()
-        q <- get_issues_qry (gh_cli, org = org, repo = repo,
-                             end_cursor = end_cursor)
-        qry$query('issues', q)
+        qry <- ghql::Query$new ()
+        q <- get_issues_qry (
+            gh_cli,
+            org = org,
+            repo = repo,
+            end_cursor = end_cursor
+        )
+        qry$query ("issues", q)
 
-        dat <- gh_cli$exec(qry$queries$issues) %>%
+        dat <- gh_cli$exec (qry$queries$issues) %>%
             jsonlite::fromJSON ()
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -249,14 +280,17 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
         author_login <- lapply (author, function (i) i$node$login)
         author_avatar <- lapply (author, function (i) i$node$avatarUrl)
         issue_contributors <- c (issue_contributors, author_login)
-        issue_contributors_avatar <- c (issue_contributors_avatar,
-                                        author_avatar)
+        issue_contributors_avatar <- c (
+            issue_contributors_avatar,
+            author_avatar
+        )
     }
 
     if (!is.null (exclude_issues)) {
 
-        if (any (!exclude_issues %in% issue_numbers))
+        if (any (!exclude_issues %in% issue_numbers)) {
             stop ("exclude_issues extends beyond range of issues in this repo")
+        }
 
         exclude_issues <- which (issue_numbers %in% exclude_issues)
         issue_authors <- issue_authors [-exclude_issues]
@@ -266,23 +300,29 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
     }
 
     index <- which (!duplicated (issue_authors) &
-                    !is.na (issue_authors))
+        !is.na (issue_authors))
     issue_authors <- issue_authors [index]
     issue_author_avatar <- issue_author_avatar [index]
 
     issue_contributors <- unlist (issue_contributors)
     issue_contributors_avatar <- unlist (issue_contributors_avatar)
     index <- which (!(duplicated (issue_contributors) |
-                      issue_contributors %in% issue_authors))
+        issue_contributors %in% issue_authors))
     issue_contributors <- issue_contributors [index]
     issue_contributors_avatar <- issue_contributors_avatar [index]
 
-    list (authors = data.frame (logins = issue_authors,
-                                avatar = issue_author_avatar,
-                                stringsAsFactors = FALSE),
-          contributors = data.frame (logins = issue_contributors,
-                                     avatar = issue_contributors_avatar,
-                                     stringsAsFactors = FALSE))
+    list (
+        authors = data.frame (
+            logins = issue_authors,
+            avatar = issue_author_avatar,
+            stringsAsFactors = FALSE
+        ),
+        contributors = data.frame (
+            logins = issue_contributors,
+            avatar = issue_contributors_avatar,
+            stringsAsFactors = FALSE
+        )
+    )
 }
 
 
@@ -313,12 +353,16 @@ get_gh_issue_titles <- function (org, repo) {
     end_cursor <- NULL
     issue_title <- issue_number <- NULL
     while (has_next_page) {
-        qry <- ghql::Query$new()
-        q <- get_issues_qry (gh_cli, org = org, repo = repo,
-                             end_cursor = end_cursor)
-        qry$query('issues', q)
+        qry <- ghql::Query$new ()
+        q <- get_issues_qry (
+            gh_cli,
+            org = org,
+            repo = repo,
+            end_cursor = end_cursor
+        )
+        qry$query ("issues", q)
 
-        dat <- gh_cli$exec(qry$queries$issues) %>%
+        dat <- gh_cli$exec (qry$queries$issues) %>%
             jsonlite::fromJSON ()
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -329,9 +373,11 @@ get_gh_issue_titles <- function (org, repo) {
         issue_number <- c (issue_number, dat$node$number)
     }
 
-    data.frame (number = issue_number,
-                title = issue_title,
-                stringsAsFactors = FALSE)
+    data.frame (
+        number = issue_number,
+        title = issue_title,
+        stringsAsFactors = FALSE
+    )
 }
 
 #' get_gh_contrib_issue
@@ -356,18 +402,21 @@ get_gh_contrib_issue <- function (org, repo) {
 
     issues <- get_gh_issue_titles (org, repo)
     issue_num <- issues$number [grep ("all contrib", tolower (issues$title))]
-    if (length (issue_num) == 0)
+    if (length (issue_num) == 0) {
         return (NULL)
+    }
 
     tok <- get_gh_token ()
     user <- get_git_user ()
 
-    u <- paste0 ("https://api.github.com/repos/",
-                 org,
-                 "/",
-                 repo,
-                 "/issues/",
-                 issue_num)
+    u <- paste0 (
+        "https://api.github.com/repos/",
+        org,
+        "/",
+        repo,
+        "/issues/",
+        issue_num
+    )
 
     qry <- list (state = "all", per_page = 100, page = 1)
     if (nchar (tok) > 0) {
@@ -380,9 +429,11 @@ get_gh_contrib_issue <- function (org, repo) {
     # That's just the body of the opening comment; the following lines extract
     # all subsequent comments:
     if (nchar (tok) > 0) {
-        x <- httr::GET (paste0 (u, "/comments"),
-                        httr::authenticate (user, tok),
-                        query = qry)
+        x <- httr::GET (
+            paste0 (u, "/comments"),
+            httr::authenticate (user, tok),
+            query = qry
+        )
     } else {
         x <- httr::GET (paste0 (u, "/comments"), query = qry)
     }
@@ -392,7 +443,7 @@ get_gh_contrib_issue <- function (org, repo) {
         first <- regexpr ("@", i)
         i <- strsplit (substring (i, first - 1, nchar (i)), "\\r") [[1]]
         gsub ("\\n", "", i [grep ("@", i)])
-                    })
+    })
 
     unlist (pings)
 }
