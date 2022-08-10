@@ -46,10 +46,18 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
         handle_error <- local({
             i <- i
             function(x) {
-                hs[[i]] <<- structure(list(message = x), class = c("curl_error", "error", "condition"))
+                hs[[i]] <<- structure (
+                    list (message = x),
+                    class = c("curl_error", "error", "condition")
+                )
             }
         })
-        curl::multi_add(h, done = handle_result, fail = handle_error, pool = pool)
+        curl::multi_add (
+            h,
+            done = handle_result,
+            fail = handle_error,
+            pool = pool
+        )
     }
     curl::multi_run(pool = pool)
 
