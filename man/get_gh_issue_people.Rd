@@ -4,7 +4,12 @@
 \alias{get_gh_issue_people}
 \title{get_gh_issue_people}
 \usage{
-get_gh_issue_people(org, repo, exclude_issues = NULL)
+get_gh_issue_people(
+  org,
+  repo,
+  exclude_issues = NULL,
+  exclude_label = "wontfix"
+)
 }
 \arguments{
 \item{org}{Github organisation name for repository}
@@ -14,6 +19,10 @@ extracted}
 
 \item{exclude_issues}{Numbers of any issues (or pull requests) to be excluded
 from lists of contributors.}
+
+\item{exclude_label}{Exclude any contributions from issues with specified
+label (default = "wontfix"; set to \code{NULL} or empty string to include all
+issues).}
 }
 \value{
 List of (authors, contributors), each as character vector of github

@@ -12,6 +12,9 @@
 #' issues. Discussion contributions are only from individuals not present in
 #' either 'issues' or 'code'; and 'issues' contributions are only from
 #' individuals not present in 'code'.
+#' @param exclude_label Exclude any contributions from issues with specified
+#' label (default = "wontfix"; set to `NULL` or empty string to include all
+#' issues).
 #' @param exclude_issues Numbers of any issues (or pull requests) to be excluded
 #' from lists of contributors.
 #' @param num_sections Number of sections in which to divide contributors:
@@ -63,6 +66,7 @@ add_contributors <- function (repo = ".",
                               ncols = 7,
                               files = c ("README.Rmd", "README.md"),
                               type = c ("code", "issues", "discussion"),
+                              exclude_label = "wontfix",
                               exclude_issues = NULL,
                               num_sections = 3,
                               section_names = c (
@@ -106,6 +110,7 @@ add_contributors <- function (repo = ".",
         or$org,
         or$repo,
         type = type,
+        exclude_label = exclude_label,
         exclude_issues = exclude_issues,
         alphabetical = alphabetical,
         quiet = FALSE

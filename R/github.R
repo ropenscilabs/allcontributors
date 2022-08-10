@@ -19,6 +19,7 @@
 #' @export
 get_contributors <- function (org, repo,
                               type = c ("code", "issues", "discussion"),
+                              exclude_label = "wontfix",
                               exclude_issues = NULL,
                               alphabetical = FALSE,
                               check_urls = TRUE,
@@ -53,7 +54,9 @@ get_contributors <- function (org, repo,
             utils::flush.console ()
         }
         ctb_issues <- get_gh_issue_people (
-            org = org, repo = repo,
+            org = org,
+            repo = repo,
+            exclude_label = exclude_label,
             exclude_issues = exclude_issues
         )
 
@@ -212,7 +215,14 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
                                        avatarUrl
                                    }
                                    title
-                                   url,
+                                   labels (first: 100) {
+                                       edges {
+                                           node {
+                                               name
+                                           }
+                                       }
+                                   }
+                                   url
                                    participants (first: 100) {
                                        pageInfo {
                                            hasNextPage
@@ -250,7 +260,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' }
 #' @family github
 #' @export
-get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
+get_gh_issue_people <- function (org, repo, exclude_issues = NULL, exclude_label = "wontfix") {
 
     token <- get_gh_token ()
     gh_cli <- ghql::GraphqlClient$new (
@@ -261,7 +271,7 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
     has_next_page <- TRUE
     end_cursor <- NULL
     issue_authors <- issue_numbers <- issue_author_avatar <- NULL
-    issue_contributors <- issue_contributors_avatar <- list ()
+    issue_contributors <- issue_contributors_avatar <- issue_labels <- list ()
     while (has_next_page) {
         qry <- ghql::Query$new ()
         q <- get_issues_qry (
@@ -292,6 +302,13 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
             issue_contributors_avatar,
             author_avatar
         )
+
+        issue_labels <- c (
+            issue_labels,
+            lapply (dat$node$labels$edges, function (i) {
+                    ifelse (nrow (i) == 0L, "", i$node$name)
+            })
+        )
     }
 
     if (!is.null (exclude_issues)) {
@@ -305,6 +322,21 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL) {
         issue_author_avatar <- issue_author_avatar [-exclude_issues]
         issue_contributors <- issue_contributors [-exclude_issues]
         issue_contributors_avatar <- issue_contributors_avatar [-exclude_issues]
+    }
+
+    if (is.null (exclude_label)) {
+        exclude_label <- ""
+    }
+    if (nzchar (exclude_label)) {
+
+        index <- vapply (issue_labels, function (i) {
+            !any (i %in% exclude_label)
+            }, logical (1L)
+        )
+        issue_authors <- issue_authors [index]
+        issue_author_avatar <- issue_author_avatar [index]
+        issue_contributors <- issue_contributors [index]
+        issue_contributors_avatar <- issue_contributors_avatar [index]
     }
 
     index <- which (!duplicated (issue_authors) &
