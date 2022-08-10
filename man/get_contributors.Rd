@@ -43,3 +43,8 @@ open issues, and contribute to discussions in issues.
 get_contributors (org = "ropenscilabs", repo = "allcontributors")
 }
 }
+\seealso{
+Other main: 
+\code{\link{add_contributors}()}
+}
+\concept{main}

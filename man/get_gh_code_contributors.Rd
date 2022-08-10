@@ -26,3 +26,10 @@ Get list of all code contributors to the code of a repository
 get_gh_code_contributors (org = "ropenscilabs", repo = "allcontributors")
 }
 }
+\seealso{
+Other github: 
+\code{\link{get_gh_contrib_issue}()},
+\code{\link{get_gh_issue_people}()},
+\code{\link{get_gh_issue_titles}()}
+}
+\concept{github}

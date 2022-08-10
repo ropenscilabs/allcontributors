@@ -90,3 +90,8 @@ writeLines ("", f) # blank file in tempdir()
 add_contributors (repo = ".", files = f)
 }
 }
+\seealso{
+Other main: 
+\code{\link{get_contributors}()}
+}
+\concept{main}

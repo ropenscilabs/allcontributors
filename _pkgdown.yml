@@ -1,0 +1,12 @@
+url: https://docs.ropensci.org/allcontributors
+
+figures:
+  dev: grDevices::png
+
+reference:
+- title: Main functions
+  contents:
+  - has_concept("main")
+- title: GitHub issue functions
+  contents:
+  - has_concept("github")

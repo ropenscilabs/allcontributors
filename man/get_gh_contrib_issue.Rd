@@ -26,3 +26,10 @@ github repository.
 get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
 }
 }
+\seealso{
+Other github: 
+\code{\link{get_gh_code_contributors}()},
+\code{\link{get_gh_issue_people}()},
+\code{\link{get_gh_issue_titles}()}
+}
+\concept{github}

@@ -57,6 +57,7 @@
 #' writeLines ("", f) # blank file in tempdir()
 #' add_contributors (repo = ".", files = f)
 #' }
+#' @family main
 #' @export
 add_contributors <- function (repo = ".",
                               ncols = 7,
