@@ -10,6 +10,7 @@ get_contributors(
   type = c("code", "issues", "discussion"),
   exclude_issues = NULL,
   alphabetical = FALSE,
+  check_urls = TRUE,
   quiet = FALSE
 )
 }
@@ -31,6 +32,10 @@ from lists of contributors.}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}
+
+\item{check_urls}{If \code{TRUE} (default), GitHub URLs of all contributors are
+checked to ensure they are still valid. (This is generally the most
+time-consuming stage, so set to 'FALSE' if you are sure all URLs are valid.)}
 
 \item{quiet}{If \code{FALSE}, display progress information on screen.}
 }

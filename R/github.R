@@ -5,6 +5,9 @@
 #' @param org Github organisation name for repository
 #' @param repo Repository within `org` for which contributors are to be
 #' extracted
+#' @param check_urls If `TRUE` (default), GitHub URLs of all contributors are
+#' checked to ensure they are still valid. (This is generally the most
+#' time-consuming stage, so set to 'FALSE' if you are sure all URLs are valid.)
 #' @param quiet If `FALSE`, display progress information on screen.
 #' @inheritParams add_contributors
 #'
@@ -18,6 +21,7 @@ get_contributors <- function (org, repo,
                               type = c ("code", "issues", "discussion"),
                               exclude_issues = NULL,
                               alphabetical = FALSE,
+                              check_urls = TRUE,
                               quiet = FALSE) {
 
     if (!quiet) {
@@ -90,6 +94,10 @@ get_contributors <- function (org, repo,
     }
 
     ctbs <- rbind (ctb_code, issue_authors, issue_contributors)
+
+    if (check_urls) {
+        ctbs <- check_github_urls (ctbs, quiet = quiet)
+    }
     rownames (ctbs) <- NULL
 
     return (ctbs)
