@@ -1,6 +1,9 @@
 # v 0.0.2.00x
 
-Minor changes:
+## Major changes:
 
-- Add new `exclude_issues` parameter to main functions
+- Add new `exclude_labels` and exclude_issues` parameters to main functions
+
+## Minor changes:
+
 - Add `_pkgdown` file for function reference topics
