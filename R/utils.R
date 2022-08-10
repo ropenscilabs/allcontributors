@@ -29,8 +29,9 @@ section_format <- function (x) {
     ret <- 0
     if (!uses_hash) {
         index <- grep ("^-+$", x)
-        if (length (index) > 0)
+        if (length (index) > 0) {
             ret <- floor (stats::median (nchar (x [index])))
+        }
     }
     return (ret)
 }
