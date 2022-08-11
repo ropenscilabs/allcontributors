@@ -183,12 +183,19 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
 get_gh_token <- function (token = "") {
 
-    gitcreds::gitcreds_get ()$password
+    tryCatch (
+        gitcreds::gitcreds_get ()$password,
+        error = function (e) ""
+    )
 }
 
 get_git_user <- function () {
     # whoami::whoami ()
-    git2r::config ()$global$user.name
+    out <- git2r::config ()$global$user.name
+    if (is.null (out)) {
+        out <- ""
+    }
+    return (out)
 }
 
 
