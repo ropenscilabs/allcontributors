@@ -2,7 +2,7 @@
 
 ## Major changes:
 
-- Add new `exclude_labels` and exclude_issues` parameters to main functions
+- Add new `exclude_labels` and `exclude_issues` parameters to main functions
 
 ## Minor changes:
 
