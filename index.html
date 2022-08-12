@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">allcontributors</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.002</span>
       </span>
     </div>
 
@@ -93,18 +93,23 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The package is now on CRAN (as of 2nd Dec 2020), so can be installed with,</p>
+<p>The package is on CRAN, and can be installed with,</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span> <span class="op">(</span><span class="st">"allcontributors"</span><span class="op">)</span></span></code></pre></div>
-<p>Alternatively, a development version can be installed from remote repository host systems using any one of the following options:</p>
+<p>Alternatively, a development version can be installed by enabling the “ropenscilabs” repository from <a href="https://ropenscilabs.r-universe.dev" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    ropenscilabs <span class="op">=</span> <span class="st">'https://ropenscilabs.r-universe.dev'</span>,</span>
+<span>    CRAN <span class="op">=</span> <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> command will then install the development version. Alternatively, any of the following options may be used for those who prefer not to use GitHub:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_git</span><span class="op">(</span><span class="st">"https://git.sr.ht/~ropenscilabs/allcontributors"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_bitbucket</span><span class="op">(</span><span class="st">"mpadge/allcontributors"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_gitlab</span><span class="op">(</span><span class="st">"mpadge/allcontributors"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mpadge/allcontributors"</span><span class="op">)</span></span></code></pre></div>
 <p>The package can then be loaded the usual way:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span> <span class="op">(</span><span class="va"><a href="https://github.com/ropenscilabs/allcontributors" class="external-link">allcontributors</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -123,24 +128,26 @@
 <p>If the main <code>README</code> file(s) contains a markdown section entitled <code>"Contributors"</code>, the <a href="https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html" class="external-link"><code>add_contributors()</code></a> function will add a table of contributors there, otherwise it will be appended to the end of the document(s). If you wish your contributors table to be somewhere other than at the end of the <code>README</code> file(s), start by adding an empty <code>"## Contributors</code> section to the file(s) and the function will insert the table at that point.</p>
 <p>Any time you wish to update your contributor list, simply re-run the <code><a href="reference/add_contributors.html">add_contributors()</a></code> function. There’s even an <code>open_issue</code> parameter that will automatically open or update a github issue on your repository so that contributors will be pinged about them being added to your list of contributors.</p>
 <p>The data used to construct the contributions table can also be extracted without writing to the <code>README</code> file(s) with the function <a href="https://ropenscilabs.github.io/allcontributors/reference/get_contributors.html" class="external-link"><code>get_contributors()</code></a>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span><span class="op">(</span>org <span class="op">=</span> <span class="st">"ropenscilabs"</span>, repo <span class="op">=</span> <span class="st">"allcontributors"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ★  Extracting code contributors</span></span>
-<span><span class="co">#&gt; ✔ Extracted code contributors</span></span>
-<span><span class="co">#&gt; ★  Extracting github issue contributors</span></span>
-<span><span class="co">#&gt; ✔ Extracted github issue contributors</span></span>
-<span><span class="co">#&gt;       logins contributions</span></span>
-<span><span class="co">#&gt; 1     mpadge           142</span></span>
-<span><span class="co">#&gt; 2     maelle            NA</span></span>
-<span><span class="co">#&gt; 3 shamindras            NA</span></span>
-<span><span class="co">#&gt;                                                                                           avatar</span></span>
-<span><span class="co">#&gt; 1                                            https://avatars.githubusercontent.com/u/6697851?v=4</span></span>
-<span><span class="co">#&gt; 2 https://avatars.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&amp;v=4</span></span>
-<span><span class="co">#&gt; 3 https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&amp;v=4</span></span>
-<span><span class="co">#&gt;            type</span></span>
-<span><span class="co">#&gt; 1          code</span></span>
-<span><span class="co">#&gt; 2 issue_authors</span></span>
-<span><span class="co">#&gt; 3 issue_authors</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_contributors.html">get_contributors</a></span><span class="op">(</span>org <span class="op">=</span> <span class="st">"ropenscilabs"</span>, repo <span class="op">=</span> <span class="st">"allcontributors"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#&gt; ✔  Extracted code contributors</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; ✔  Extracted github issue contributors</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; ✔  Downloaded GitHub URLs</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt;       logins contributions</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; 1     mpadge           176</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; 2     maelle            NA</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; 3 shamindras            NA</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; 4 assignUser            NA</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;                                                                                            avatar</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; 1                                             https://avatars.githubusercontent.com/u/6697851?v=4</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; 2  https://avatars.githubusercontent.com/u/8360597?u=824f03caa87c92420352e3dd9a05470320a67412&amp;v=4</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; 3  https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&amp;v=4</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; 4 https://avatars.githubusercontent.com/u/16141871?u=bbf2ca4641e8ec034a9cdb583e62e3a94c372824&amp;v=4</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;            type</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 1          code</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; 2 issue_authors</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 3 issue_authors</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; 4 issue_authors</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="updating-contributor-acknowledgements">Updating Contributor Acknowledgements<a class="anchor" aria-label="anchor" href="#updating-contributor-acknowledgements"></a>
