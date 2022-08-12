@@ -40,24 +40,34 @@ package:
 2.  Works locally without any bot integration
 3.  Can add contributors to any file, not just the main README
 4.  Offers a variety of formats for listing contributors:
-    1.  divided into sections by types of contributions, or as a single
+    1)  divided into sections by types of contributions, or as a single
         section
-    2.  presented as full grids (like [the
+    2)  presented as full grids (like [the
         original](https://github.com/all-contributors/all-contributors/blob/master/README.md#contributors-)),
         numbered lists of github user names only, or single text strings
         of comma-separated names.
 
 ## Installation
 
-The package is now on CRAN (as of 2nd Dec 2020), so can be installed
-with,
+The package is on CRAN, and can be installed with,
 
 ``` r
 install.packages ("allcontributors")
 ```
 
-Alternatively, a development version can be installed from remote
-repository host systems using any one of the following options:
+Alternatively, a development version can be installed by enabling the
+“ropenscilabs” repository from
+[r-universe](https://ropenscilabs.r-universe.dev):
+
+``` r
+options(repos = c(
+    ropenscilabs = 'https://ropenscilabs.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
+```
+
+The `install.packages()` command will then install the development
+version. Alternatively, any of the following options may be used for
+those who prefer not to use GitHub:
 
 ``` r
 # install.packages("remotes")
@@ -120,23 +130,26 @@ without writing to the `README` file(s) with the function
 
 ``` r
 get_contributors(org = "ropenscilabs", repo = "allcontributors")
-#> ★  Extracting code contributors
-#> ✔ Extracted code contributors
-#> ★  Extracting github issue contributors
-#> ✔ Extracted github issue contributors
-#>       logins contributions
-#> 1     mpadge           142
-#> 2     maelle            NA
-#> 3 shamindras            NA
-#>                                                                                           avatar
-#> 1                                            https://avatars.githubusercontent.com/u/6697851?v=4
-#> 2 https://avatars.githubusercontent.com/u/8360597?u=144e03ae2bbe8a69318cb0c6c3f647e25aec6763&v=4
-#> 3 https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&v=4
-#>            type
-#> 1          code
-#> 2 issue_authors
-#> 3 issue_authors
 ```
+
+    #> ✔  Extracted code contributors
+    #> ✔  Extracted github issue contributors
+    #> ✔  Downloaded GitHub URLs
+    #>       logins contributions
+    #> 1     mpadge           176
+    #> 2     maelle            NA
+    #> 3 shamindras            NA
+    #> 4 assignUser            NA
+    #>                                                                                            avatar
+    #> 1                                             https://avatars.githubusercontent.com/u/6697851?v=4
+    #> 2  https://avatars.githubusercontent.com/u/8360597?u=824f03caa87c92420352e3dd9a05470320a67412&v=4
+    #> 3  https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&v=4
+    #> 4 https://avatars.githubusercontent.com/u/16141871?u=bbf2ca4641e8ec034a9cdb583e62e3a94c372824&v=4
+    #>            type
+    #> 1          code
+    #> 2 issue_authors
+    #> 3 issue_authors
+    #> 4 issue_authors
 
 ## Updating Contributor Acknowledgements
 
@@ -170,17 +183,19 @@ project, you agree to abide by its terms.
 
 ## Contributors
 
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+All contributions to this project are gratefully acknowledged using the
+[`allcontributors`
+package](https://github.com/ropenscilabs/allcontributors) following the
+[all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
 
 ### Code
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -189,14 +204,11 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
 </tr>
-
 </table>
-
 
 ### Issues
 
 <table>
-
 <tr>
 <td align="center">
 <a href="https://github.com/maelle">
@@ -217,9 +229,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3AassignUser">assignUser</a>
 </td>
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->

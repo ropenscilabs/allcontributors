@@ -69,13 +69,24 @@ avatar as listed on the README. In comparison, this R package:
 
 ## Installation
 
-The package is now on CRAN (as of 2nd Dec 2020), so can be installed with,
+The package is on CRAN, and can be installed with,
 ```{r cran-install, eval = FALSE}
 install.packages ("allcontributors")
 ```
 
-Alternatively, a development version can be installed from remote repository
-host systems using any one of the following options:
+Alternatively, a development version can be installed by enabling the
+"ropenscilabs" repository from
+[r-universe](https://ropenscilabs.r-universe.dev):
+
+```{r}
+options(repos = c(
+    ropenscilabs = 'https://ropenscilabs.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
+```
+
+The `install.packages()` command will then install the development version.
+Alternatively, any of the following options may be used for those who prefer
+not to use GitHub:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("remotes")
@@ -86,10 +97,7 @@ remotes::install_github("mpadge/allcontributors")
 ```
 
 The package can then be loaded the usual way:
-```{r load, echo = FALSE, message = FALSE}
-devtools::load_all (".", export_all = FALSE)
-```
-```{r load-fakey, eval = FALSE}
+```{r load-fakey, eval = TRUE}
 library (allcontributors)
 ```
 
@@ -137,9 +145,29 @@ The data used to construct the contributions table can also be extracted
 without writing to the `README` file(s) with the function
 [`get_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/get_contributors.html):
 
-```{r get_contributors}
+```{r get_contributors-data, eval = TRUE, echo = FALSE}
+dat <- data.frame (
+    logins = c ("mpadge", "maelle", "shamindras", "assignUser"),
+    contributions = c (176L, rep (NA_integer_, 3L)),
+    avatar = c (
+        "https://avatars.githubusercontent.com/u/6697851?v=4",
+        "https://avatars.githubusercontent.com/u/8360597?u=824f03caa87c92420352e3dd9a05470320a67412&v=4",
+        "https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&v=4",
+        "https://avatars.githubusercontent.com/u/16141871?u=bbf2ca4641e8ec034a9cdb583e62e3a94c372824&v=4"
+    ),
+    type = c ("code", rep ("issue_authors", 3L))
+)
+```
+```{r get_contributors-fakey, eval = FALSE}
 get_contributors(org = "ropenscilabs", repo = "allcontributors")
 ```
+```{r get_contributors-output, eval = TRUE, echo = FALSE}
+cat (cli::col_green (cli::symbol$tick), " Extracted code contributors\n")
+cat (cli::col_green (cli::symbol$tick), " Extracted github issue contributors\n")
+cat (cli::col_green (cli::symbol$tick), " Downloaded GitHub URLs\n")
+print (dat)
+```
+
 
 ## Updating Contributor Acknowledgements
 
