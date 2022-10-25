@@ -232,6 +232,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
                                            }
                                        }
                                    }
+                                   stateReason
                                    url
                                    participants (first: 100) {
                                        pageInfo {
@@ -258,7 +259,7 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' get_gh_issue_people
 #'
 #' Extract lists of (1) all authors of, and (2) all contributors to, all github
-#' issues for nominated repository
+#' issues for nominated repository, excluding issues closed as "not planned"
 #'
 #' @inheritParams get_contributors
 #' @return List of (authors, contributors), each as character vector of github
@@ -281,7 +282,8 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL,
 
     has_next_page <- TRUE
     end_cursor <- NULL
-    issue_authors <- issue_numbers <- issue_author_avatar <- NULL
+    issue_authors <- issue_numbers <- issue_author_avatar <-
+        issue_state_reason <- NULL
     issue_contributors <- issue_contributors_avatar <- issue_labels <- list ()
     while (has_next_page) {
         qry <- ghql::Query$new ()
@@ -306,6 +308,10 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL,
             issue_author_avatar,
             dat$node$author$avatarUrl
         )
+        issue_state_reason <- c (
+            issue_state_reason,
+            dat$node$stateReason
+        )
 
         author <- dat$node$participants$edges
 
@@ -323,6 +329,16 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL,
                     ifelse (nrow (i) == 0L, "", i$node$name)
             })
         )
+    }
+
+    # rm any issues closed as "not planned"
+    not_planned <- which (issue_state_reason == "NOT_PLANNED")
+    if (length (not_planned) > 0L) {
+        issue_numbers <- issue_numbers [-not_planned]
+        issue_authors <- issue_authors [-not_planned]
+        issue_author_avatar <- issue_author_avatar [-not_planned]
+        issue_contributors <- issue_contributors [-not_planned]
+        issue_contributors_avatar <- issue_contributors_avatar [-not_planned]
     }
 
     if (!is.null (exclude_issues)) {
