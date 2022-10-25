@@ -10,6 +10,7 @@ get_contributors(
   type = c("code", "issues", "discussion"),
   exclude_label = "wontfix",
   exclude_issues = NULL,
+  exclude_not_planned = exclude_not_planned,
   alphabetical = FALSE,
   check_urls = TRUE,
   quiet = FALSE
@@ -34,6 +35,9 @@ issues).}
 
 \item{exclude_issues}{Numbers of any issues (or pull requests) to be excluded
 from lists of contributors.}
+
+\item{exclude_not_planned}{If \code{TRUE} (default), exclude contributions to any
+issues closed as "not planned".}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}

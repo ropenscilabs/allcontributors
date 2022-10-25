@@ -8,7 +8,8 @@ get_gh_issue_people(
   org,
   repo,
   exclude_issues = NULL,
-  exclude_label = "wontfix"
+  exclude_label = "wontfix",
+  exclude_not_planned = exclude_not_planned
 )
 }
 \arguments{
@@ -23,6 +24,9 @@ from lists of contributors.}
 \item{exclude_label}{Exclude any contributions from issues with specified
 label (default = "wontfix"; set to \code{NULL} or empty string to include all
 issues).}
+
+\item{exclude_not_planned}{If \code{TRUE} (default), exclude contributions to any
+issues closed as "not planned".}
 }
 \value{
 List of (authors, contributors), each as character vector of github
@@ -30,7 +34,7 @@ login names.
 }
 \description{
 Extract lists of (1) all authors of, and (2) all contributors to, all github
-issues for nominated repository
+issues for nominated repository, excluding issues closed as "not planned"
 }
 \examples{
 \dontrun{

@@ -17,6 +17,8 @@
 #' issues).
 #' @param exclude_issues Numbers of any issues (or pull requests) to be excluded
 #' from lists of contributors.
+#' @param exclude_not_planned If `TRUE` (default), exclude contributions to any
+#' issues closed as "not planned".
 #' @param num_sections Number of sections in which to divide contributors:
 #' \itemize{
 #' \item{1} All contributions within single section regardless of `type`
@@ -68,6 +70,7 @@ add_contributors <- function (repo = ".",
                               type = c ("code", "issues", "discussion"),
                               exclude_label = "wontfix",
                               exclude_issues = NULL,
+                              exclude_not_planned = TRUE,
                               num_sections = 3,
                               section_names = c (
                                   "Code",
@@ -112,6 +115,7 @@ add_contributors <- function (repo = ".",
         type = type,
         exclude_label = exclude_label,
         exclude_issues = exclude_issues,
+        exclude_not_planned = exclude_not_planned,
         alphabetical = alphabetical,
         quiet = FALSE
     )

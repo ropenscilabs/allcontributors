@@ -21,6 +21,7 @@ get_contributors <- function (org, repo,
                               type = c ("code", "issues", "discussion"),
                               exclude_label = "wontfix",
                               exclude_issues = NULL,
+                              exclude_not_planned = exclude_not_planned,
                               alphabetical = FALSE,
                               check_urls = TRUE,
                               quiet = FALSE) {
@@ -57,7 +58,8 @@ get_contributors <- function (org, repo,
             org = org,
             repo = repo,
             exclude_label = exclude_label,
-            exclude_issues = exclude_issues
+            exclude_issues = exclude_issues,
+            exclude_not_planned = exclude_not_planned
         )
 
         index <- which (!ctb_issues$authors$login %in% ctb_code$logins)
@@ -271,8 +273,10 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 #' }
 #' @family github
 #' @export
-get_gh_issue_people <- function (org, repo, exclude_issues = NULL,
-                                 exclude_label = "wontfix") {
+get_gh_issue_people <- function (org, repo,
+                                 exclude_issues = NULL,
+                                 exclude_label = "wontfix",
+                                 exclude_not_planned = exclude_not_planned) {
 
     token <- get_gh_token ()
     gh_cli <- ghql::GraphqlClient$new (
@@ -333,7 +337,7 @@ get_gh_issue_people <- function (org, repo, exclude_issues = NULL,
 
     # rm any issues closed as "not planned"
     not_planned <- which (issue_state_reason == "NOT_PLANNED")
-    if (length (not_planned) > 0L) {
+    if (exclude_not_planned && length (not_planned) > 0L) {
         issue_numbers <- issue_numbers [-not_planned]
         issue_authors <- issue_authors [-not_planned]
         issue_author_avatar <- issue_author_avatar [-not_planned]
