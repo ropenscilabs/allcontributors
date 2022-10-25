@@ -1,6 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
+
 [![R build
 status](https://github.com/ropenscilabs/allcontributors/workflows/R-CMD-check/badge.svg)](https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check)
 [![codecov](https://codecov.io/gh/ropenscilabs/allcontributors/branch/master/graph/badge.svg)](https://codecov.io/gh/ropenscilabs/allcontributors)
@@ -72,6 +72,7 @@ those who prefer not to use GitHub:
 ``` r
 # install.packages("remotes")
 remotes::install_git("https://git.sr.ht/~ropenscilabs/allcontributors")
+remotes::install_git("https://codeberg.org/mpadge/allcontributors")
 remotes::install_bitbucket("mpadge/allcontributors")
 remotes::install_gitlab("mpadge/allcontributors")
 remotes::install_github("mpadge/allcontributors")
