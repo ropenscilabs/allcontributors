@@ -10,7 +10,7 @@ get_contributors(
   type = c("code", "issues", "discussion"),
   exclude_label = "wontfix",
   exclude_issues = NULL,
-  exclude_not_planned = exclude_not_planned,
+  exclude_not_planned = TRUE,
   alphabetical = FALSE,
   check_urls = TRUE,
   quiet = FALSE
