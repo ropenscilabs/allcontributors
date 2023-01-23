@@ -67,7 +67,7 @@ get_contributors <- function (org, repo,
 
         index <- which (
             !ctb_issues$contributors$login %in%
-            c (ctb_code$logins, ctb_issues$authors$login)
+                c (ctb_code$logins, ctb_issues$authors$login)
         )
         ctb_issues$contributors <- ctb_issues$contributors [index, ]
 
@@ -155,9 +155,10 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
 
         if (length (tok) > 0) {
             x <- httr::GET (
-                    u,
-                    httr::authenticate (user, tok),
-                    query = params) %>%
+                u,
+                httr::authenticate (user, tok),
+                query = params
+            ) %>%
                 httr::content ()
         } else {
             x <- httr::GET (u, query = params) %>%
@@ -330,7 +331,7 @@ get_gh_issue_people <- function (org, repo,
         issue_labels <- c (
             issue_labels,
             lapply (dat$node$labels$edges, function (i) {
-                    ifelse (nrow (i) == 0L, "", i$node$name)
+                ifelse (nrow (i) == 0L, "", i$node$name)
             })
         )
     }
@@ -365,8 +366,7 @@ get_gh_issue_people <- function (org, repo,
 
         index <- vapply (issue_labels, function (i) {
             !any (i %in% exclude_label)
-            }, logical (1L)
-        )
+        }, logical (1L))
         issue_authors <- issue_authors [index]
         issue_author_avatar <- issue_author_avatar [index]
         issue_contributors <- issue_contributors [index]

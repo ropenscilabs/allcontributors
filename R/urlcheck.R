@@ -11,7 +11,7 @@
 check_github_urls <- function (ctbs, quiet = FALSE) {
 
     urls <- paste0 ("https://github.com/", ctbs$logins)
-    hs <- vector ("list", length(urls))
+    hs <- vector ("list", length (urls))
     pool <- curl::new_pool ()
 
     tok <- get_gh_token ()
@@ -35,20 +35,20 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
         )
 
         if (nzchar (tok)) {
-            curl::handle_setheaders (h, "Authorization" = paste("token", tok))
+            curl::handle_setheaders (h, "Authorization" = paste ("token", tok))
         }
         handle_result <- local ({
-          i <- i
-          function(x) {
-            hs [[i]] <<- x
-          }
-        })
-        handle_error <- local({
             i <- i
-            function(x) {
-                hs[[i]] <<- structure (
+            function (x) {
+                hs [[i]] <<- x
+            }
+        })
+        handle_error <- local ({
+            i <- i
+            function (x) {
+                hs [[i]] <<- structure (
                     list (message = x),
-                    class = c("curl_error", "error", "condition")
+                    class = c ("curl_error", "error", "condition")
                 )
             }
         })
@@ -59,17 +59,17 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
             pool = pool
         )
     }
-    curl::multi_run(pool = pool)
+    curl::multi_run (pool = pool)
 
     if (!quiet) {
         message (
-                 "\r", cli::col_green (cli::symbol$tick),
-                 " Checked GitHub URLs    "
+            "\r", cli::col_green (cli::symbol$tick),
+            " Checked GitHub URLs    "
         )
     }
 
-    out <- vector ("list", length(hs))
-    for (i in seq_along(out)) {
+    out <- vector ("list", length (hs))
+    for (i in seq_along (out)) {
         if (inherits (hs [[i]], "error")) {
             out [[i]] <- -1L
         } else {

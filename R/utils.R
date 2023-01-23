@@ -1,4 +1,3 @@
-
 #' Does a file already have a "Contributors" section?
 #' @param x A character vector with the contents of a .Rmd/.md file
 #' @return Logical variable indicating whether file already has a contributors
