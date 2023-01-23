@@ -60,9 +60,10 @@ Alternatively, a development version can be installed by enabling the
 [r-universe](https://ropenscilabs.r-universe.dev):
 
 ``` r
-options(repos = c(
-    ropenscilabs = 'https://ropenscilabs.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+options (repos = c (
+    ropenscilabs = "https://ropenscilabs.r-universe.dev",
+    CRAN = "https://cloud.r-project.org"
+))
 ```
 
 The `install.packages()` command will then install the development
@@ -71,11 +72,11 @@ those who prefer not to use GitHub:
 
 ``` r
 # install.packages("remotes")
-remotes::install_git("https://git.sr.ht/~ropenscilabs/allcontributors")
-remotes::install_git("https://codeberg.org/mpadge/allcontributors")
-remotes::install_bitbucket("mpadge/allcontributors")
-remotes::install_gitlab("mpadge/allcontributors")
-remotes::install_github("mpadge/allcontributors")
+remotes::install_git ("https://git.sr.ht/~ropenscilabs/allcontributors")
+remotes::install_git ("https://codeberg.org/mpadge/allcontributors")
+remotes::install_bitbucket ("mpadge/allcontributors")
+remotes::install_gitlab ("mpadge/allcontributors")
+remotes::install_github ("mpadge/allcontributors")
 ```
 
 The package can then be loaded the usual way:
@@ -130,7 +131,7 @@ without writing to the `README` file(s) with the function
 [`get_contributors()`](https://docs.ropensci.org/allcontributors/reference/get_contributors.html):
 
 ``` r
-get_contributors(org = "ropenscilabs", repo = "allcontributors")
+get_contributors (org = "ropenscilabs", repo = "allcontributors")
 ```
 
     #> ✔  Extracted code contributors

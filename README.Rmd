@@ -12,14 +12,14 @@ output:
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  warning = TRUE,
-  message = TRUE,
-  width = 120,
-  comment = "#>",
-  fig.retina = 2,
-  fig.path = "README-"
+knitr::opts_chunk$set (
+    collapse = TRUE,
+    warning = TRUE,
+    message = TRUE,
+    width = 120,
+    comment = "#>",
+    fig.retina = 2,
+    fig.path = "README-"
 )
 ```
 
@@ -79,9 +79,10 @@ Alternatively, a development version can be installed by enabling the
 [r-universe](https://ropenscilabs.r-universe.dev):
 
 ```{r}
-options(repos = c(
-    ropenscilabs = 'https://ropenscilabs.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+options (repos = c (
+    ropenscilabs = "https://ropenscilabs.r-universe.dev",
+    CRAN = "https://cloud.r-project.org"
+))
 ```
 
 The `install.packages()` command will then install the development version.
@@ -90,11 +91,11 @@ not to use GitHub:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("remotes")
-remotes::install_git("https://git.sr.ht/~ropenscilabs/allcontributors")
-remotes::install_git("https://codeberg.org/mpadge/allcontributors")
-remotes::install_bitbucket("mpadge/allcontributors")
-remotes::install_gitlab("mpadge/allcontributors")
-remotes::install_github("mpadge/allcontributors")
+remotes::install_git ("https://git.sr.ht/~ropenscilabs/allcontributors")
+remotes::install_git ("https://codeberg.org/mpadge/allcontributors")
+remotes::install_bitbucket ("mpadge/allcontributors")
+remotes::install_gitlab ("mpadge/allcontributors")
+remotes::install_github ("mpadge/allcontributors")
 ```
 
 The package can then be loaded the usual way:
@@ -160,7 +161,7 @@ dat <- data.frame (
 )
 ```
 ```{r get_contributors-fakey, eval = FALSE}
-get_contributors(org = "ropenscilabs", repo = "allcontributors")
+get_contributors (org = "ropenscilabs", repo = "allcontributors")
 ```
 ```{r get_contributors-output, eval = TRUE, echo = FALSE}
 cat (cli::col_green (cli::symbol$tick), " Extracted code contributors\n")
