@@ -34,3 +34,17 @@ section_format <- function (x) {
     }
     return (ret)
 }
+
+#' A `gert` version of `git2r::in_repository()`.
+#'
+#' See https://github.com/ropenscilabs/allcontributors/issues/27
+#' @noRd
+in_git_repository <- function (path = ".") {
+
+    res <- tryCatch (
+        gert::git_info (),
+        error = function (e) NULL
+    )
+
+    return (!is.null (res))
+}

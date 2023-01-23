@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.1.0.018
+Version: 0.1.0.019
 Authors@R: 
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre"))
 Description: Acknowledge all contributors to a project via a single
@@ -15,8 +15,8 @@ Imports:
     cli,
     clipr,
     curl,
+    gert,
     ghql,
-    git2r,
     gitcreds,
     httr,
     jsonlite,

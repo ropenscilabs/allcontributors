@@ -82,7 +82,7 @@ add_contributors <- function (repo = ".",
                               open_issue = FALSE,
                               force_update = FALSE) {
 
-    if (!git2r::in_repository (repo)) {
+    if (!in_git_repository (repo)) {
         stop ("The path [", repo, "] does not appear to be a git repository")
     }
 
@@ -155,7 +155,8 @@ match_type_arg <- function (type) {
 }
 
 get_org_repo <- function (repo) {
-    remote <- git2r::remote_url (repo)
+
+    remote <- gert::git_remote_list (repo)$url
     remote <- remote [grep ("github", remote)] [1]
 
     if (length (remote) != 1) {

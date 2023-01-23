@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0.018",
+  "version": "0.1.0.019",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -126,6 +126,18 @@
     },
     "4": {
       "@type": "SoftwareApplication",
+      "identifier": "gert",
+      "name": "gert",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=gert"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "ghql",
       "name": "ghql",
       "provider": {
@@ -135,18 +147,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ghql"
-    },
-    "5": {
-      "@type": "SoftwareApplication",
-      "identifier": "git2r",
-      "name": "git2r",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=git2r"
     },
     "6": {
       "@type": "SoftwareApplication",
@@ -198,7 +198,7 @@
     },
     "SystemRequirements": {}
   },
-  "fileSize": "97.473KB",
+  "fileSize": "101.487KB",
   "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
   "contIntegration": [
