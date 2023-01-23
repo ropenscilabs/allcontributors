@@ -87,7 +87,7 @@ library (allcontributors)
 ## Usage
 
 The primary function of the package,
-[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html),
+[`add_contributors()`](https://docs.ropensci.org/allcontributors/reference/add_contributors.html),
 adds a table of all contributors by default to the main `README.md` file
 (and `README.Rmd` if that exists). Tables or lists can be added to other
 files by specifying the `files` argument of that function. The
@@ -112,7 +112,7 @@ file `~/.Renviron`).
 
 If the main `README` file(s) contains a markdown section entitled
 `"Contributors"`, the
-[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
+[`add_contributors()`](https://docs.ropensci.org/allcontributors/reference/add_contributors.html)
 function will add a table of contributors there, otherwise it will be
 appended to the end of the document(s). If you wish your contributors
 table to be somewhere other than at the end of the `README` file(s),
@@ -127,7 +127,7 @@ of contributors.
 
 The data used to construct the contributions table can also be extracted
 without writing to the `README` file(s) with the function
-[`get_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/get_contributors.html):
+[`get_contributors()`](https://docs.ropensci.org/allcontributors/reference/get_contributors.html):
 
 ``` r
 get_contributors(org = "ropenscilabs", repo = "allcontributors")
@@ -156,23 +156,23 @@ get_contributors(org = "ropenscilabs", repo = "allcontributors")
 
 “Contributors” sections of files will be automatically updated to
 reflect any new contributions by simply calling
-[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html).
+[`add_contributors()`](https://docs.ropensci.org/allcontributors/reference/add_contributors.html).
 If your contributors have not changed then your lists of
 acknowledgements will not be changed. The
-[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
+[`add_contributors()`](https://docs.ropensci.org/allcontributors/reference/add_contributors.html)
 function has an additional parameter which may be set to
 `force_update = TRUE` to force lists to be updated regardless of whether
 contributions have changed. This can be used to change the formats of
 acknowledgements at any time. If anything goes wrong, the easiest way to
 replace a contributions section is to simply delete the old ones from
 all files, and call
-[`add_contributors()`](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
+[`add_contributors()`](https://docs.ropensci.org/allcontributors/reference/add_contributors.html)
 again.
 
 ## More Information
 
 The package has a [single
-vignette](https://ropenscilabs.github.io/allcontributors/articles/allcontributors.html)
+vignette](https://docs.ropensci.org/allcontributors/articles/allcontributors.html)
 which visually demonstrates the various formats in which an
 “allcontributors” section can be presented.
 
