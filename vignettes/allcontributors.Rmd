@@ -21,7 +21,7 @@ library (allcontributors)
 
 The main functionality of the [`allcontributors`
 package](https://github.com/ropenscilabs/allcontributors) is described in the
-main [`README`](https://ropenscilabs.github.io/allcontributors/). This vignette
+main [`README`](https://docs.ropensci.org/allcontributors/). This vignette
 provides a visual reference for the various options available for formatting
 contributors.
 
@@ -31,7 +31,7 @@ contributors.
 The following represents the default format of contributors divided into three
 sections ("Code", "Issue Authors", and "Issue Contributors"), with each section
 formatted as a grid with seven columns (determined by the [`ncols`
-parameter](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)).
+parameter](https://docs.ropensci.org/allcontributors/reference/add_contributors.html)).
 The images ("Avatars") are hyperlinked to the main github pages of each
 contributor, and the github names below them are linked to the contributions
 made to the package by each contributor. The following uses dummy avatars
@@ -222,7 +222,7 @@ may be renamed with the `section_names` parameter.)
 ## List Format 
 
 The `format` parameter of the [`add_contributors()`
-function](https://ropenscilabs.github.io/allcontributors/reference/add_contributors.html)
+function](https://docs.ropensci.org/allcontributors/reference/add_contributors.html)
 accepts the three options of "grid", "list", or "text." With the three default
 section titles as shown above, the "list" option gives output that looks like this:
 
