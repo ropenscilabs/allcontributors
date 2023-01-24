@@ -431,34 +431,30 @@ get_gh_issue_people <- function (org, repo,
 #' @export
 get_gh_issue_titles <- function (org, repo) {
 
-    token <- get_gh_token ()
-    gh_cli <- ghql::GraphqlClient$new (
-        url = "https://api.github.com/graphql",
-        headers = list (Authorization = paste0 ("Bearer ", token))
-    )
-
     has_next_page <- TRUE
     end_cursor <- NULL
     issue_title <- issue_number <- NULL
     while (has_next_page) {
-        qry <- ghql::Query$new ()
         q <- get_issues_qry (
-            gh_cli,
             org = org,
             repo = repo,
             end_cursor = end_cursor
         )
-        qry$query ("issues", q)
-
-        dat <- gh_cli$exec (qry$queries$issues) %>%
-            jsonlite::fromJSON ()
+        dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
         end_cursor <- dat$data$repository$issues$pageInfo$endCursor
 
         dat <- dat$data$repository$issues$edges
-        issue_title <- c (issue_title, dat$node$title)
-        issue_number <- c (issue_number, dat$node$number)
+
+        issue_number <- c (
+            issue_number,
+            vapply (dat, function (i) i$node$number, integer (1L))
+        )
+        issue_title <- c (
+            issue_title,
+            vapply (dat, function (i) i$node$title, character (1L))
+        )
     }
 
     data.frame (
