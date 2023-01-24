@@ -163,8 +163,9 @@ get_org_repo <- function (repo) {
         stop ("Repository must have github remote")
     }
 
-    org <- utils::tail (strsplit (remote, "/") [[1]], 2) [1]
-    repo <- utils::tail (strsplit (remote, "/") [[1]], 1) [1]
+    parsed_remote <- parse_github_remotes(remote)
+    org <- parsed_remote[["repo_owner"]]
+    repo <- parsed_remote[["repo_name"]]
 
     list (
         org = org,
