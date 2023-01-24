@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0.028",
+  "version": "0.1.0.029",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -72,19 +72,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "vcr",
-      "name": "vcr",
-      "version": ">= 0.6.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=vcr"
     }
   ],
   "softwareRequirements": {
@@ -162,15 +149,15 @@
     },
     "7": {
       "@type": "SoftwareApplication",
-      "identifier": "httr",
-      "name": "httr",
+      "identifier": "httr2",
+      "name": "httr2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=httr"
+      "sameAs": "https://CRAN.R-project.org/package=httr2"
     },
     "8": {
       "@type": "SoftwareApplication",
@@ -198,7 +185,7 @@
     },
     "SystemRequirements": {}
   },
-  "fileSize": "101.487KB",
+  "fileSize": "73.163KB",
   "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
   "contIntegration": [
