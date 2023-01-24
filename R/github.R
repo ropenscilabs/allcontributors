@@ -526,9 +526,7 @@ get_gh_contrib_issue <- function (org, repo) {
     cmts <- c (cmts, x$body)
 
     pings <- lapply (cmts, function (i) {
-        first <- regexpr ("@", i)
-        i <- strsplit (substring (i, first - 1, nchar (i)), "\\r") [[1]]
-        gsub ("\\n", "", i [grep ("@", i)])
+        regmatches (i, regexpr ("@[^[:space:]]+", i))
     })
 
     unlist (pings)
