@@ -209,7 +209,7 @@ get_git_user <- function () {
 # ********************  GITHUB ISSUE EXTRACTION ********************
 
 
-get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
+get_issues_qry <- function (org, repo, end_cursor = NULL) {
     after_txt <- ""
     if (!is.null (end_cursor)) {
         after_txt <- paste0 (", after:\"", end_cursor, "\"")
@@ -281,63 +281,73 @@ get_issues_qry <- function (gh_cli, org, repo, end_cursor = NULL) {
 get_gh_issue_people <- function (org, repo,
                                  exclude_issues = NULL,
                                  exclude_label = "wontfix",
-                                 exclude_not_planned = exclude_not_planned) {
-
-    token <- get_gh_token ()
-    gh_cli <- ghql::GraphqlClient$new (
-        url = "https://api.github.com/graphql",
-        headers = list (Authorization = paste0 ("Bearer ", token))
-    )
+                                 exclude_not_planned = TRUE) {
 
     has_next_page <- TRUE
     end_cursor <- NULL
     issue_authors <- issue_numbers <- issue_author_avatar <-
         issue_state_reason <- NULL
     issue_contributors <- issue_contributors_avatar <- issue_labels <- list ()
+
     while (has_next_page) {
-        qry <- ghql::Query$new ()
+
         q <- get_issues_qry (
-            gh_cli,
             org = org,
             repo = repo,
             end_cursor = end_cursor
         )
-        qry$query ("issues", q)
-
-        dat <- gh_cli$exec (qry$queries$issues) %>%
-            jsonlite::fromJSON ()
+        dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
         end_cursor <- dat$data$repository$issues$pageInfo$endCursor
 
         dat <- dat$data$repository$issues$edges
-        issue_numbers <- c (issue_numbers, dat$node$number)
-        issue_authors <- c (issue_authors, dat$node$author$login)
+        issue_numbers <- c (
+            issue_numbers,
+            vapply (dat, function (i) i$node$number, integer (1L))
+        )
+        issue_authors <- c (
+            issue_authors,
+            vapply (dat, function (i) i$node$author$login, character (1L))
+        )
         issue_author_avatar <- c (
             issue_author_avatar,
-            dat$node$author$avatarUrl
+            vapply (dat, function (i) i$node$author$avatarUrl, character (1L))
         )
         issue_state_reason <- c (
             issue_state_reason,
-            dat$node$stateReason
+            vapply (dat, function (i) {
+                out <- i$node$stateReason
+                ifelse (length (out) == 0, NA_character_, out)
+            }, character (1L))
         )
 
         author <- dat$node$participants$edges
 
-        author_login <- lapply (author, function (i) i$node$login)
-        author_avatar <- lapply (author, function (i) i$node$avatarUrl)
+        author_login <- lapply (dat, function (i) {
+            edges <- i$node$participants$edges
+            unlist (lapply (edges, function (j) j$node$login))
+        })
+        author_avatar <- lapply (dat, function (i) {
+            edges <- i$node$participants$edges
+            unlist (lapply (edges, function (j) j$node$avatarUrl))
+        })
+
         issue_contributors <- c (issue_contributors, author_login)
         issue_contributors_avatar <- c (
             issue_contributors_avatar,
             author_avatar
         )
 
-        issue_labels <- c (
-            issue_labels,
-            lapply (dat$node$labels$edges, function (i) {
-                ifelse (nrow (i) == 0L, "", i$node$name)
-            })
-        )
+        these_labels <- lapply (dat, function (i) {
+            out <- i$node$labels$edges
+            ifelse (
+                length (out) == 0L,
+                "",
+                vapply (out, function (j) j$node$name, character (1L))
+            )
+        })
+        issue_labels <- c (issue_labels, these_labels)
     }
 
     # rm any issues closed as "not planned"
@@ -368,9 +378,9 @@ get_gh_issue_people <- function (org, repo,
     }
     if (nzchar (exclude_label)) {
 
-        index <- vapply (issue_labels, function (i) {
+        index <- which (vapply (issue_labels, function (i) {
             !any (i %in% exclude_label)
-        }, logical (1L))
+        }, logical (1L)))
         issue_authors <- issue_authors [index]
         issue_author_avatar <- issue_author_avatar [index]
         issue_contributors <- issue_contributors [index]
