@@ -2,10 +2,7 @@ context ("get contributors")
 
 test_that ("get_contributors", {
 
-    vcr::use_cassette ("get_contribs", {
-
-        x <- get_contributors (org = "hypertidy", repo = "geodist")
-    })
+    x <- get_contributors (org = "hypertidy", repo = "geodist")
 
     expect_is (x, "data.frame")
     expect_equal (ncol (x), 4)
