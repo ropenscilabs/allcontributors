@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.1.0.025
+Version: 0.1.0.026
 Authors@R: 
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre"))
 Description: Acknowledge all contributors to a project via a single
@@ -19,6 +19,7 @@ Imports:
     ghql,
     gitcreds,
     httr,
+    httr2,
     jsonlite,
     magrittr
 Suggests: 

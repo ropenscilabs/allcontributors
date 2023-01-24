@@ -141,29 +141,28 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
     pagenum <- 1L
     params <- list (per_page = per_page, page = pagenum)
 
-    if (nchar (tok) > 0) {
-        x <- httr::GET (u, httr::authenticate (user, tok), query = params) %>%
-            httr::content ()
-    } else {
-        x <- httr::GET (u, query = params) %>%
-            httr::content ()
+    req <- httr2::request (u)
+    if (nchar (tok) > 0L) {
+        headers <- list (Authorization = paste0 ("Bearer ", tok))
+        req <- httr2::req_headers (req, "Authorization" = headers)
     }
+    req <- httr2::req_body_json (req, params)
+    req <- httr2::req_method (req, "GET")
+
+    resp <- httr2::req_perform (req)
+    httr2::resp_check_status (resp)
+
+    x <- httr2::resp_body_json (resp, simplifyVector = TRUE)
 
     res <- x
     while (length (x) == per_page) {
         params$page <- params$page + 1L
+        req <- httr2::req_body_json (req, params)
 
-        if (length (tok) > 0) {
-            x <- httr::GET (
-                u,
-                httr::authenticate (user, tok),
-                query = params
-            ) %>%
-                httr::content ()
-        } else {
-            x <- httr::GET (u, query = params) %>%
-                httr::content ()
-        }
+        resp <- httr2::req_perform (req)
+        httr2::resp_check_status (resp)
+
+        x <- httr2::resp_body_json (resp, simplifyVector = TRUE)
         res <- c (res, x)
     }
 
