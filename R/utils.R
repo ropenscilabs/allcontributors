@@ -74,7 +74,7 @@ parse_github_remotes <- function(x) {
 
   # as.character() necessary for edge case of length-0 input
   dat$protocol <- as.character(ifelse(dat$protocol == "https", "https", "ssh"))
-  dat$name <- if (rlang::is_named(x)) {
+  dat$name <- if (!is.null(names(x))) {
     names(x)
   } else {
     rep_len(NA_character_, length.out = nrow(dat))
