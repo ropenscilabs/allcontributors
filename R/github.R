@@ -126,7 +126,6 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
     if (length (tok) == 0) {
         tok <- ""
     }
-    user <- get_git_user ()
 
     # This query can not be done via GraphQL, so have to use v3 REST API
     u <- paste0 (
@@ -166,19 +165,15 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
         res <- c (res, x)
     }
 
-    logins <- vapply (x, function (i) i$login, character (1))
-    contributions <- vapply (x, function (i) i$contributions, integer (1))
-    avatars <- vapply (x, function (i) i$avatar_url, character (1))
-
-    index <- seq (logins)
+    index <- seq_len (nrow (res))
     if (alphabetical) {
-        index <- order (res$logins)
+        index <- order (res$login)
     }
 
     data.frame (
-        logins = logins,
-        contributions = contributions,
-        avatar = avatars,
+        logins = res$login,
+        contributions = res$contributions,
+        avatar = res$avatar_url,
         stringsAsFactors = FALSE
     ) [index, ]
 }
@@ -490,7 +485,6 @@ get_gh_contrib_issue <- function (org, repo) {
     }
 
     tok <- get_gh_token ()
-    user <- get_git_user ()
 
     u <- paste0 (
         "https://api.github.com/repos/",
