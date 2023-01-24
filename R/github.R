@@ -194,7 +194,16 @@ get_gh_token <- function (token = "") {
 
 get_git_user <- function () {
     # whoami::whoami ()
-    cfg <- gert::git_config ()
+    cfg <- tryCatch (
+        gert::git_config (),
+        error = function (e) NULL
+    )
+    if (is.null (cfg)) {
+        cfg <- tryCatch (
+            gert::git_config_global (),
+            error = function (e) NULL
+        )
+    }
     out <- cfg$value [cfg$name == "user.name"]
     if (is.null (out)) {
         out <- ""
