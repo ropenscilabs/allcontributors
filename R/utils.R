@@ -49,77 +49,79 @@ in_git_repository <- function (path = ".") {
     return (!is.null (res))
 }
 
-# from usethis https://github.com/r-lib/usethis/blob/26a843c148ded63300f3d17f6fba899611640aac/R/utils-github.R#L38
-parse_github_remotes <- function(x) {
-  # https://github.com/r-lib/usethis
-  #                                    --> https, github.com,      rlib, usethis
-  # https://github.com/r-lib/usethis.git
-  #                                    --> https, github.com,      rlib, usethis
-  # https://github.com/r-lib/usethis#readme
-  #                                    --> https, github.com,      rlib, usethis
-  # https://github.com/r-lib/usethis/issues/1169
-  #                                    --> https, github.com,      rlib, usethis
-  # https://github.acme.com/r-lib/devtools.git
-  #                                    --> https, github.acme.com, rlib, usethis
-  # git@github.com:r-lib/usethis.git
-  #                                    --> ssh,   github.com,      rlib, usethis
-  # ssh://git@github.com/rstudio/packrat.git
-  #                                    --> ssh,   github.com,      rlib, usethis
-  dat <- re_match(x, github_remote_regex)
+# from usethis
+# https://github.com/r-lib/usethis/blob/26a843c148ded63300f3d17f6fba899611640aac/R/utils-github.R#L38
+parse_github_remotes <- function (x) {
+    # https://github.com/r-lib/usethis
+    #       --> https, github.com,      rlib, usethis
+    # https://github.com/r-lib/usethis.git
+    #       --> https, github.com,      rlib, usethis
+    # https://github.com/r-lib/usethis#readme
+    #       --> https, github.com,      rlib, usethis
+    # https://github.com/r-lib/usethis/issues/1169
+    #       --> https, github.com,      rlib, usethis
+    # https://github.acme.com/r-lib/devtools.git
+    #       --> https, github.acme.com, rlib, usethis
+    # git@github.com:r-lib/usethis.git
+    #       --> ssh,   github.com,      rlib, usethis
+    # ssh://git@github.com/rstudio/packrat.git
+    #       --> ssh,   github.com,      rlib, usethis
+    dat <- re_match (x, github_remote_regex)
 
-  dat$protocol <- sub("://$", "", dat$protocol)
-  dat$user <- sub("@$", "", dat$user)
-  dat$repo_name <- sub("[.]git$", "", dat$repo_name)
-  dat$url <- dat$.text
+    dat$protocol <- sub ("://$", "", dat$protocol)
+    dat$user <- sub ("@$", "", dat$user)
+    dat$repo_name <- sub ("[.]git$", "", dat$repo_name)
+    dat$url <- dat$.text
 
-  # as.character() necessary for edge case of length-0 input
-  dat$protocol <- as.character(ifelse(dat$protocol == "https", "https", "ssh"))
-  dat$name <- if (!is.null(names(x))) {
-    names(x)
-  } else {
-    rep_len(NA_character_, length.out = nrow(dat))
-  }
+    # as.character() necessary for edge case of length-0 input
+    dat$protocol <-
+        as.character (ifelse (dat$protocol == "https", "https", "ssh"))
+    dat$name <- if (!is.null (names (x))) {
+        names (x)
+    } else {
+        rep_len (NA_character_, length.out = nrow (dat))
+    }
 
-  dat[c("name", "url", "host", "repo_owner", "repo_name", "protocol")]
+    dat [c ("name", "url", "host", "repo_owner", "repo_name", "protocol")]
 }
 
 # https://github.com/r-lib/usethis/blob/26a843c148ded63300f3d17f6fba899611640aac/R/utils-rematch2.R#L5
-re_match <- function(text, pattern, perl = TRUE, ...) {
+re_match <- function (text, pattern, perl = TRUE, ...) {
 
-  stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
-  text <- as.character(text)
+    stopifnot (is.character (pattern), length (pattern) == 1, !is.na (pattern))
+    text <- as.character (text)
 
-  match <- regexpr(pattern, text, perl = perl, ...)
+    match <- regexpr (pattern, text, perl = perl, ...)
 
-  start  <- as.vector(match)
-  length <- attr(match, "match.length")
-  end    <- start + length - 1L
+    start <- as.vector (match)
+    length <- attr (match, "match.length")
+    end <- start + length - 1L
 
-  matchstr <- substring(text, start, end)
-  matchstr[ start == -1 ] <- NA_character_
+    matchstr <- substring (text, start, end)
+    matchstr [start == -1] <- NA_character_
 
-  res <- data.frame(
-    stringsAsFactors = FALSE,
-    .text = text,
-    .match = matchstr
-  )
+    res <- data.frame (
+        stringsAsFactors = FALSE,
+        .text = text,
+        .match = matchstr
+    )
 
-  if (!is.null(attr(match, "capture.start"))) {
+    if (!is.null (attr (match, "capture.start"))) {
 
-    gstart  <- attr(match, "capture.start")
-    glength <- attr(match, "capture.length")
-    gend    <- gstart + glength - 1L
+        gstart <- attr (match, "capture.start")
+        glength <- attr (match, "capture.length")
+        gend <- gstart + glength - 1L
 
-    groupstr <- substring(text, gstart, gend)
-    groupstr[ gstart == -1 ] <- NA_character_
-    dim(groupstr) <- dim(gstart)
+        groupstr <- substring (text, gstart, gend)
+        groupstr [gstart == -1] <- NA_character_
+        dim (groupstr) <- dim (gstart)
 
-    res <- cbind(groupstr, res, stringsAsFactors = FALSE)
-  }
+        res <- cbind (groupstr, res, stringsAsFactors = FALSE)
+    }
 
-  names(res) <- c(attr(match, "capture.names"), ".text", ".match")
-  #class(res) <- c("tbl_df", "tbl", class(res))
-  res
+    names (res) <- c (attr (match, "capture.names"), ".text", ".match")
+    # class(res) <- c("tbl_df", "tbl", class(res))
+    res
 }
 
 # https://github.com/r-lib/usethis/blob/26a843c148ded63300f3d17f6fba899611640aac/R/utils-github.R#L25
@@ -129,15 +131,15 @@ re_match <- function(text, pattern, perl = TRUE, ...) {
 # https://stackoverflow.com/questions/2514859/regular-expression-for-git-repository
 # https://git-scm.com/docs/git-clone#_git_urls
 # https://stackoverflow.com/questions/27745/getting-parts-of-a-url-regex
-github_remote_regex <- paste0(
-  "^",
-  "(?<protocol>\\w+://)?",
-  "(?<user>.+@)?",
-  "(?<host>[^/:]+)",
-  "[/:]",
-  "(?<repo_owner>[^/]+)",
-  "/",
-  "(?<repo_name>[^/#]+)",
-  "(?<fragment>.*)",
-  "$"
+github_remote_regex <- paste0 (
+    "^",
+    "(?<protocol>\\w+://)?",
+    "(?<user>.+@)?",
+    "(?<host>[^/:]+)",
+    "[/:]",
+    "(?<repo_owner>[^/]+)",
+    "/",
+    "(?<repo_name>[^/#]+)",
+    "(?<fragment>.*)",
+    "$"
 )
