@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0.32",
+  "version": "0.1.0.033",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -183,12 +183,15 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "SystemRequirements": null
+    "SystemRequirements": {}
   },
   "fileSize": "73.058KB",
   "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check", "https://codecov.io/gh/ropenscilabs/allcontributors"],
+  "contIntegration": [
+    "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
+    "https://codecov.io/gh/ropenscilabs/allcontributors"
+  ],
   "developmentStatus": "https://www.repostatus.org/#active",
   "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
 }

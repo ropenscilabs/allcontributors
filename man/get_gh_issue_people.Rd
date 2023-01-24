@@ -9,7 +9,7 @@ get_gh_issue_people(
   repo,
   exclude_issues = NULL,
   exclude_label = "wontfix",
-  exclude_not_planned = exclude_not_planned
+  exclude_not_planned = TRUE
 )
 }
 \arguments{
