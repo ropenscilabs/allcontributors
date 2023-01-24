@@ -501,28 +501,31 @@ get_gh_contrib_issue <- function (org, repo) {
         issue_num
     )
 
-    qry <- list (state = "all", per_page = 100, page = 1)
-    if (nchar (tok) > 0) {
-        x <- httr::GET (u, httr::authenticate (user, tok), query = qry)
-    } else {
-        x <- httr::GET (u, query = qry)
-    }
+    req <- httr2::request (u)
 
-    txt <- httr::content (x)$body
+    if (nchar (tok) > 0) {
+        headers <- list (Authorization = paste0 ("Bearer ", tok))
+        req <- httr2::req_headers (req, "Authorization" = headers)
+    }
+    params <- list (state = "all", per_page = 100, page = 1)
+    req <- httr2::req_body_json (req, params)
+    req <- httr2::req_method (req, "GET")
+
+    resp <- httr2::req_perform (req)
+    httr2::resp_check_status (resp)
+
+    x <- httr2::resp_body_json (resp, simplifyVector = TRUE)
+    cmts <- x$body
+
     # That's just the body of the opening comment; the following lines extract
     # all subsequent comments:
-    if (nchar (tok) > 0) {
-        x <- httr::GET (
-            paste0 (u, "/comments"),
-            httr::authenticate (user, tok),
-            query = qry
-        )
-    } else {
-        x <- httr::GET (paste0 (u, "/comments"), query = qry)
-    }
-    txt <- c (txt, lapply (httr::content (x), function (i) i$body))
+    req <- httr2::req_url_path_append (req, "comments")
+    resp <- httr2::req_perform (req)
+    httr2::resp_check_status (resp)
+    x <- httr2::resp_body_json (resp, simplifyVector = TRUE)
+    cmts <- c (cmts, x$body)
 
-    pings <- lapply (txt, function (i) {
+    pings <- lapply (cmts, function (i) {
         first <- regexpr ("@", i)
         i <- strsplit (substring (i, first - 1, nchar (i)), "\\r") [[1]]
         gsub ("\\n", "", i [grep ("@", i)])
