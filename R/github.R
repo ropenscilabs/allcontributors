@@ -308,11 +308,17 @@ get_gh_issue_people <- function (org, repo,
         )
         issue_authors <- c (
             issue_authors,
-            vapply (dat, function (i) i$node$author$login, character (1L))
+            vapply (dat, function (i) {
+                res <- i$node$author$login
+                ifelse (is.null (res), NA_character_, res)
+            }, character (1L))
         )
         issue_author_avatar <- c (
             issue_author_avatar,
-            vapply (dat, function (i) i$node$author$avatarUrl, character (1L))
+            vapply (dat, function (i) {
+                res <- i$node$author$avatarUrl
+                ifelse (is.null (res), NA_character_, res)
+            }, character (1L))
         )
         issue_state_reason <- c (
             issue_state_reason,
