@@ -2,8 +2,8 @@
 #'
 #' Add contributors to README.Rmd
 #'
-#' @param repo Location of repository for which contributions are to be
-#' extracted. This must be a git project with a github remote.
+#' @param repo Vector of repository locations for which contributions are to be
+#' extracted. Each location must be a git project with a github remote.
 #' @param ncols Number of columns for contributors in 'README'
 #' @param files Names of files in which to add contributors
 #' @param type Type of contributions to include: 'code' for direct code
@@ -81,7 +81,36 @@ add_contributors <- function (repo = ".",
                               alphabetical = FALSE,
                               open_issue = FALSE,
                               force_update = FALSE) {
+    ctbs <- add_contributors_one_repo(
+                              repo,
+                              type,
+                              exclude_label,
+                              exclude_issues,
+                              exclude_not_planned,
+                              num_sections,
+                              section_names,
+                              format,
+                              alphabetical
+    )
 
+    chk <- add_contribs_to_files (
+        ctbs$ctbs, ctbs$or, ncols, format, files,
+        open_issue, force_update
+    )
+
+    invisible (unlist (chk))
+}
+
+add_contributors_one_repo <- function (
+                              repo,
+                              type,
+                              exclude_label,
+                              exclude_issues,
+                              exclude_not_planned,
+                              num_sections,
+                              section_names,
+                              format,
+                              alphabetical) {
     if (!in_git_repository (repo)) {
         stop ("The path [", repo, "] does not appear to be a git repository")
     }
@@ -136,12 +165,7 @@ add_contributors <- function (repo = ".",
 
     ctbs <- rename_default_sections (ctbs)
 
-    chk <- add_contribs_to_files (
-        ctbs, or, ncols, format, files,
-        open_issue, force_update
-    )
-
-    invisible (unlist (chk))
+    return(list(ctbs, or))
 }
 
 match_type_arg <- function (type) {
