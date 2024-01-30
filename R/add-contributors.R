@@ -211,7 +211,7 @@ add_contribs_to_files <- function (ctbs, orgrepo, ncols, format, files,
 
     # files <- file.path (here::here(), files)
     files <- files [which (file.exists (files))]
-    files <- files [grep ("\\.md$|\\.Rmd$", files)]
+    files <- files [grep ("\\.md$|\\.Rmd$|\\.qmd$", files)]
 
     if (length (files) == 0) {
         stop ("None of theose files exist, or are either '.Rmd' or '.md' files")
