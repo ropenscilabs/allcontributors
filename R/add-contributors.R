@@ -81,8 +81,12 @@ add_contributors <- function (repo = ".",
                               alphabetical = FALSE,
                               open_issue = FALSE,
                               force_update = FALSE) {
-    ctbs <- add_contributors_one_repo(
-                              repo,
+    # Init list
+    all_repos <- list(ctbs = data.frame())
+
+    for (rep in repo) {
+        one_repo <- add_contributors_one_repo(
+                              repo = rep,
                               type,
                               exclude_label,
                               exclude_issues,
@@ -90,11 +94,18 @@ add_contributors <- function (repo = ".",
                               num_sections,
                               section_names,
                               format,
-                              alphabetical
-    )
+                              alphabetical)
+        all_repos$ctbs <- rbind(all_repos$ctbs, one_repo$ctbs)
+        all_repos$or <- one_repo$or
+    }
+
+    # Deduplicate if multiple repositories
+    if (length(repo) > 1) {
+        all_repos$ctbs <- all_repos$ctbs[!duplicated(all_repos$ctbs[c("logins")]), ]
+    }
 
     chk <- add_contribs_to_files (
-        ctbs$ctbs, ctbs$or, ncols, format, files,
+        all_repos$ctbs, all_repos$or, ncols, format, files,
         open_issue, force_update
     )
 
@@ -165,7 +176,7 @@ add_contributors_one_repo <- function (
 
     ctbs <- rename_default_sections (ctbs)
 
-    return(list(ctbs, or))
+    return(list(ctbs = ctbs, or = or))
 }
 
 match_type_arg <- function (type) {
