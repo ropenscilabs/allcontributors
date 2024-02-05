@@ -81,31 +81,29 @@ add_contributors <- function (repo = ".",
                               alphabetical = FALSE,
                               open_issue = FALSE,
                               force_update = FALSE) {
-    # Init list
-    all_repos <- list(ctbs = data.frame())
-
-    for (rep in repo) {
+    all_repos <- do.call(rbind, lapply(repo, function(rep) {
         one_repo <- get_contributors_one_repo(
-                              repo = rep,
-                              type,
-                              exclude_label,
-                              exclude_issues,
-                              exclude_not_planned,
-                              num_sections,
-                              section_names,
-                              format,
-                              alphabetical)
-        all_repos$ctbs <- rbind(all_repos$ctbs, one_repo$ctbs)
-        all_repos$or <- one_repo$or
-    }
+            repo = rep,
+            type,
+            exclude_label,
+            exclude_issues,
+            exclude_not_planned,
+            num_sections,
+            section_names,
+            format,
+            alphabetical)
 
-    # Deduplicate if multiple repositories
-    if (length(repo) > 1) {
-        all_repos$ctbs <- all_repos$ctbs[!duplicated(all_repos$ctbs[c("logins")]), ]
-    }
+        return(one_repo)
+    }))
+
+    combined_df <- do.call(rbind, all_repos[, 'ctbs'])
+    combined_df$contributions <- ave(combined_df$contributions, combined_df$login, FUN = sum)
+
+    # Remove duplicate rows
+    result <- combined_df[!duplicated(combined_df[c("logins")]), ]
 
     chk <- add_contribs_to_files (
-        all_repos$ctbs, all_repos$or, ncols, format, files,
+        result, all_repos[, 'or'][[1]], ncols, format, files,
         open_issue, force_update
     )
 
