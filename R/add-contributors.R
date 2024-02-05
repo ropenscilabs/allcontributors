@@ -85,7 +85,7 @@ add_contributors <- function (repo = ".",
     all_repos <- list(ctbs = data.frame())
 
     for (rep in repo) {
-        one_repo <- add_contributors_one_repo(
+        one_repo <- get_contributors_one_repo(
                               repo = rep,
                               type,
                               exclude_label,
@@ -112,7 +112,7 @@ add_contributors <- function (repo = ".",
     invisible (unlist (chk))
 }
 
-add_contributors_one_repo <- function (
+get_contributors_one_repo <- function (
                               repo,
                               type,
                               exclude_label,
