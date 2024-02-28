@@ -296,6 +296,8 @@ get_gh_issue_people <- function (org, repo,
             repo = repo,
             end_cursor = end_cursor
         )
+
+        check_rate_limit()
         dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -446,6 +448,7 @@ get_gh_issue_titles <- function (org, repo) {
             repo = repo,
             end_cursor = end_cursor
         )
+        check_rate_limit()
         dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -536,4 +539,21 @@ get_gh_contrib_issue <- function (org, repo) {
     })
 
     unlist (pings)
+}
+
+#' Check the GitHub rate limit and warn if exceeded.
+#'
+#' @noRd
+check_rate_limit <- function () {
+    gh_state <- gh::gh_rate_limit()
+    if (gh_state$remaining == 0) {
+        m <- paste0 (
+            "The GitHub rate limit is reached and will",
+            " reset on:\n", gh_state$reset,
+            "\nPlease re-run your query later or scope",
+            " down your query to ensure you stay within",
+            " the limits."
+        )
+        cli::cli_alert_warning (m, wrap = FALSE)
+    }
 }
