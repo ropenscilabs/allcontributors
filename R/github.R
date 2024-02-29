@@ -546,14 +546,17 @@ get_gh_contrib_issue <- function (org, repo) {
 #' @noRd
 check_rate_limit <- function () {
     gh_state <- gh::gh_rate_limit()
-    if (gh_state$remaining == 0) {
-        m <- paste0 (
-            "The GitHub rate limit is reached and will",
-            " reset on:\n", gh_state$reset,
-            "\nPlease re-run your query later or scope",
-            " down your query to ensure you stay within",
-            " the limits."
-        )
-        cli::cli_alert_warning (m, wrap = FALSE)
+    limit_warn <- 0.1
+    warn_txt <- NULL
+    if (gh_state$remaining / gh_state$limit < limit_warn) {
+        warn_txt <- "You have used > 90% of your GitHub calls..."
+    } else if (gh_state$remaining == 0) {
+        warn_txt <- "The GitHub rate limit has been reached..."
+    }
+    if (!is.null (warn_txt)) {
+        cli::cli_alert_warning (sprintf(
+                "%s It resets in ~%s minutes.",
+                warn_txt,
+                ceiling(difftime(gh_state$reset, Sys.time(), units = "mins"))))
     }
 }
