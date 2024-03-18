@@ -18,7 +18,7 @@
         "received_events_url": "https://api.github.com/users/mpadge/received_events",
         "type": "User",
         "site_admin": false,
-        "contributions": 213
+        "contributions": 214
     },
     {
         "login": "daniellemccool",
@@ -37,6 +37,27 @@
         "repos_url": "https://api.github.com/users/daniellemccool/repos",
         "events_url": "https://api.github.com/users/daniellemccool/events{/privacy}",
         "received_events_url": "https://api.github.com/users/daniellemccool/received_events",
+        "type": "User",
+        "site_admin": false,
+        "contributions": 1
+    },
+    {
+        "login": "olivroy",
+        "id": 52606734,
+        "node_id": "MDQ6VXNlcjUyNjA2NzM0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/52606734?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/olivroy",
+        "html_url": "https://github.com/olivroy",
+        "followers_url": "https://api.github.com/users/olivroy/followers",
+        "following_url": "https://api.github.com/users/olivroy/following{/other_user}",
+        "gists_url": "https://api.github.com/users/olivroy/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/olivroy/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/olivroy/subscriptions",
+        "organizations_url": "https://api.github.com/users/olivroy/orgs",
+        "repos_url": "https://api.github.com/users/olivroy/repos",
+        "events_url": "https://api.github.com/users/olivroy/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/olivroy/received_events",
         "type": "User",
         "site_admin": false,
         "contributions": 1

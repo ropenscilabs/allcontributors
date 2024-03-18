@@ -1,0 +1,76 @@
+{
+    "resources": {
+        "core": {
+            "limit": 5000,
+            "used": 22,
+            "remaining": 4978,
+            "reset": 1710753401
+        },
+        "search": {
+            "limit": 30,
+            "used": 0,
+            "remaining": 30,
+            "reset": 1710752737
+        },
+        "graphql": {
+            "limit": 5000,
+            "used": 9,
+            "remaining": 4991,
+            "reset": 1710754258
+        },
+        "integration_manifest": {
+            "limit": 5000,
+            "used": 0,
+            "remaining": 5000,
+            "reset": 1710756277
+        },
+        "source_import": {
+            "limit": 100,
+            "used": 0,
+            "remaining": 100,
+            "reset": 1710752737
+        },
+        "code_scanning_upload": {
+            "limit": 1000,
+            "used": 0,
+            "remaining": 1000,
+            "reset": 1710756277
+        },
+        "actions_runner_registration": {
+            "limit": 10000,
+            "used": 0,
+            "remaining": 10000,
+            "reset": 1710756277
+        },
+        "scim": {
+            "limit": 15000,
+            "used": 0,
+            "remaining": 15000,
+            "reset": 1710756277
+        },
+        "dependency_snapshots": {
+            "limit": 100,
+            "used": 0,
+            "remaining": 100,
+            "reset": 1710752737
+        },
+        "audit_log": {
+            "limit": 1750,
+            "used": 0,
+            "remaining": 1750,
+            "reset": 1710756277
+        },
+        "code_search": {
+            "limit": 10,
+            "used": 0,
+            "remaining": 10,
+            "reset": 1710752737
+        }
+    },
+    "rate": {
+        "limit": 5000,
+        "used": 22,
+        "remaining": 4978,
+        "reset": 1710753401
+    }
+}
