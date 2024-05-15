@@ -105,7 +105,8 @@ add_contributors <- function (repo = ".",
     }))
 
     combined_df <- do.call (rbind, all_repos [, "ctbs"])
-    combined_df$contributions <- stats::ave (combined_df$contributions, combined_df$login, FUN = sum)
+    combined_df$contributions <-
+        stats::ave (combined_df$contributions, combined_df$login, FUN = sum)
 
     # Remove duplicate rows
     result <- combined_df [!duplicated (combined_df [c ("logins")]), ]
@@ -192,7 +193,7 @@ match_type_arg <- function (type) {
             "code, issues, and discussion"
         ))
     }
-    c ("code", "issues", "discussion") [seq (length (type))]
+    c ("code", "issues", "discussion") [seq_along (type)]
 }
 
 get_org_repo <- function (repo) {
@@ -442,7 +443,7 @@ add_one_section <- function (ctbs, orgrepo, ncols,
 
     if (format == "grid") {
         nmax <- ceiling (nrow (ctbs) / ncols)
-        index <- rep (1:nmax, each = ncols) [seq (nrow (ctbs))]
+        index <- rep (1:nmax, each = ncols) [seq_len (nrow (ctbs))]
         ctbs <- split (ctbs, as.factor (index))
     } else {
         ctbs <- list (ctbs)
@@ -461,7 +462,7 @@ add_one_section <- function (ctbs, orgrepo, ncols,
             x <- c (x, "<tr>")
         }
 
-        for (j in seq (nrow (i))) {
+        for (j in seq_len (nrow (i))) {
             href <- NULL
             u <- paste0 (
                 "<a href=\"https://github.com/",
