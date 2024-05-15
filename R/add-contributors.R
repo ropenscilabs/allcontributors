@@ -101,7 +101,7 @@ add_contributors <- function (repo = ".",
     }))
 
     combined_df <- do.call(rbind, all_repos[, 'ctbs'])
-    combined_df$contributions <- ave(combined_df$contributions, combined_df$login, FUN = sum)
+    combined_df$contributions <- stats::ave(combined_df$contributions, combined_df$login, FUN = sum)
 
     # Remove duplicate rows
     result <- combined_df[!duplicated(combined_df[c("logins")]), ]
