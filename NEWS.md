@@ -1,5 +1,10 @@
 # Development
 
+## Major changes
+
+- `add_contributors()` now accepts main `repo` parameter as a vector of repository locations to be used to collate a single allcontributors list; thanks to @chartgerink via #35.
+- Chris Hartgerink (@chartgerink) added as new author; thanks to both #35 and #37
+
 ## Minor changes
 
 - Add a rate limit checker for the GitHub API calls. Will warn if rate limit is exceeded (thanks to @chartgerink via #37).
