@@ -42,6 +42,9 @@
 #' \item{3} "text" for a single line of text containing comma-separated github
 #' user names linked to issue contributions.
 #' }
+#' @param check_urls If `TRUE` (default), GitHub URLs of all contributors are
+#' checked to ensure they are still valid. (This is generally the most
+#' time-consuming stage, so set to 'FALSE' if you are sure all URLs are valid.)
 #' @param open_issue If `TRUE`, open or edit an issue on github in order to
 #' notify all contributors that they've been added to your `README` (see Note).
 #' @param force_update If `TRUE`, update the specified files even if
@@ -78,6 +81,7 @@ add_contributors <- function (repo = ".",
                                   "Issue Contributors"
                               ),
                               format = "grid",
+                              check_urls = TRUE,
                               alphabetical = FALSE,
                               open_issue = FALSE,
                               force_update = FALSE) {
@@ -117,6 +121,7 @@ add_contributors <- function (repo = ".",
         exclude_issues = exclude_issues,
         exclude_not_planned = exclude_not_planned,
         alphabetical = alphabetical,
+        check_urls = check_urls,
         quiet = FALSE
     )
 
@@ -163,9 +168,9 @@ get_org_repo <- function (repo) {
         stop ("Repository must have github remote")
     }
 
-    parsed_remote <- parse_github_remotes(remote)
-    org <- parsed_remote[["repo_owner"]]
-    repo <- parsed_remote[["repo_name"]]
+    parsed_remote <- parse_github_remotes (remote)
+    org <- parsed_remote [["repo_owner"]]
+    repo <- parsed_remote [["repo_name"]]
 
     list (
         org = org,

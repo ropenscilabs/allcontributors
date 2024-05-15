@@ -5,9 +5,6 @@
 #' @param org Github organisation name for repository
 #' @param repo Repository within `org` for which contributors are to be
 #' extracted
-#' @param check_urls If `TRUE` (default), GitHub URLs of all contributors are
-#' checked to ensure they are still valid. (This is generally the most
-#' time-consuming stage, so set to 'FALSE' if you are sure all URLs are valid.)
 #' @param quiet If `FALSE`, display progress information on screen.
 #' @inheritParams add_contributors
 #'
