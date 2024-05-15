@@ -85,8 +85,8 @@ add_contributors <- function (repo = ".",
                               alphabetical = FALSE,
                               open_issue = FALSE,
                               force_update = FALSE) {
-    all_repos <- do.call(rbind, lapply(repo, function(rep) {
-        one_repo <- get_contributors_one_repo(
+    all_repos <- do.call (rbind, lapply (repo, function (rep) {
+        one_repo <- get_contributors_one_repo (
             repo = rep,
             type,
             exclude_label,
@@ -95,35 +95,35 @@ add_contributors <- function (repo = ".",
             num_sections,
             section_names,
             format,
-            alphabetical)
+            alphabetical
+        )
 
-        return(one_repo)
+        return (one_repo)
     }))
 
-    combined_df <- do.call(rbind, all_repos[, 'ctbs'])
-    combined_df$contributions <- stats::ave(combined_df$contributions, combined_df$login, FUN = sum)
+    combined_df <- do.call (rbind, all_repos [, "ctbs"])
+    combined_df$contributions <- stats::ave (combined_df$contributions, combined_df$login, FUN = sum)
 
     # Remove duplicate rows
-    result <- combined_df[!duplicated(combined_df[c("logins")]), ]
+    result <- combined_df [!duplicated (combined_df [c ("logins")]), ]
 
     chk <- add_contribs_to_files (
-        result, all_repos[, 'or'][[1]], ncols, format, files,
+        result, all_repos [, "or"] [[1]], ncols, format, files,
         open_issue, force_update
     )
 
     invisible (unlist (chk))
 }
 
-get_contributors_one_repo <- function (
-                              repo,
-                              type,
-                              exclude_label,
-                              exclude_issues,
-                              exclude_not_planned,
-                              num_sections,
-                              section_names,
-                              format,
-                              alphabetical) {
+get_contributors_one_repo <- function (repo,
+                                       type,
+                                       exclude_label,
+                                       exclude_issues,
+                                       exclude_not_planned,
+                                       num_sections,
+                                       section_names,
+                                       format,
+                                       alphabetical) {
     if (!in_git_repository (repo)) {
         stop ("The path [", repo, "] does not appear to be a git repository")
     }
@@ -179,7 +179,7 @@ get_contributors_one_repo <- function (
 
     ctbs <- rename_default_sections (ctbs)
 
-    return(list(ctbs = ctbs, or = or))
+    return (list (ctbs = ctbs, or = or))
 }
 
 match_type_arg <- function (type) {
