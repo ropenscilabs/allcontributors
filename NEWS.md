@@ -1,4 +1,5 @@
 # Development
+<<<<<<< fix/36 -- Incoming Change
 
 ## Minor changes
 
@@ -7,8 +8,17 @@
 ---
 
 # v 0.1.1
+=======
+>>>>>>> main -- Current Change
 
 ## Minor changes
+
+- Expose `check_urls' parameter in main `add_contributors` function, to allow that to be switched off (thanks to @sbfnk via #38).
+- Add error handling to the URL checking function so failures do not cause function errors (also thanks to @sbfnk via #38).
+
+---
+
+# v 0.1.1
 
 - Fix bug in issue contributors when github account no longer exists
 

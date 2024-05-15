@@ -15,6 +15,7 @@ add_contributors(
   num_sections = 3,
   section_names = c("Code", "Issue Authors", "Issue Contributors"),
   format = "grid",
+  check_urls = TRUE,
   alphabetical = FALSE,
   open_issue = FALSE,
   force_update = FALSE
@@ -68,6 +69,10 @@ and no avatars, one contributor per line linked to issue contributions.
 \item{3} "text" for a single line of text containing comma-separated github
 user names linked to issue contributions.
 }}
+
+\item{check_urls}{If \code{TRUE} (default), GitHub URLs of all contributors are
+checked to ensure they are still valid. (This is generally the most
+time-consuming stage, so set to 'FALSE' if you are sure all URLs are valid.)}
 
 \item{alphabetical}{If \code{TRUE}, order contributors alphabetically, otherwise
 order by decreasing numbers of contributions.}

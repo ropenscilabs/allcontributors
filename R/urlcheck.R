@@ -59,7 +59,32 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
             pool = pool
         )
     }
-    curl::multi_run (pool = pool)
+    chk <- tryCatch (
+        curl::multi_run (pool = pool),
+        error = function (e) NULL
+    )
+    # Retry request on fail:
+    if (is.null (chk)) {
+        n_retries <- 3L
+        n_actual <- 1L
+        while (n_actual <= n_retries && is.null (chk)) {
+            Sys.sleep (1)
+            chk <- tryCatch (
+                curl::multi_run (pool = pool),
+                error = function (e) NULL
+            )
+            n_actual <- n_actual + 1
+        }
+    }
+    if (is.null (chk)) {
+        if (!quiet) {
+            message (
+                "\r", cli::col_green (cli::symbol$cross),
+                " Checking GitHub URLs failed; contributors will be added regardless"
+            )
+        }
+        return (ctbs)
+    }
 
     if (!quiet) {
         message (
@@ -72,7 +97,7 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
     for (i in seq_along (out)) {
         if (inherits (hs [[i]], "error")) {
             out [[i]] <- -1L
-        } else {
+        } else if ("status_code" %in% names (hs [[i]])) {
             out [[i]] <- hs [[i]]$status_code
         }
     }
