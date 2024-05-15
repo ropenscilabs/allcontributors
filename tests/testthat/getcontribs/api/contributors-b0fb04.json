@@ -18,7 +18,28 @@
         "received_events_url": "https://api.github.com/users/mpadge/received_events",
         "type": "User",
         "site_admin": false,
-        "contributions": 214
+        "contributions": 215
+    },
+    {
+        "login": "mdsumner",
+        "id": 4107631,
+        "node_id": "MDQ6VXNlcjQxMDc2MzE=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/4107631?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/mdsumner",
+        "html_url": "https://github.com/mdsumner",
+        "followers_url": "https://api.github.com/users/mdsumner/followers",
+        "following_url": "https://api.github.com/users/mdsumner/following{/other_user}",
+        "gists_url": "https://api.github.com/users/mdsumner/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/mdsumner/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/mdsumner/subscriptions",
+        "organizations_url": "https://api.github.com/users/mdsumner/orgs",
+        "repos_url": "https://api.github.com/users/mdsumner/repos",
+        "events_url": "https://api.github.com/users/mdsumner/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/mdsumner/received_events",
+        "type": "User",
+        "site_admin": false,
+        "contributions": 2
     },
     {
         "login": "daniellemccool",
