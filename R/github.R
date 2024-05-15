@@ -540,9 +540,19 @@ get_gh_contrib_issue <- function (org, repo) {
 
 #' Check the GitHub rate limit and warn if exceeded.
 #'
+#' @return `NULL` (invisibly); function called for side-effect of issue warning
+#' message if rate limit exceeded.
 #' @noRd
 check_rate_limit <- function () {
-    gh_state <- gh::gh_rate_limit()
+    gh_state <- tryCatch (gh::gh_rate_limit(), error = NULL)
+
+    # Unauthenticated calls return `NA` values:
+    call_failed <- is.null (gh_state) || is.na (gh_state$remaining) ||
+        is.na (gh_state$limit)
+    if (call_failed) {
+        return (NULL)
+    }
+
     limit_warn <- 0.1
     warn_txt <- NULL
     if (gh_state$remaining / gh_state$limit < limit_warn) {
