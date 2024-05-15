@@ -3,7 +3,8 @@
 #' Add contributors to README.Rmd
 #'
 #' @param repo Vector of repository locations for which contributions are to be
-#' extracted. Each location must be a git project with a github remote.
+#' extracted. Each location must be a git project with a github remote. Default
+#' is single repository in current working directory.
 #' @param ncols Number of columns for contributors in 'README'
 #' @param files Names of files in which to add contributors
 #' @param type Type of contributions to include: 'code' for direct code
@@ -85,8 +86,10 @@ add_contributors <- function (repo = ".",
                               alphabetical = FALSE,
                               open_issue = FALSE,
                               force_update = FALSE) {
+
     all_repos <- do.call (rbind, lapply (repo, function (rep) {
-        one_repo <- get_contributors_one_repo (
+
+        get_contributors_one_repo (
             repo = rep,
             type = type,
             exclude_label = exclude_label,
@@ -99,7 +102,6 @@ add_contributors <- function (repo = ".",
             alphabetical = alphabetical
         )
 
-        return (one_repo)
     }))
 
     combined_df <- do.call (rbind, all_repos [, "ctbs"])
@@ -126,15 +128,13 @@ get_contributors_one_repo <- function (repo,
                                        format,
                                        check_urls,
                                        alphabetical) {
+
     if (!in_git_repository (repo)) {
         stop ("The path [", repo, "] does not appear to be a git repository")
     }
 
-    if (identical (
-        section_names,
-        c ("Code", "Issue Authors", "Issue Contributors")
-    ) &&
-        num_sections < 3) {
+    sec_names_expected <- c ("Code", "Issue Authors", "Issue Contributors")
+    if (identical (section_names, sec_names_expected) && num_sections < 3) {
 
         if (num_sections == 1) {
             section_names <- rep ("", 3)
@@ -185,6 +185,7 @@ get_contributors_one_repo <- function (repo,
 }
 
 match_type_arg <- function (type) {
+
     if (length (type) > 3) {
         stop (paste0 (
             "There are only three possible types: ",
@@ -215,6 +216,7 @@ get_org_repo <- function (repo) {
 
 # strip current list of contributors from filename
 get_current_contribs <- function (filename, orgrepo) {
+
     x <- readLines (filename)
 
     ghurl <- paste0 (
