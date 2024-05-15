@@ -185,19 +185,17 @@ project, you agree to abide by its terms.
 
 ## Contributors
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-All contributions to this project are gratefully acknowledged using the
-[`allcontributors`
-package](https://github.com/ropenscilabs/allcontributors) following the
-[all-contributors](https://allcontributors.org) specification.
-Contributions of any kind are welcome!
+All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
 ### Code
 
 <table>
+
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
@@ -205,19 +203,28 @@ Contributions of any kind are welcome!
 </a><br>
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=mpadge">mpadge</a>
 </td>
+<td align="center">
+<a href="https://github.com/chartgerink">
+<img src="https://avatars.githubusercontent.com/u/2946344?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=chartgerink">chartgerink</a>
+</td>
+<td align="center">
+<a href="https://github.com/maelle">
+<img src="https://avatars.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=maelle">maelle</a>
+</td>
 </tr>
+
 </table>
+
 
 ### Issues
 
 <table>
+
 <tr>
-<td align="center">
-<a href="https://github.com/maelle">
-<img src="https://avatars.githubusercontent.com/u/8360597?u=824f03caa87c92420352e3dd9a05470320a67412&v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Amaelle">maelle</a>
-</td>
 <td align="center">
 <a href="https://github.com/shamindras">
 <img src="https://avatars.githubusercontent.com/u/7627188?u=d05fb551796e6ce6db64ae43cd8ce48a0217ef85&v=4" width="100px;" alt=""/>
@@ -226,12 +233,20 @@ Contributions of any kind are welcome!
 </td>
 <td align="center">
 <a href="https://github.com/assignUser">
-<img src="https://avatars.githubusercontent.com/u/16141871?u=bbf2ca4641e8ec034a9cdb583e62e3a94c372824&v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/16141871?u=b8095df6a10813031922a72335bd6579d5494c16&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3AassignUser">assignUser</a>
 </td>
+<td align="center">
+<a href="https://github.com/sbfnk">
+<img src="https://avatars.githubusercontent.com/u/1156307?u=ebb3f97708c52159d8bc69dc7336ac912d069606&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Asbfnk">sbfnk</a>
+</td>
 </tr>
+
 </table>
+
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
