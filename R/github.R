@@ -293,6 +293,8 @@ get_gh_issue_people <- function (org, repo,
             repo = repo,
             end_cursor = end_cursor
         )
+
+        check_rate_limit()
         dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -443,6 +445,7 @@ get_gh_issue_titles <- function (org, repo) {
             repo = repo,
             end_cursor = end_cursor
         )
+        check_rate_limit()
         dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -533,4 +536,24 @@ get_gh_contrib_issue <- function (org, repo) {
     })
 
     unlist (pings)
+}
+
+#' Check the GitHub rate limit and warn if exceeded.
+#'
+#' @noRd
+check_rate_limit <- function () {
+    gh_state <- gh::gh_rate_limit()
+    limit_warn <- 0.1
+    warn_txt <- NULL
+    if (gh_state$remaining / gh_state$limit < limit_warn) {
+        warn_txt <- "You have used > 90% of your GitHub calls..."
+    } else if (gh_state$remaining == 0) {
+        warn_txt <- "The GitHub rate limit has been reached..."
+    }
+    if (!is.null (warn_txt)) {
+        cli::cli_alert_warning (sprintf(
+                "%s It resets in ~%s minutes.",
+                warn_txt,
+                ceiling(difftime(gh_state$reset, Sys.time(), units = "mins"))))
+    }
 }

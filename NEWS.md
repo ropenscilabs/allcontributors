@@ -1,4 +1,15 @@
 # Development
+<<<<<<< fix/36 -- Incoming Change
+
+## Minor changes
+
+- Add a rate limit checker for the GitHub API calls. Will warn if rate limit is exceeded.
+
+---
+
+# v 0.1.1
+=======
+>>>>>>> main -- Current Change
 
 ## Minor changes
 
