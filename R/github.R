@@ -294,7 +294,7 @@ get_gh_issue_people <- function (org, repo,
             end_cursor = end_cursor
         )
 
-        check_rate_limit()
+        check_rate_limit ()
         dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -445,7 +445,7 @@ get_gh_issue_titles <- function (org, repo) {
             repo = repo,
             end_cursor = end_cursor
         )
-        check_rate_limit()
+        check_rate_limit ()
         dat <- gh::gh_gql (q)
 
         has_next_page <- dat$data$repository$issues$pageInfo$hasNextPage
@@ -544,7 +544,7 @@ get_gh_contrib_issue <- function (org, repo) {
 #' message if rate limit exceeded.
 #' @noRd
 check_rate_limit <- function () {
-    gh_state <- tryCatch (gh::gh_rate_limit(), error = NULL)
+    gh_state <- tryCatch (gh::gh_rate_limit (), error = NULL)
 
     # Unauthenticated calls return `NA` values:
     call_failed <- is.null (gh_state) || is.na (gh_state$remaining) ||
@@ -561,9 +561,10 @@ check_rate_limit <- function () {
         warn_txt <- "The GitHub rate limit has been reached..."
     }
     if (!is.null (warn_txt)) {
-        cli::cli_alert_warning (sprintf(
-                "%s It resets in ~%s minutes.",
-                warn_txt,
-                ceiling(difftime(gh_state$reset, Sys.time(), units = "mins"))))
+        cli::cli_alert_warning (sprintf (
+            "%s It resets in ~%s minutes.",
+            warn_txt,
+            ceiling (difftime (gh_state$reset, Sys.time (), units = "mins"))
+        ))
     }
 }
