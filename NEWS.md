@@ -1,18 +1,8 @@
 # Development
-<<<<<<< fix/36 -- Incoming Change
 
 ## Minor changes
 
-- Add a rate limit checker for the GitHub API calls. Will warn if rate limit is exceeded.
-
----
-
-# v 0.1.1
-=======
->>>>>>> main -- Current Change
-
-## Minor changes
-
+- Add a rate limit checker for the GitHub API calls. Will warn if rate limit is exceeded (thanks to @chartgerink via #37).
 - Expose `check_urls' parameter in main `add_contributors` function, to allow that to be switched off (thanks to @sbfnk via #38).
 - Add error handling to the URL checking function so failures do not cause function errors (also thanks to @sbfnk via #38).
 
