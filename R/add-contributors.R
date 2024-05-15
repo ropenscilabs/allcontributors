@@ -88,14 +88,15 @@ add_contributors <- function (repo = ".",
     all_repos <- do.call (rbind, lapply (repo, function (rep) {
         one_repo <- get_contributors_one_repo (
             repo = rep,
-            type,
-            exclude_label,
-            exclude_issues,
-            exclude_not_planned,
-            num_sections,
-            section_names,
-            format,
-            alphabetical
+            type = type,
+            exclude_label = exclude_label,
+            exclude_issues = exclude_issues,
+            exclude_not_planned = exclude_not_planned,
+            num_sections = num_sections,
+            section_names = section_names,
+            format = format,
+            check_urls = check_urls,
+            alphabetical = alphabetical
         )
 
         return (one_repo)
@@ -123,6 +124,7 @@ get_contributors_one_repo <- function (repo,
                                        num_sections,
                                        section_names,
                                        format,
+                                       check_urls,
                                        alphabetical) {
     if (!in_git_repository (repo)) {
         stop ("The path [", repo, "] does not appear to be a git repository")
