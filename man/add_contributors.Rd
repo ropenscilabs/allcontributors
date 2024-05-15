@@ -23,7 +23,8 @@ add_contributors(
 }
 \arguments{
 \item{repo}{Vector of repository locations for which contributions are to be
-extracted. Each location must be a git project with a github remote.}
+extracted. Each location must be a git project with a github remote. Default
+is single repository in current working directory.}
 
 \item{ncols}{Number of columns for contributors in 'README'}
 

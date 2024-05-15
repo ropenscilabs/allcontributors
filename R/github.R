@@ -327,8 +327,6 @@ get_gh_issue_people <- function (org, repo,
             }, character (1L))
         )
 
-        author <- dat$node$participants$edges
-
         author_login <- lapply (dat, function (i) {
             edges <- i$node$participants$edges
             unlist (lapply (edges, function (j) j$node$login))

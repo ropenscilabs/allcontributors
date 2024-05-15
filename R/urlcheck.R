@@ -80,7 +80,8 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
         if (!quiet) {
             message (
                 "\r", cli::col_green (cli::symbol$cross),
-                " Checking GitHub URLs failed; contributors will be added regardless"
+                " Checking GitHub URLs failed; ",
+                "contributors will be added regardless"
             )
         }
         return (ctbs)
