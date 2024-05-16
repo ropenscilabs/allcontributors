@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.1.016",
+  "version": "0.1.1.017",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
+  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -26,6 +26,11 @@
       "givenName": "Mark",
       "familyName": "Padgham",
       "email": "mark.padgham@email.com"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Chris",
+      "familyName": "Hartgerink"
     }
   ],
   "maintainer": [
@@ -37,6 +42,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "httptest2",
+      "name": "httptest2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httptest2"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
@@ -161,18 +178,6 @@
     },
     "8": {
       "@type": "SoftwareApplication",
-      "identifier": "jsonlite",
-      "name": "jsonlite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    "9": {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -185,12 +190,12 @@
     },
     "SystemRequirements": {}
   },
-  "fileSize": "73.058KB",
+  "fileSize": "152.145KB",
   "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
   "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
   "contIntegration": [
     "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
-    "https://codecov.io/gh/ropenscilabs/allcontributors"
+    "https://app.codecov.io/gh/ropenscilabs/allcontributors"
   ],
   "developmentStatus": "https://www.repostatus.org/#active",
   "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
