@@ -1,4 +1,4 @@
-# CRAN notes for allcontributors_0.1.1 submission
+# CRAN notes for allcontributors_0.0.0 submission
 
 The submission generates no notes or warnings on:
 
