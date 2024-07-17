@@ -186,6 +186,7 @@ project, you agree to abide by its terms.
 ## Contributors
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -215,6 +216,12 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </a><br>
 <a href="https://github.com/ropenscilabs/allcontributors/commits?author=maelle">maelle</a>
 </td>
+<td align="center">
+<a href="https://github.com/sbfnk">
+<img src="https://avatars.githubusercontent.com/u/1156307?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/allcontributors/commits?author=sbfnk">sbfnk</a>
+</td>
 </tr>
 
 </table>
@@ -236,12 +243,6 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <img src="https://avatars.githubusercontent.com/u/16141871?u=b8095df6a10813031922a72335bd6579d5494c16&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3AassignUser">assignUser</a>
-</td>
-<td align="center">
-<a href="https://github.com/sbfnk">
-<img src="https://avatars.githubusercontent.com/u/1156307?u=ebb3f97708c52159d8bc69dc7336ac912d069606&v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/ropenscilabs/allcontributors/issues?q=is%3Aissue+author%3Asbfnk">sbfnk</a>
 </td>
 </tr>
 
