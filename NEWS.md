@@ -1,5 +1,9 @@
 # Development
 
+## Minor changes
+
+- Fix bug #40 when "Contributors" sub-section title is last line of file; thanks to @sbfnk
+
 ---
 
 # v0.2.0
