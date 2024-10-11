@@ -130,16 +130,16 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
     res <- gh::gh (endpoint, .limit = Inf)
 
     out <- data.frame (
-        logins = map_chr(res, "login"),
-        contributions = map_chr(res, "contributions"),
-        avatar = map_chr(res, "avatar_url"),
+        logins = map_chr (res, "login"),
+        contributions = map_chr (res, "contributions"),
+        avatar = map_chr (res, "avatar_url"),
         stringsAsFactors = FALSE
     )
 
     if (alphabetical) {
-      out [ order (res$login), ]
+        out [order (res$login), ]
     } else {
-      out
+        out
     }
 
 }
@@ -464,13 +464,13 @@ get_gh_contrib_issue <- function (org, repo) {
         issue_num
     )
 
-    x <- gh::gh(endpoint, .limit = Inf)
+    x <- gh::gh (endpoint, .limit = Inf)
     cmts <- x$body
 
     # That's just the body of the opening comment; the following lines extract
     # all subsequent comments:
     endpoint <- paste0 (endpoint, "/comments")
-    x <- gh::gh(endpoint, .limit = Inf)
+    x <- gh::gh (endpoint, .limit = Inf)
     cmts <- c (cmts, x$body)
 
     pings <- lapply (cmts, function (i) {
@@ -512,5 +512,5 @@ check_rate_limit <- function () {
 }
 
 map_chr <- function (x, field) {
-  unname (unlist (lapply (x, "[", field)))
+    unname (unlist (lapply (x, "[", field)))
 }
