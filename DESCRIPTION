@@ -20,7 +20,6 @@ Imports:
     gert,
     gh,
     gitcreds,
-    httr2,
     magrittr
 Suggests: 
     httptest2,
