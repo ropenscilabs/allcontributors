@@ -102,7 +102,7 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
             out [[i]] <- hs [[i]]$status_code
         }
     }
-    index <- which (unlist (out) == 200L)
+    index <- which (unlist (out) != 404)
 
     return (ctbs [index, ])
 }
