@@ -1,10 +1,11 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.2.0.007
+Version: 0.2.0.008
 Authors@R: c(
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre")),
-    person("Chris", "Hartgerink", role = "aut")
-  )
+    person("Chris", "Hartgerink", role = "aut"),
+    person("Maëlle", "Salmon", role = "ctb")
+    )
 Description: Acknowledge all contributors to a project via a single
     function call. The function appends to a 'README' or other specified
     file(s) a table with names of all individuals who contributed via code
