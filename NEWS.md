@@ -3,6 +3,7 @@
 ## Minor changes
 
 - Fix bug #40 when "Contributors" sub-section title is last line of file; thanks to @sbfnk
+- Fix bug #42 with Rest API calls for code contributions; thanks to @maelle
 
 ---
 

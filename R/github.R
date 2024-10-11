@@ -133,17 +133,20 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
         "/contributors"
     )
 
-    per_page <- 100L
-    pagenum <- 1L
-    params <- list (per_page = per_page, page = pagenum)
+    make_req <- function (u, tok, per_page = 100L, page_num = 1L) {
 
-    req <- httr2::request (u)
-    if (nchar (tok) > 0L) {
-        headers <- list (Authorization = paste0 ("Bearer ", tok))
-        req <- httr2::req_headers (req, "Authorization" = headers)
+        req <- httr2::request (u)
+        if (nchar (tok) > 0L) {
+            headers <- list (Authorization = paste0 ("Bearer ", tok))
+            req <- httr2::req_headers (req, "Authorization" = headers)
+        }
+        req <- httr2::req_url_query (req, per_page = per_page, page_num = page_num)
+        httr2::req_method (req, "GET")
     }
-    req <- httr2::req_body_json (req, params)
-    req <- httr2::req_method (req, "GET")
+
+    per_page <- 100L
+    page_num <- 1L
+    req <- make_req (u, tok, per_page = per_page, page_num = page_num)
 
     resp <- httr2::req_perform (req)
     httr2::resp_check_status (resp)
@@ -151,15 +154,14 @@ get_gh_code_contributors <- function (org, repo, alphabetical = FALSE) {
     x <- httr2::resp_body_json (resp, simplifyVector = TRUE)
 
     res <- x
-    while (length (x) == per_page) {
-        params$page <- params$page + 1L
-        req <- httr2::req_body_json (req, params)
-
+    while (nrow (x) == per_page) {
+        page_num <- page_num + 1L
+        req <- make_req (u, tok, per_page = per_page, page_num = page_num)
         resp <- httr2::req_perform (req)
         httr2::resp_check_status (resp)
 
         x <- httr2::resp_body_json (resp, simplifyVector = TRUE)
-        res <- c (res, x)
+        res <- rbind (res, x)
     }
 
     index <- seq_len (nrow (res))

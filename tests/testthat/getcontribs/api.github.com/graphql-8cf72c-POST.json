@@ -599,7 +599,7 @@
 
                                 ]
                             },
-                            "stateReason": null,
+                            "stateReason": "COMPLETED",
                             "url": "https://github.com/hypertidy/geodist/issues/17",
                             "participants": {
                                 "pageInfo": {
@@ -899,7 +899,7 @@
                             "createdAt": "2020-04-16T15:37:00Z",
                             "author": {
                                 "login": "Robinlovelace",
-                                "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=461318c239e721dc40668e4b0ce6cc47731328ac&v=4"
+                                "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=4b78d134ed1814b0677455f45d932b3b4a6ba3a5&v=4"
                             },
                             "title": "Thanks",
                             "labels": {
@@ -918,7 +918,7 @@
                                     {
                                         "node": {
                                             "login": "Robinlovelace",
-                                            "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=461318c239e721dc40668e4b0ce6cc47731328ac&v=4"
+                                            "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=4b78d134ed1814b0677455f45d932b3b4a6ba3a5&v=4"
                                         }
                                     },
                                     {
@@ -1147,7 +1147,7 @@
 
                                 ]
                             },
-                            "stateReason": null,
+                            "stateReason": "COMPLETED",
                             "url": "https://github.com/hypertidy/geodist/issues/31",
                             "participants": {
                                 "pageInfo": {
@@ -1203,7 +1203,7 @@
                             "createdAt": "2021-02-02T20:09:15Z",
                             "author": {
                                 "login": "Robinlovelace",
-                                "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=461318c239e721dc40668e4b0ce6cc47731328ac&v=4"
+                                "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=4b78d134ed1814b0677455f45d932b3b4a6ba3a5&v=4"
                             },
                             "title": "Updated version of package fails when y coordinate is called ymax",
                             "labels": {
@@ -1222,7 +1222,7 @@
                                     {
                                         "node": {
                                             "login": "Robinlovelace",
-                                            "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=461318c239e721dc40668e4b0ce6cc47731328ac&v=4"
+                                            "avatarUrl": "https://avatars.githubusercontent.com/u/1825120?u=4b78d134ed1814b0677455f45d932b3b4a6ba3a5&v=4"
                                         }
                                     },
                                     {
