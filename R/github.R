@@ -469,7 +469,7 @@ get_gh_contrib_issue <- function (org, repo) {
 
     # That's just the body of the opening comment; the following lines extract
     # all subsequent comments:
-    endpoint <- paste0 (endoint, "/comments")
+    endpoint <- paste0 (endpoint, "/comments")
     x <- gh::gh(endpoint, .limit = Inf)
     cmts <- c (cmts, x$body)
 
