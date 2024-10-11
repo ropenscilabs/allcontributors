@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.2.0.012
+Version: 0.2.0.013
 Authors@R: c(
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre")),
     person("Chris", "Hartgerink", role = "aut"),
