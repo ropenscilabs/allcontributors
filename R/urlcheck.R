@@ -106,3 +106,11 @@ check_github_urls <- function (ctbs, quiet = FALSE) {
 
     return (ctbs [index, ])
 }
+
+get_gh_token <- function (token = "") {
+
+    tryCatch (
+        gitcreds::gitcreds_get ()$password,
+        error = function (e) ""
+    )
+}
