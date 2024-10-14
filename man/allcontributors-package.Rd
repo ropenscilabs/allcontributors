@@ -11,8 +11,8 @@ Acknowledge all contributors to a project via a single function call. The functi
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ropenscilabs/allcontributors}
-  \item Report bugs at \url{https://github.com/ropenscilabs/allcontributors/issues}
+  \item \url{https://github.com/ropensci/allcontributors}
+  \item Report bugs at \url{https://github.com/ropensci/allcontributors/issues}
 }
 
 }

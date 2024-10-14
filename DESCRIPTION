@@ -1,6 +1,6 @@
 Package: allcontributors
 Title: Acknowledge all Contributors to a Project
-Version: 0.2.1.003
+Version: 0.2.1.004
 Authors@R: c(
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("aut", "cre")),
     person("Chris", "Hartgerink", role = "aut"),
@@ -12,8 +12,8 @@ Description: Acknowledge all contributors to a project via a single
     or repository issues.  The package also includes several additional
     functions to extract and quantify contributions to any repository.
 License: GPL-3
-URL: https://github.com/ropenscilabs/allcontributors
-BugReports: https://github.com/ropenscilabs/allcontributors/issues
+URL: https://github.com/ropensci/allcontributors
+BugReports: https://github.com/ropensci/allcontributors/issues
 Imports:
     cli,
     clipr,
