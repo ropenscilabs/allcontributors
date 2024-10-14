@@ -91,7 +91,7 @@ not to use GitHub:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("remotes")
-remotes::install_git ("https://git.sr.ht/~ropenscilabs/allcontributors")
+remotes::install_git ("https://git.sr.ht/~ropensci/allcontributors")
 remotes::install_git ("https://codeberg.org/mpadge/allcontributors")
 remotes::install_bitbucket ("mpadge/allcontributors")
 remotes::install_gitlab ("mpadge/allcontributors")

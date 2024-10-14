@@ -183,9 +183,8 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "SystemRequirements": {}
-  },
-  "fileSize": "151.027KB",
+    "SystemRequirements": null
+  },  "fileSize": "151.027KB",
   "releaseNotes": "https://github.com/ropensci/allcontributors/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/allcontributors/blob/main/README.md",
   "contIntegration": [

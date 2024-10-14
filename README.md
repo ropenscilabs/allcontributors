@@ -72,7 +72,7 @@ those who prefer not to use GitHub:
 
 ``` r
 # install.packages("remotes")
-remotes::install_git ("https://git.sr.ht/~ropenscilabs/allcontributors")
+remotes::install_git ("https://git.sr.ht/~ropensci/allcontributors")
 remotes::install_git ("https://codeberg.org/mpadge/allcontributors")
 remotes::install_bitbucket ("mpadge/allcontributors")
 remotes::install_gitlab ("mpadge/allcontributors")
@@ -193,6 +193,7 @@ All contributions to this project are gratefully acknowledged using the
 [`allcontributors` package](https://github.com/ropensci/allcontributors)
 following the [all-contributors](https://allcontributors.org)
 specification. Contributions of any kind are welcome!
+
 
 ### Code
 
