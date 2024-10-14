@@ -38,7 +38,7 @@ issues for nominated repository, excluding issues closed as "not planned"
 }
 \examples{
 \dontrun{
-get_gh_issue_people (org = "ropenscilabs", repo = "allcontributors")
+get_gh_issue_people (org = "ropensci", repo = "allcontributors")
 }
 }
 \seealso{

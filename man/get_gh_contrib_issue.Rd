@@ -23,7 +23,7 @@ github repository.
 }
 \examples{
 \dontrun{
-get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
+get_gh_contrib_issue (org = "ropensci", repo = "allcontributors")
 }
 }
 \seealso{

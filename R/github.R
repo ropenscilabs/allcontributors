@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_contributors (org = "ropenscilabs", repo = "allcontributors")
+#' get_contributors (org = "ropensci", repo = "allcontributors")
 #' }
 #' @family main
 #' @export
@@ -113,7 +113,7 @@ get_contributors <- function (org, repo,
 #'
 #' @examples
 #' \dontrun{
-#' get_gh_code_contributors (org = "ropenscilabs", repo = "allcontributors")
+#' get_gh_code_contributors (org = "ropensci", repo = "allcontributors")
 #' }
 #' @family github
 #' @export
@@ -232,7 +232,7 @@ get_issues_qry <- function (org, repo, end_cursor = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' get_gh_issue_people (org = "ropenscilabs", repo = "allcontributors")
+#' get_gh_issue_people (org = "ropensci", repo = "allcontributors")
 #' }
 #' @family github
 #' @export
@@ -389,7 +389,7 @@ get_gh_issue_people <- function (org, repo,
 #'
 #' @examples
 #' \dontrun{
-#' get_gh_issue_titles (org = "ropenscilabs", repo = "allcontributors")
+#' get_gh_issue_titles (org = "ropensci", repo = "allcontributors")
 #' }
 #' @family github
 #' @export
@@ -441,7 +441,7 @@ get_gh_issue_titles <- function (org, repo) {
 #'
 #' @examples
 #' \dontrun{
-#' get_gh_contrib_issue (org = "ropenscilabs", repo = "allcontributors")
+#' get_gh_contrib_issue (org = "ropensci", repo = "allcontributors")
 #' }
 #' @family github
 #' @export

@@ -4,16 +4,17 @@
   "identifier": "allcontributors",
   "description": "Acknowledge all contributors to a project via a single function call. The function appends to a 'README' or other specified file(s) a table with names of all individuals who contributed via code or repository issues. The package also includes several additional functions to extract and quantify contributions to any repository.",
   "name": "allcontributors: Acknowledge all Contributors to a Project",
-  "codeRepository": "https://github.com/ropenscilabs/allcontributors",
-  "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
+  "relatedLink": ["https://github.com/ropensci/allcontributors", "https://CRAN.R-project.org/package=allcontributors"],
+  "codeRepository": "https://github.com/ropensci/allcontributors",
+  "issueTracker": "https://github.com/ropensci/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.0.013",
+  "version": "0.2.0.13",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -31,6 +32,13 @@
       "@type": "Person",
       "givenName": "Chris",
       "familyName": "Hartgerink"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Maëlle",
+      "familyName": "Salmon"
     }
   ],
   "maintainer": [
@@ -166,18 +174,6 @@
     },
     "7": {
       "@type": "SoftwareApplication",
-      "identifier": "httr2",
-      "name": "httr2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr2"
-    },
-    "8": {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -188,15 +184,10 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "SystemRequirements": {}
+    "SystemRequirements": null
   },
-  "fileSize": "152.145KB",
-  "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
-  "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "contIntegration": [
-    "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
-    "https://app.codecov.io/gh/ropenscilabs/allcontributors"
-  ],
-  "developmentStatus": "https://www.repostatus.org/#active",
-  "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
+  "fileSize": "150.907KB",
+  "releaseNotes": "https://github.com/ropensci/allcontributors/blob/master/NEWS.md",
+  "contIntegration": ["https://github.com/ropensci/allcontributors/actions?query=workflow%3AR-CMD-check", "https://app.codecov.io/gh/ropensci/allcontributors"],
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
