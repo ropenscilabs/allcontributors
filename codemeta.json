@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/ropenscilabs/allcontributors",
   "issueTracker": "https://github.com/ropenscilabs/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.0.014",
+  "version": "0.2.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -31,6 +31,13 @@
       "@type": "Person",
       "givenName": "Chris",
       "familyName": "Hartgerink"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Maëlle",
+      "familyName": "Salmon"
     }
   ],
   "maintainer": [
@@ -166,18 +173,6 @@
     },
     "7": {
       "@type": "SoftwareApplication",
-      "identifier": "httr2",
-      "name": "httr2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr2"
-    },
-    "8": {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -188,15 +183,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "SystemRequirements": {}
+    "SystemRequirements": null
   },
-  "fileSize": "152.145KB",
+  "fileSize": "150.965KB",
   "releaseNotes": "https://github.com/ropenscilabs/allcontributors/blob/master/NEWS.md",
-  "readme": "https://github.com/ropenscilabs/allcontributors/blob/main/README.md",
-  "contIntegration": [
-    "https://github.com/ropenscilabs/allcontributors/actions?query=workflow%3AR-CMD-check",
-    "https://app.codecov.io/gh/ropenscilabs/allcontributors"
-  ],
+  "readme": "https://github.com/ropensci/allcontributors/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/allcontributors/actions?query=workflow%3AR-CMD-check", "https://app.codecov.io/gh/ropensci/allcontributors"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
 }
