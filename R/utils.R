@@ -37,7 +37,7 @@ section_format <- function (x) {
 
 #' A `gert` version of `git2r::in_repository()`.
 #'
-#' See https://github.com/ropenscilabs/allcontributors/issues/27
+#' See https://github.com/ropensci/allcontributors/issues/27
 #' @noRd
 in_git_repository <- function (path = ".") {
 

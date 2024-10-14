@@ -54,7 +54,7 @@ open issues, and contribute to discussions in issues.
 }
 \examples{
 \dontrun{
-get_contributors (org = "ropenscilabs", repo = "allcontributors")
+get_contributors (org = "ropensci", repo = "allcontributors")
 }
 }
 \seealso{

@@ -23,7 +23,7 @@ Get list of all code contributors to the code of a repository
 }
 \examples{
 \dontrun{
-get_gh_code_contributors (org = "ropenscilabs", repo = "allcontributors")
+get_gh_code_contributors (org = "ropensci", repo = "allcontributors")
 }
 }
 \seealso{

@@ -5,7 +5,7 @@ open_allcontribs_issue <- function (org, repo, ctbs) {
         b <- paste0 (
             "Hi All! This repository uses the ",
             "\u005B\\`allcontributors\\` package\u005D",
-            "\u0028https://github.com/ropenscilabs/",
+            "\u0028https://github.com/ropensci/",
             "allcontributors\u0029 ",
             "to acknowledge all contributions on the main ",
             "\u005B\\`README\\`\u005D",

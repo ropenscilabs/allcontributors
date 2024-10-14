@@ -19,5 +19,15 @@ Useful links:
 \author{
 \strong{Maintainer}: Mark Padgham \email{mark.padgham@email.com}
 
+Authors:
+\itemize{
+  \item Chris Hartgerink
+}
+
+Other contributors:
+\itemize{
+  \item Maëlle Salmon [contributor]
+}
+
 }
 \keyword{internal}
