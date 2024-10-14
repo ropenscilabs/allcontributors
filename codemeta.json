@@ -4,11 +4,10 @@
   "identifier": "allcontributors",
   "description": "Acknowledge all contributors to a project via a single function call. The function appends to a 'README' or other specified file(s) a table with names of all individuals who contributed via code or repository issues. The package also includes several additional functions to extract and quantify contributions to any repository.",
   "name": "allcontributors: Acknowledge all Contributors to a Project",
-  "relatedLink": ["https://github.com/ropensci/allcontributors", "https://CRAN.R-project.org/package=allcontributors"],
   "codeRepository": "https://github.com/ropensci/allcontributors",
   "issueTracker": "https://github.com/ropensci/allcontributors/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.0.13",
+  "version": "0.2.1.005",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -185,9 +184,13 @@
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
     "SystemRequirements": null
-  },
-  "fileSize": "150.907KB",
+  },  "fileSize": "151.027KB",
   "releaseNotes": "https://github.com/ropensci/allcontributors/blob/master/NEWS.md",
-  "contIntegration": ["https://github.com/ropensci/allcontributors/actions?query=workflow%3AR-CMD-check", "https://app.codecov.io/gh/ropensci/allcontributors"],
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "readme": "https://github.com/ropensci/allcontributors/blob/main/README.md",
+  "contIntegration": [
+    "https://github.com/ropensci/allcontributors/actions?query=workflow%3AR-CMD-check",
+    "https://app.codecov.io/gh/ropensci/allcontributors"
+  ],
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "relatedLink": "https://CRAN.R-project.org/package=allcontributors"
 }

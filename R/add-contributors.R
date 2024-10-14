@@ -330,7 +330,7 @@ add_contribs_to_one_file <- function (ctbs, orgrepo, ncols, format, filename) {
         )
     } else {
         contribs_sec <- grep ("^\\#\\#\\sContributors$|^Contributors$", x)
-        if (length(x) > contribs_sec) {
+        if (length (x) > contribs_sec) {
             if (x [contribs_sec + 1] == "^-+$") {
                 contribs_sec <- contribs_sec + 1
             }
